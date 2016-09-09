@@ -26,6 +26,6 @@ public class TaskServiceImpl extends AbstractCrudService<Task> implements TaskSe
 
     @Override
     public Task create() {
-        return null;
+        return new Task();
     }
 }

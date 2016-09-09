@@ -13,18 +13,11 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan
 public class TeammateApplication {
 
-    @Bean(name = "ISSUEBEAN")
-    Task getIssue() {
-        return new Task("This is a BEAN", 10);
-    }
-
     public static void main(String[] args) {
         SpringApplication.run(TeammateApplication.class, args);
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
         ctx.register(TeammateApplication.class);
         ctx.refresh();
-        Task bean = ctx.getBean(Task.class);
-        System.out.println(bean.getStoryPoints());
     }
 
 }

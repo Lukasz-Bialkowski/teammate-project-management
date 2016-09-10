@@ -1,6 +1,27 @@
 package com.university.controller;
 
+import com.university.exception.TaskNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@ControllerAdvice
 public class ControllerExceptionHandler {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ControllerExceptionHandler.class);
+
+    @ExceptionHandler(TaskNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public void handleTaskNotFoundException(TaskNotFoundException ex, HttpServletRequest request, HttpServletResponse response) {
+        LOGGER.error("Requested Task not found: {}", ex.getMessage());
+    }
+
 
 /*    private static final String MESSAGE_HEADER = "X-HRTools-Message";
     private static final String DEBUG_MESSAGE_HEADER = "X-HRTools-Debug-Message";

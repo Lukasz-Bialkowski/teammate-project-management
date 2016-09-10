@@ -19,7 +19,7 @@ public class EntityBase implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = true)
+    @Column(name = "date_update", nullable = true)
     private Date dateUpdate;
 
     public EntityBase() {}

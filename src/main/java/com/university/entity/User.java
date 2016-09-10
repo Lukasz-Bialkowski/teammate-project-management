@@ -33,4 +33,12 @@ public class User extends EntityBase {
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", passwordHash='" + passwordHash + '\'' +
+                '}';
+    }
 }

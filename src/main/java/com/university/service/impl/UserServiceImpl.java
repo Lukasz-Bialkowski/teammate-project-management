@@ -10,9 +10,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -20,16 +19,10 @@ import java.util.Optional;
 public class UserServiceImpl extends AbstractCrudService<User> implements UserService {
 
     private UserRepository userRepository;
-    private MessageDigest coder;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
-        try{
-            coder = MessageDigest.getInstance("MD5");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -49,11 +42,11 @@ public class UserServiceImpl extends AbstractCrudService<User> implements UserSe
 
     @Override
     public User create(UserRegistrationDTO form) {
-        String password = form.getPassword();
-        coder.update(password.getBytes(), 0, password.length());
+        final String encoded = Base64.getEncoder().encodeToString( form.getPassword().getBytes( StandardCharsets.UTF_8 ) );
+//        final String decoded = new String(Base64.getDecoder().decode( encoded ), StandardCharsets.UTF_8 );
         User user = new User();
         user.setEmail(form.getEmail());
-        user.setPasswordHash(new BigInteger(1, coder.digest()).toString(16));
+        user.setPasswordHash(encoded);
 //        user.setRole(form.getRole());
         return userRepository.save(user);
     }

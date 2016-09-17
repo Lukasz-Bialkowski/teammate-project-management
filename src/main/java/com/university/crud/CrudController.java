@@ -1,21 +1,15 @@
 package com.university.crud;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import org.apache.tomcat.util.codec.EncoderException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public abstract class CrudController<T> {
+
     private static final Logger logger = LoggerFactory.getLogger(CrudController.class);
-//    URLCodec codec = new URLCodec("UTF-8");
 
     public CrudController() {
     }
@@ -37,13 +31,7 @@ public abstract class CrudController<T> {
     @RequestMapping(method = {RequestMethod.POST}, value = {"/save"})
     @ResponseBody
     public T save(@RequestBody T model, HttpServletResponse response) {
-        String message = this.getSaveMessage();
-        if(message != null) {
-            response.setHeader("Persist status:", "OK");
-//            response.setHeader("X-HRTools-Message", this.encodeMessage(message));
-            response.setHeader("Persist message:", message);
-        }
-
+        response.setHeader("Persist status:", "OK");
         return this.getService().save(model);
     }
 
@@ -59,10 +47,6 @@ public abstract class CrudController<T> {
         return this.getService().create();
     }
 
-    protected String getSaveMessage() {
-        return "Dane zostały zapisane";
-    }
-//
 //    private String encodeMessage(String message) {
 //        try {
 //            return this.codec.encode(message);
@@ -71,4 +55,5 @@ public abstract class CrudController<T> {
 //            return message;
 //        }
 //    }
+//    URLCodec codec = new URLCodec("UTF-8");
 }

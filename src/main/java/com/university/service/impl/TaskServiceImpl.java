@@ -1,6 +1,5 @@
 package com.university.service.impl;
 
-import com.university.crud.CrudService;
 import com.university.crud.Impl.AbstractCrudService;
 import com.university.entity.Task;
 import com.university.repository.TaskRepository;

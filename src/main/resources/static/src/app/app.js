@@ -1,26 +1,27 @@
-angular.module( 'teammateApp', [
-  'templates-app',
-  'templates-common',
-  'teammateApp.home',
-  'teammateApp.about',
-  'ui.router',
-  "ngAnimate"
-])
+var teammateApp = angular.module( 'teammateApp', [
+    'templates-app',
+    'templates-common',
+    'ui.router',
+    'ui.bootstrap',
+    'teammateApp.home',
+    'teammateApp.project',
+    'teammateApp.contact',
+    'teammateApp.task',
+    'ngAnimate'
+]);
 
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/home' );
-})
+teammateApp.config(['$stateProvider', '$urlRouterProvider', function myAppConfig ( $stateProvider, $urlRouterProvider ) {
+    $urlRouterProvider.otherwise( '/home' );
+}]);
 
-.run( function run () {
-})
+teammateApp.run( function run () {});
 
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
-  $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-    if ( angular.isDefined( toState.data.pageTitle ) ) {
-      $scope.pageTitle = toState.data.pageTitle + ' | TeamMate' ;
-    }
-  });
-})
-
-;
+teammateApp.controller( 'AppCtrl', [ '$scope', '$location', function AppCtrl ( $scope, $location ) {
+    var vm = this;
+    $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+        if ( angular.isDefined( toState.data.pageTitle ) ) {
+            $scope.pageTitle = toState.data.pageTitle + ' | TeamMate' ;
+        }
+    });
+}]);
 

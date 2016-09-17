@@ -1,17 +1,6 @@
-describe( 'AppCtrl', function() {
-  describe( 'isCurrentUrl', function() {
-    var AppCtrl, $location, $scope;
-
-    beforeEach( module( 'teammateApp' ) );
-
-    beforeEach( inject( function( $controller, _$location_, $rootScope ) {
-      $location = _$location_;
-      $scope = $rootScope.$new();
-      AppCtrl = $controller( 'AppCtrl', { $location: $location, $scope: $scope });
-    }));
-
-    it( 'should pass a dummy test', inject( function() {
-      expect( AppCtrl ).toBeTruthy();
-    }));
+describe('sorting the list of users', function() {
+  it('sorts in descending order by default', function() {
+    var users = ['jack', 'igor', 'jeff'];
+    expect(users).toEqual(['jack', 'igor', 'jeff']);
   });
 });

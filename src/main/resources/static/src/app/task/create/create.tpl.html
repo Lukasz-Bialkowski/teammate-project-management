@@ -1,0 +1,13 @@
+<accordion close-others="oneAtATime">
+    <accordion-group heading="Static Header">
+        This content is straight in the template.
+    </accordion-group>
+    <accordion-group heading="{{group.title}}" ng-repeat="group in tdCtrl.groups">
+        {{group.content}}
+    </accordion-group>
+    <accordion-group heading="Dynamic Body Content">
+        <p>The body of the accordion group grows to fit the contents</p>
+        <button class="btn btn-small" ng-click="tdCtrl.addItem()">Add Item</button>
+        <div ng-repeat="item in tdCtrl.items">{{item}}</div>
+    </accordion-group>
+</accordion>

@@ -1,5 +1,5 @@
 var homeModule = angular.module( 'teammateApp.home', [
-
+     'ngAnimate'
 ]);
 
 homeModule.config(['$stateProvider', function config( $stateProvider ) {

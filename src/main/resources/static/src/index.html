@@ -1,37 +1,46 @@
 <!DOCTYPE html>
-<html ng-app="teammateApp" ng-controller="AppCtrl as appCtrl">
+<html lang="en" ng-app="teammateApp" ng-controller="AppCtrl as appCtrl">
+
 <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
     <title ng-bind="pageTitle"></title>
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>"/><% }); %>
 
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
+
 </head>
+
 <body>
-<div class="container">
-    <div class="navbar navbar-default">
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" ng-init="menuCollapsed = true"
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" ng-init="menuCollapsed = true"
                     ng-click="menuCollapsed = ! menuCollapsed">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <div class="navbar-brand">
-                ngbp
-                <small>
-                    <a href="http://github.com/ngbp/ngbp/blob/v<%= version %>-release/CHANGELOG.md">
-                        v<%= version %>
-                    </a>
-                </small>
-            </div>
+            <a class="navbar-brand" href="index.html">TeamMate v<%= version %></a>
         </div>
-        <div class="collapse navbar-collapse" collapse="menuCollapsed">
-            <ul class="nav navbar-nav">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" collapse="menuCollapsed">
+            <ul class="nav navbar-nav navbar-right">
                 <li ui-sref-active="active">
                     <a href ui-sref="home">
                         <i class="fa fa-home"></i>
@@ -62,12 +71,70 @@
                         Support
                     </a>
                 </li>
+                <li class="dropdown" ui-sref-active="active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="portfolio-1-col.html">1 Column Portfolio</a>
+                        </li>
+                        <li>
+                            <a href="portfolio-2-col.html">2 Column Portfolio</a>
+                        </li>
+                        <li>
+                            <a href="portfolio-3-col.html">3 Column Portfolio</a>
+                        </li>
+                        <li>
+                            <a href="portfolio-4-col.html">4 Column Portfolio</a>
+                        </li>
+                        <li>
+                            <a href="portfolio-item.html">Single Portfolio Item</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="blog-home-1.html">Blog Home 1</a>
+                        </li>
+                        <li>
+                            <a href="blog-home-2.html">Blog Home 2</a>
+                        </li>
+                        <li>
+                            <a href="blog-post.html">Blog Post</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="full-width.html">Full Width Page</a>
+                        </li>
+                        <li>
+                            <a href="sidebar.html">Sidebar Page</a>
+                        </li>
+                        <li>
+                            <a href="faq.html">FAQ</a>
+                        </li>
+                        <li>
+                            <a href="404.html">404</a>
+                        </li>
+                        <li>
+                            <a href="pricing.html">Pricing Table</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
-    </div>
-</div>
 
-<div class="container" ui-view="main"></div>
+    </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container" ui-view="main">
+</div>
+<!-- /.container -->
 
 <footer class="footer">
     <div class="container">

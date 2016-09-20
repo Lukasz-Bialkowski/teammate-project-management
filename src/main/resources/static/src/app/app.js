@@ -5,6 +5,7 @@ var teammateApp = angular.module( 'teammateApp', [
     'ui.bootstrap',
     'teammateApp.home',
     'teammateApp.project',
+    'teammateApp.sidebar',
     'teammateApp.contact',
     'teammateApp.task',
     'ngAnimate'

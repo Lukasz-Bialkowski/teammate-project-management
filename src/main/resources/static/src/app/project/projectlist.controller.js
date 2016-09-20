@@ -1,7 +1,6 @@
 var projectModule = angular.module( 'teammateApp.project');
 
-projectModule.controller( 'ProjectCtrl', [ function ProjectCtrl( ) {
+projectModule.controller( 'ProjectListCtrl', [ function ProjectListCtrl( ) {
     var vm = this;
 
 }]);
-

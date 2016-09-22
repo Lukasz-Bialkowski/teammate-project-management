@@ -1,4 +1,4 @@
-var taskboardModule = angular.module( 'teammateApp.task.taskboard');
+var taskboardModule = angular.module( 'teammateApp.project.taskboard');
 
 taskboardModule.controller('TaskboardCtrl', [ function TaskboardCtrl() {
     var vm = this;

@@ -1,6 +1,6 @@
-var taskDefinitionModule = angular.module( 'teammateApp.task.definition');
+var managementTaskModule = angular.module( 'teammateApp.project.management.task');
 
-taskDefinitionModule.controller('TaskDefinitionCtrl', [ function TaskDefinitionCtrl () {
+managementTaskModule.controller('TaskManagementCtrl', [ function TaskManagementCtrl () {
     var vm = this;
     vm.oneAtATime = false;
 

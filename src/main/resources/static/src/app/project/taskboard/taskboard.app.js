@@ -1,13 +1,12 @@
-var taskboardModule = angular.module( 'teammateApp.task.taskboard', [
-]);
+var taskboardModule = angular.module( 'teammateApp.project.taskboard', []);
 
 taskboardModule.config(['$stateProvider', function config( $stateProvider ) {
-    $stateProvider.state( 'taskboard', {
+    $stateProvider.state( 'projectnav.taskboard', {
         url: '/taskboard',
         views: {
-            "main": {
+            "project": {
                 controller: 'TaskboardCtrl as tCtrl',
-                templateUrl: 'task/taskboard/taskboard.tpl.html'
+                templateUrl: 'project/taskboard/taskboard.tpl.html'
             }
         },
         data:{ pageTitle: 'Taskboard' }

@@ -1,79 +1,114 @@
-<form name="itemForm" novalidate>
-    <fieldset>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="nameId" class="control-label">Nazwa (wymagane)</label>
-                    <input class="form-control" placeholder="Nazwa firmy" id="nameId" ng-model="current.companyName" required hrt-btr-validation>
+<div>
+    <h1 class="page-header">Rejestracja użytkownika</h1>
+    <p>Wprowadz dane niezbędne do rejestracji w systemie.</br>
+        Na podany poniżej <strong>adres email</strong> zostanie wysłany mail aktywujacy konto.</p>
+    <form name="userform" novalidate ng-init="uCtrl.current.enabled = false;">
+        <fieldset>
+            <legend>Informacje podstawowe</legend>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="mailId" class="control-label">Adres email (wymagane)</label>
+                        <input name="email" type="text" class="form-control" placeholder="np. jan_kowalski@yahoo.com"
+                               id="mailId"
+                               ng-model="uCtrl.current.email" required ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+                               hrt-btr-validation>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="passwordId" class="control-label">Hasło (wymagane)</label>
+                        <input class="form-control" name="password" placeholder="Haslo" type="password"
+                               hrt-btr-validation
+                               id="passwordId" ng-model="uCtrl.current.password" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="repasswordId" class="control-label">Powtórz hasło</label>
+                        <input class="form-control" name="repassword" placeholder="Powtórz hasło" type="password"
+                               id="repasswordId"
+                               ng-model="uCtrl.current.password" required hrt-btr-validation>
+                    </div>
+                </div>
+
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Dane</legend>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name" class="control-label">Imię (wymagane) </label>
+                        <input class="form-control" id="name" name="name" ng-model="uCtrl.current.name" type="text"
+                               required
+                               hrt-btr-validation>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="surname" class="control-label">Nazwisko (wymagane)</label>
+                        <input class="form-control" id="surname" name="surname" ng-model="uCtrl.current.surname"
+                               type="text" required
+                               hrt-btr-validation>
+                    </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="dateOfBirthId" class="control-label">Data urodzenia (wymagane)</label>
+                        <p class="input-group">
+                            <input type="text" id="dateOfBirthId" class="form-control" datepicker-popup ng-model="dt"
+                                   is-open="popup2.opened" datepicker-options="dateOptions" name="datepick" required
+                                   close-text="Close" hrt-btr-validation/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open2($event)"><i
+                                        class="fa fa-book"></i></button>
+                            </span>
+                        </p>
+                        <!--<input class="form-control" hrt-datepicker name="dateOfBirth" id="dateOfBirthId"-->
+                        <!--ng-model="uCtrl.current.dateOfBirth" datepicker-popup required hrt-btr-validation>-->
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="position" class="control-label">Stanowisko (wymagane)</label>
+                        <select class="form-control" id="position" name="position" ng-model="uCtrl.current.position"
+                                ng-options="position.name for position in uCtrl.positionList track by position.name"
+                                required
+                                hrt-btr-validation></select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="employmentForm" class="control-label">Forma zatrudnienia (wymagane)</label>
+                        <select id="employmentForm" class="form-control" ng-model="uCtrl.current.employmentForm"
+                                name="employmentForm"
+                                ng-options="employment.name for employment in uCtrl.employmentForms track by employment.name"
+                                required
+                                hrt-btr-validation></select>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <div class="row">
+        <div class="col-md-12 form-footer text-center">
+            <button type="button" class="btn btn-default" ui-sref="projectnav.about">Anuluj</button>
+            <button type="button" class="btn btn-danger" ng-if="uCtrl.current.id" ng-click="remove(uCtrl.current)">
+                Usun
+            </button>
+            <button type="button" class="btn btn-success" ng-if="uCtrl.current.id" ng-click="save(uCtrl.current)"
+                    ng-disabled="userform.$invalid || userform.$pristine">Aktualizuj
+            </button>
+            <button type="button" class="btn btn-success" ng-if="!uCtrl.current.id" ng-click="save(uCtrl.current)"
+                    ng-disabled="userform.$invalid || userform.$pristine">Dodaj
+            </button>
+            <button type="button" class="btn btn-info" ng-if="uCtrl.current.id" ng-click="create()">Nowy użytkownik
+            </button>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="nipId" class="control-label">Numer NIP (wymagane)</label>
-                    <input class="form-control" placeholder="10-cyfrowy NIP np. 0123456789" id="nipId" ng-model="current.nip" required ng-minlength="10"
-                           ng-maxlength="10" ng-pattern="nipPatternPL" hrt-btr-validation>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="krsId" class="control-label">Numer KRS</label>
-                    <input class="form-control" id="krsId" ng-model="current.krs">
-                </div>
-            </div>
-        </div>
-    </fieldset>
-    <fieldset>
-        <legend>Adres</legend>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="countryId" class="control-label">Kraj (wymagane)</label>
-                    <input type="search" class="form-control" placeholder="np. Poland" id="countryId"
-                           typeahead="country.name as country.name for country in getCountryCodes($viewValue)" typeahead-editable="false"
-                           ng-model="current.address.country" required hrt-btr-validation />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="cityId" class="control-label">Miasto (wymagane)</label>
-                    <input class="form-control" id="cityId" ng-model="current.address.city" required hrt-btr-validation>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="streetId" class="control-label">Ulica (wymagane)</label>
-                    <input class="form-control" id="streetId" ng-model="current.address.street" required hrt-btr-validation>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="postcodePLId" class="control-label">Kod pocztowy (wymagane)</label>
-                    <input class="form-control" ng-pattern="zipCodePatternPL" id="postcodePLId" placeholder="np. 20-434" ng-model="current.address.postcode"
-                           required hrt-btr-validation>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="buildingId" class="control-label">Numer budynku (wymagane)</label>
-                    <input class="form-control" id="buildingId" ng-model="current.address.buildingNumber" required hrt-btr-validation>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="localId" class="control-label">Numer lokalu</label>
-                    <input class="form-control" id="localId" ng-model="current.address.apartmentNumber">
-                </div>
-            </div>
-        </div>
-    </fieldset>
-</form>
-<div class="panel-footer">
-    <button class="btn btn-default" ng-click="cancel()" hrt-cancel-btn="Anuluj"></button>
-    <button class="btn btn-danger" ng-if="current.id" ng-click="remove(current)" hrt-remove-btn></button>
-    <button class="btn btn-success" ng-if="current.id" hrt-form="itemForm" ng-click="save(current)" hrt-save-btn></button>
-    <button class="btn btn-success" ng-if="!current.id" ng-click="save(current)" hrt-add-btn></button>
+    </div>
 </div>

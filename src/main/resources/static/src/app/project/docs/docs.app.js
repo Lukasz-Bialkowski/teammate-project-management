@@ -12,6 +12,10 @@ projectDocsModule.config(['$stateProvider', function config( $stateProvider ) {
                     templateUrl: 'project/docs/docs.tpl.html'
                 }
             },
-            data:{ pageTitle: 'Docs' }
+            data: {
+                pageTitle: 'Docs',
+                contextPath: 'http://localhost:8080/teammate/',
+                crudResourceMapping: 'docs'
+            }
         });
 }]);

@@ -1,15 +1,11 @@
 package com.university.crud;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public abstract class CrudController<T> {
-
-    private static final Logger logger = LoggerFactory.getLogger(CrudController.class);
 
     public CrudController() {
     }

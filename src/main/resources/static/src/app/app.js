@@ -7,7 +7,9 @@ var teammateApp = angular.module( 'teammateApp', [
     'teammateApp.projectlist',
     'teammateApp.projectnav',
     'teammateApp.contact',
-    'ngAnimate'
+    'teammateApp.common',
+    'ngAnimate',
+    'ngResource'
 ]);
 
 teammateApp.config(['$stateProvider', '$urlRouterProvider', function myAppConfig ( $stateProvider, $urlRouterProvider ) {

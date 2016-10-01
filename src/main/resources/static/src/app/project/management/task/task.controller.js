@@ -1,12 +1,7 @@
-var managementTaskModule = angular.module( 'teammateApp.project.management.task');
+var managementModule = angular.module('teammateApp.project.management');
 
-managementTaskModule.controller('TaskManagementCtrl', [ function TaskManagementCtrl () {
+managementModule.controller('TaskManagementCtrl', ['TaskCrudSrv', '_userList', '_taskEmptyRes', function TaskManagementCtrl(TaskCrudSrv, _userList, _taskEmptyRes) {
     var vm = this;
-    vm.current = {
-        name: "Colorfull tooltip in nvd3",
-        id: 'SECMGE12322',
-        storyPoints: 10,
-        owner: {name: "Łukasz Białkowski", value: "Something"}
-    };
-    vm.users = [{name: "Łukasz Białkowski", value: "Something"}];
+    vm.current = _taskEmptyRes;
+    vm.users = _userList;
 }]);

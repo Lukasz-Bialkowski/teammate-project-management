@@ -1,7 +1,7 @@
 <div>
     <h1 class="page-header">Definiowanie Taska</h1>
     <p>Wprowadz dane niezbędne do utworzenia taska</p>
-    <form name="taskform" novalidate ng-init="tmCtrl.current.id='N/A';">
+    <form name="taskform" novalidate ng-init="tmCtrl.current.id='N/A'">
         <fieldset>
             <legend>Informacje podstawowe</legend>
             <div class="row">
@@ -9,7 +9,7 @@
                     <div class="form-group">
                         <label for="taskName" class="control-label">Nazwa taska (wymagane)</label>
                         <input class="form-control" id="taskName" placeholder="Nazwa taska"
-                               ng-model="tmCtrl.current.name" required btr-validation>
+                               ng-model="tmCtrl.current.name" ng-minlength="3" required hrt-btr-validation>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -25,7 +25,7 @@
                         <label for="storyPoints" class="control-label">Story pointy (wymagane)</label>
                         <input id="storyPoints" class="form-control" ng-model="tmCtrl.current.storyPoints"
                                placeholder="Liczba story pointów"
-                               required btr-validation/>
+                               required hrt-btr-validation/>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -37,18 +37,19 @@
                     </div>
                 </div>
             </div>
-    </fieldset>
-</form>
-<div class="row">
-    <div class="col-md-12 form-footer text-center">
-        <button type="button" class="btn btn-default" >Anuluj</button>
-        <button type="button" class="btn btn-danger" ng-if="current.id" ng-click="remove(current)" >Usun</button>
-        <button type="button" class="btn btn-success" ng-if="current.id" ng-click="save(current)"
-                ng-disabled="taskform.$invalid || taskform.$pristine">Aktualizuj
-        </button>
-        <button type="button" class="btn btn-success" ng-if="!current.id" ng-click="save(current)"
-                ng-disabled="taskform.$invalid || taskform.$pristine">Dodaj
-        </button>
-        <button type="button" class="btn btn-info" ng-if="current.id" ng-click="create()">Nowy task</button>
+        </fieldset>
+    </form>
+    <div class="row">
+        <div class="col-md-12 form-footer text-center">
+            <button type="button" class="btn btn-default">Anuluj</button>
+            <button type="button" class="btn btn-danger" ng-if="current.id" ng-click="remove(current)">Usun</button>
+            <button type="button" class="btn btn-success" ng-if="current.id" ng-click="save(current)"
+                    ng-disabled="taskform.$invalid || taskform.$pristine">Aktualizuj
+            </button>
+            <button type="button" class="btn btn-success" ng-if="!current.id" ng-click="save(current)"
+                    ng-disabled="taskform.$invalid || taskform.$pristine">Dodaj
+            </button>
+            <button type="button" class="btn btn-info" ng-if="current.id" ng-click="create()">Nowy task</button>
+        </div>
     </div>
 </div>

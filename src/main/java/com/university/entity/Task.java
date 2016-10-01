@@ -26,7 +26,7 @@ public class Task extends EntityBase {
         this.storyPoints = storyPoints;
     }
 
-    public int getStoryPoints() {
+    public Integer getStoryPoints() {
         return storyPoints;
     }
 

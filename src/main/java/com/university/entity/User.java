@@ -1,12 +1,20 @@
 package com.university.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.university.entity.enumeration.EmploymentForm;
+import com.university.entity.enumeration.Position;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "user")
 public class User extends EntityBase {
+
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "surname")
+    private String surname;
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
@@ -14,9 +22,70 @@ public class User extends EntityBase {
     @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
+    @Temporal(TemporalType.DATE)
+    private Date dateOfBirth;
+
+    @Column(name = "employment_form")
+    private EmploymentForm employmentForm;
+
+    @Column(name = "position")
+    private Position position;
+
+    @Column(name = "active")
+    private boolean active;
+
 //    @Column(name = "role", nullable = false)
 //    @Enumerated(EnumType.STRING)
 //    private Role role;
+
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public EmploymentForm getEmploymentForm() {
+        return employmentForm;
+    }
+
+    public void setEmploymentForm(EmploymentForm employmentForm) {
+        this.employmentForm = employmentForm;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
     public String getEmail() {
         return email;
@@ -36,7 +105,7 @@ public class User extends EntityBase {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "User{id: " + this.getId() + ",\n" +
                 "email='" + email + '\'' +
                 ", passwordHash='" + passwordHash + '\'' +
                 '}';

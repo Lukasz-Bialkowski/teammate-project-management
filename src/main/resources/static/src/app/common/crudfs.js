@@ -9,7 +9,7 @@ function CrudfsSrv(baseUrl, cls, $resource) {
             method: 'GET'
         },
         create: {
-            method: 'GET',
+            method: 'POST',
             params: {
                 operation: 'create'
             }

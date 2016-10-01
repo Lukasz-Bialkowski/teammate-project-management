@@ -1,0 +1,55 @@
+<div>
+    <h1 class="page-header">Definiowanie Projektu</h1>
+    <p>Wprowadz dane niezbędne do utworzenia projektu</p>
+    <form name="projectform" novalidate ng-init="pmCtrl.current.id='N/A'">
+        <fieldset>
+            <legend>Informacje podstawowe</legend>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="projectName" class="control-label">Nazwa projektu (wymagane)</label>
+                        <input class="form-control" id="projectName" placeholder="Nazwa projektu"
+                               ng-model="pmCtrl.current.name" ng-minlength="3" required hrt-btr-validation>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="projectID" class="control-label">Identyfikator</label>
+                        <pre id="projectID" style="padding:6px; margin: 1px;"><b>{{pmCtrl.current.id}}</b></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="sth" class="control-label">Don't know yet (wymagane)</label>
+                        <input id="sth" class="form-control" ng-model="pmCtrl.current.storyPoints"
+                               placeholder="Don't know yet"
+                               required hrt-btr-validation/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="sthh2" class="control-label">Same (wymagane)</label>
+                        <select class="form-control" id="sthh2" name="ownerId" ng-model="pmCtrl.current.owner"
+                                ng-options="user.name for user in pmCtrl.users track by user.name" required
+                                hrt-btr-validation></select>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <div class="row">
+        <div class="col-md-12 form-footer text-center">
+            <button type="button" class="btn btn-default">Anuluj</button>
+            <button type="button" class="btn btn-danger" ng-if="current.id" ng-click="remove(current)">Usun</button>
+            <button type="button" class="btn btn-success" ng-if="current.id" ng-click="save(current)"
+                    ng-disabled="projectform.$invalid || projectform.$pristine">Aktualizuj
+            </button>
+            <button type="button" class="btn btn-success" ng-if="!current.id" ng-click="save(current)"
+                    ng-disabled="projectform.$invalid || projectform.$pristine">Dodaj
+            </button>
+            <button type="button" class="btn btn-info" ng-if="current.id" ng-click="create()">Nowy projekt</button>
+        </div>
+    </div>
+</div>

@@ -2,7 +2,7 @@
     <h1 class="page-header">Rejestracja użytkownika</h1>
     <p>Wprowadz dane niezbędne do rejestracji w systemie.</br>
         Na podany poniżej <strong>adres email</strong> zostanie wysłany mail aktywujacy konto.</p>
-    <form name="userform" novalidate ng-init="uCtrl.current.enabled = false;">
+    <form name="userform" novalidate ng-init="uCtrl.current.active = false">
         <fieldset>
             <legend>Informacje podstawowe</legend>
             <div class="row">
@@ -20,7 +20,7 @@
                         <label for="passwordId" class="control-label">Hasło (wymagane)</label>
                         <input class="form-control" name="password" placeholder="Haslo" type="password"
                                hrt-btr-validation
-                               id="passwordId" ng-model="uCtrl.current.password" required>
+                               id="passwordId" ng-model="uCtrl.current.passwordHash" required>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -28,10 +28,9 @@
                         <label for="repasswordId" class="control-label">Powtórz hasło</label>
                         <input class="form-control" name="repassword" placeholder="Powtórz hasło" type="password"
                                id="repasswordId"
-                               ng-model="uCtrl.current.password" required hrt-btr-validation>
+                               ng-model="uCtrl.current.passwordHash" required hrt-btr-validation>
                     </div>
                 </div>
-
             </div>
         </fieldset>
         <fieldset>
@@ -41,7 +40,7 @@
                     <div class="form-group">
                         <label for="name" class="control-label">Imię (wymagane) </label>
                         <input class="form-control" id="name" name="name" ng-model="uCtrl.current.name" type="text"
-                               required
+                               required placeholder="Imie użytkownika"
                                hrt-btr-validation>
                     </div>
                 </div>
@@ -49,7 +48,7 @@
                     <div class="form-group">
                         <label for="surname" class="control-label">Nazwisko (wymagane)</label>
                         <input class="form-control" id="surname" name="surname" ng-model="uCtrl.current.surname"
-                               type="text" required
+                               type="text" required placeholder="Nazwisko użytkownika"
                                hrt-btr-validation>
                     </div>
                 </div>
@@ -59,8 +58,10 @@
                     <div class="form-group">
                         <label for="dateOfBirthId" class="control-label">Data urodzenia (wymagane)</label>
                         <p class="input-group">
-                            <input type="text" id="dateOfBirthId" class="form-control" datepicker-popup ng-model="dt"
-                                   is-open="popup2.opened" datepicker-options="dateOptions" name="datepick" required
+                            <input type="text" id="dateOfBirthId" class="form-control" datepicker-popup
+                                   ng-model="uCtrl.current.dateOfBirth"
+                                   is-open="popup2.opened" datepicker-options="dateOptions" placeholder="YYYY-MM-DD"
+                                   name="datepick" required
                                    close-text="Close" hrt-btr-validation/>
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-click="open2($event)"><i
@@ -75,9 +76,8 @@
                     <div class="form-group">
                         <label for="position" class="control-label">Stanowisko (wymagane)</label>
                         <select class="form-control" id="position" name="position" ng-model="uCtrl.current.position"
-                                ng-options="position.name for position in uCtrl.positionList track by position.name"
-                                required
-                                hrt-btr-validation></select>
+                                ng-options="position for position in uCtrl.positionsList track by position"
+                                placeholder="Stanowisko" required hrt-btr-validation></select>
                     </div>
                 </div>
             </div>
@@ -86,10 +86,9 @@
                     <div class="form-group">
                         <label for="employmentForm" class="control-label">Forma zatrudnienia (wymagane)</label>
                         <select id="employmentForm" class="form-control" ng-model="uCtrl.current.employmentForm"
-                                name="employmentForm"
-                                ng-options="employment.name for employment in uCtrl.employmentForms track by employment.name"
-                                required
-                                hrt-btr-validation></select>
+                                name="employmentForm" placeholder="Forma zatrudnienia"
+                                ng-options="employmentForm for employmentForm in uCtrl.employmentFormsList track by employmentForm"
+                                required hrt-btr-validation></select>
                     </div>
                 </div>
             </div>

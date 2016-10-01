@@ -1,19 +1,86 @@
-var managementUserModule = angular.module('teammateApp.project.management.user');
+var managementModule = angular.module('teammateApp.project.management');
 
-managementUserModule.controller('UserManagementCtrl', ['$scope', function UserManagementCtrl($scope) {
+managementModule.controller('UserManagementCtrl', ['$scope', 'UserCrudSrv', '_userEmptyRes', '_positionsList', '_employmentFormsList', function ($scope, UserCrudSrv, _userEmptyRes, _positionsList, _employmentFormsList) {
+
     var vm = this;
-    vm.current = {
-        name: "Łukasz",
-        surname: "Białkowski",
-        dateOfBirth: 123123123123,
-        position: {name: 'em', value: 'employee'},
-        employmentForm: {name: 'e2e', value: 'e2e'},
-        enabled: false
-    };
+    vm.selected = {};
+    vm.current = _userEmptyRes;
+    vm.data = [];
+    vm.positionsList = _positionsList;
+    vm.employmentFormsList = _employmentFormsList;
 
-    vm.positionList = [{name: 'em', value: 'employee'}];
-    vm.employmentForms = [{name: 'e2e', value: 'e2e'}];
+    function list() {
+        UserCrudSrv.list({}, function (response) {
+            vm.data = response;
+        });
+    }
 
+    function get(item) {
+        UserCrudSrv.get({id: item.id}, function (response) {
+            processSelect(item, response);
+        });
+    }
+
+    function processSelect(item, response) {
+        vm.selected = item;
+        vm.current = response;
+    }
+
+    function create() {
+        UserCrudSrv.create(function (response) {
+            processCreate(response);
+        });
+    }
+
+    function processCreate(response) {
+        vm.selected = null;
+        vm.current = response;
+        vm.current.dateOfBirth = new Date();
+    }
+
+    function save(item) {
+        UserCrudSrv.save(item, function (response) {
+            processSave(item, response);
+        });
+    }
+
+    function itemIndexInDataArray(item) {
+        return vm.data
+            .map(function (x) {
+                return x.id;
+            })
+            .indexOf(item.id);
+    }
+
+    function processSave(item, response) {
+        if (item.id) {
+            vm.data[itemIndexInDataArray(item)] = item;
+            vm.selected = item;
+            vm.current = response;
+        } else {
+            vm.selected = jQuery.extend(true, {}, response);
+            vm.data.push(vm.selected);
+            vm.current = response;
+        }
+    }
+
+    function remove(item) {
+        UserCrudSrv.remove({id: item.id}, function () {
+            processRemove(item);
+        });
+    }
+
+    function processRemove(item) {
+        vm.data.splice(itemIndexInDataArray(item), 1);
+        vm.selected = {};
+        vm.current = {};
+    }
+
+    function reset() {
+        vm.current = {};
+    }
+
+    // DATEPICKER
     $scope.today = function () {
         $scope.dt = new Date();
     };

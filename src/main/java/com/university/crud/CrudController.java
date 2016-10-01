@@ -37,19 +37,10 @@ public abstract class CrudController<T> {
         this.getService().remove(id);
     }
 
-    @RequestMapping(method = {RequestMethod.GET}, value = {"/create"})
+    @RequestMapping(method = {RequestMethod.POST}, value = {"/create"})
     @ResponseBody
     public T create() {
         return this.getService().create();
     }
 
-//    private String encodeMessage(String message) {
-//        try {
-//            return this.codec.encode(message);
-//        } catch (EncoderException var3) {
-//            LOGGER.warn("Failde to encode message");
-//            return message;
-//        }
-//    }
-//    URLCodec codec = new URLCodec("UTF-8");
 }

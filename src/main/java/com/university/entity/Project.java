@@ -9,6 +9,12 @@ public class Project extends EntityBase {
     @Column(name = "name", nullable = false)
     private String name;
 
+//    @ManyToMany
+//    List<User> employees;
+
+//    @ManyToOne
+//    User projectManager;
+
     public String getName() {
         return name;
     }

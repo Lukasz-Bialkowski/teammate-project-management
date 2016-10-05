@@ -1,4 +1,6 @@
-var managementModule = angular.module('teammateApp.project.management', []);
+var managementModule = angular.module('teammateApp.management', [
+    'teammateApp.projectnav'
+]);
 
 managementModule.config(['$stateProvider', function config($stateProvider) {
     $stateProvider
@@ -7,7 +9,7 @@ managementModule.config(['$stateProvider', function config($stateProvider) {
             views: {
                 "project": {
                     controller: 'TaskManagementCtrl as tmCtrl',
-                    templateUrl: 'project/management/task/task.tpl.html'
+                    templateUrl: 'management/task/task.tpl.html'
                 }
             },
             data: {
@@ -22,12 +24,12 @@ managementModule.config(['$stateProvider', function config($stateProvider) {
                 }]
             }
         })
-        .state('projectnav.managementUser', {
+        .state('managementUser', {
             url: '/createuser',
             views: {
-                "project": {
+                "main": {
                     controller: 'UserManagementCtrl as uCtrl',
-                    templateUrl: 'project/management/user/user.tpl.html'
+                    templateUrl: 'management/user/user.tpl.html'
                 }
             },
             data: {
@@ -45,12 +47,12 @@ managementModule.config(['$stateProvider', function config($stateProvider) {
                 }]
             }
         })
-        .state('projectnav.managementProject', {
+        .state('managementProject', {
             url: '/createproject',
             views: {
-                "project": {
+                "main": {
                     controller: 'ProjectManagementCtrl as pmCtrl',
-                    templateUrl: 'project/management/project/project.tpl.html'
+                    templateUrl: 'management/project/project.tpl.html'
                 }
             },
             data: {

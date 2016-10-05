@@ -336,7 +336,7 @@ module.exports = function (grunt) {
                     'build/app.js',
                     'build/project/projectnav.app.js',
                     'build/project/projectnav.controller.js',
-                    'build/project/management/management.app.js',
+                    'build/management/management.app.js',
                     'build/*/*.js',
                     'build/*/*/*.js',
                     'build/*/*/*/*.js',

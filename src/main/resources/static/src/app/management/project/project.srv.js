@@ -1,4 +1,4 @@
-var managementModule = angular.module('teammateApp.project.management');
+var managementModule = angular.module('teammateApp.management');
 
 managementModule.factory('ProjectCrudSrv', ['$resource', function ProjectCrudSrv($resource) {
     var contextPath = 'http://localhost:8080/teammate/';

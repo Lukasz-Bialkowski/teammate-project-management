@@ -1,4 +1,4 @@
-var managementModule = angular.module('teammateApp.project.management');
+var managementModule = angular.module('teammateApp.management');
 
 managementModule.controller('UserManagementCtrl', ['$scope', 'UserCrudSrv', '_userEmptyRes', '_positionsList', '_employmentFormsList', function ($scope, UserCrudSrv, _userEmptyRes, _positionsList, _employmentFormsList) {
 

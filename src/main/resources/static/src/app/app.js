@@ -8,6 +8,7 @@ var teammateApp = angular.module( 'teammateApp', [
     'teammateApp.projectnav',
     'teammateApp.contact',
     'teammateApp.common',
+    'teammateApp.management',
     'teammateApp.account',
     'ngAnimate',
     'ngResource'

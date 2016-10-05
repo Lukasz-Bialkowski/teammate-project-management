@@ -10,9 +10,7 @@ taskboardModule.config(['$stateProvider', function config( $stateProvider ) {
             }
         },
         data: {
-            pageTitle: 'Taskboard',
-            contextPath: 'http://localhost:8080/teammate/',
-            crudResourceMapping: 'task'
+            pageTitle: 'Taskboard'
         }
     });
 }]);

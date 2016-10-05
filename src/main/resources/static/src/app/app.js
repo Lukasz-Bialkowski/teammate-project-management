@@ -8,12 +8,14 @@ var teammateApp = angular.module( 'teammateApp', [
     'teammateApp.projectnav',
     'teammateApp.contact',
     'teammateApp.common',
+    'teammateApp.account',
     'ngAnimate',
     'ngResource'
 ]);
 
-teammateApp.config(['$stateProvider', '$urlRouterProvider', function myAppConfig ( $stateProvider, $urlRouterProvider ) {
+teammateApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function myAppConfig($stateProvider, $urlRouterProvider, $httpProvider) {
     $urlRouterProvider.otherwise( '/home' );
+    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 }]);
 
 teammateApp.run( function run () {});
@@ -25,5 +27,12 @@ teammateApp.controller( 'AppCtrl', [ '$scope', '$location', function AppCtrl ( $
             $scope.pageTitle = toState.data.pageTitle + ' | TeamMate' ;
         }
     });
+
+    // TODO Implement userSessionSrv
+    // TODO Extract Management directories and states (task, taskboard)
+    // vm.authenticated = userSessionSrv.isAuthenticated;
+    // vm.login = userSessionSrv.login;
+    // vm.logout = userSessionSrv.logout;
+
 }]);
 

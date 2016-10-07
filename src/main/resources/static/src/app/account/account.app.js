@@ -10,16 +10,20 @@ accountModule.config(['$stateProvider', function config($stateProvider) {
                     templateUrl: 'account/login.tpl.html'
                 }
             },
-            data: {pageTitle: 'Logowanie'}
+            data: {
+                pageTitle: 'Logowanie'
+            }
         })
         .state('register', {
             url: '/register',
             views: {
                 "main": {
-                    controller: 'RegisterCtrl as rCtrl',
-                    templateUrl: 'account/register.tpl.html'
+                    controller: 'RegisterCtrl as uCtrl',
+                    templateUrl: 'management/user/user.tpl.html'
                 }
             },
-            data: {pageTitle: 'Rejestracja'}
+            data: {
+                pageTitle: 'Rejestracja'
+            }
         });
 }]);

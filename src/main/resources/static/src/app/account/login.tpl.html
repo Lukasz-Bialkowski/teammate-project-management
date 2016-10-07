@@ -6,9 +6,9 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="loginId" class="control-label">Login (wymagane)</label>
+                        <label for="loginId" class="control-label">Email (wymagane)</label>
                         <input class="form-control" placeholder="Wpisz email konta" id="loginId"
-                               ng-model="lCtrl.current.login"
+                               ng-model="lCtrl.current.email"
                                required hrt-btr-validation>
                     </div>
                 </div>
@@ -16,17 +16,17 @@
                     <div class="form-group">
                         <label for="passwordId" class="control-label">Haslo (wymagane)</label>
                         <input class="form-control" placeholder="Wpisz haslo konta" type="password" id="passwordId"
-                               ng-model="lCtrl.current.password" required hrt-btr-validation>
+                               ng-model="lCtrl.current.passwordHash" required hrt-btr-validation>
                     </div>
                 </div>
             </div>
         </fieldset>
         <br>
         <div class=""><br/><br/>
-            <button class="col-md-3 col-md-offset-3 btn btn-success" ng-click="lCtrl.login(lCtrl.current)">Zaloguj
+            <button class="col-md-3 col-md-offset-3 btn btn-success" ng-click="lCtrl.login()">Zaloguj
             </button>
             &nbsp;
-            <button class="col-md-3 btn btn-danger" ng-click="lCtrl.enteredDataLost(loginForm.$pristine);">Anuluj
+            <button class="col-md-3 btn btn-danger" ng-click="lCtrl.enteredDataLost(!loginForm.$pristine)">Anuluj
             </button>
         </div>
     </form>

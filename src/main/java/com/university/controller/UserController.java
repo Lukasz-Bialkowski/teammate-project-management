@@ -10,10 +10,13 @@ import com.university.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -24,10 +27,13 @@ public class UserController extends CrudController<User> {
 
     private DataProvider dataProvider;
 
+    private PasswordEncoder passwordEncoder;
+
     @Autowired
-    UserController(UserService userService, DataProvider dataProvider) {
+    public UserController(UserService userService, DataProvider dataProvider, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.dataProvider = dataProvider;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -43,5 +49,11 @@ public class UserController extends CrudController<User> {
     @RequestMapping(value = "/employmentFormsList", method = RequestMethod.GET)
     public ResponseEntity<List<EmploymentForm>> employmentFormsList() {
         return new ResponseEntity<>(dataProvider.getAllEmploymentForms(), HttpStatus.OK);
+    }
+
+    @Override
+    public User save(@RequestBody User model, HttpServletResponse response) {
+        model.setPasswordHash(passwordEncoder.encode(model.getPasswordHash()));
+        return super.save(model, response);
     }
 }

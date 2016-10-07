@@ -9,6 +9,12 @@ managementModule.controller('UserManagementCtrl', ['$scope', 'UserCrudSrv', '_us
     vm.positionsList = _positionsList;
     vm.employmentFormsList = _employmentFormsList;
 
+    vm.save = save;
+    vm.remove = remove;
+    vm.create = create;
+    vm.get = get;
+    vm.list = list;
+
     function list() {
         UserCrudSrv.list({}, function (response) {
             vm.data = response;
@@ -40,6 +46,7 @@ managementModule.controller('UserManagementCtrl', ['$scope', 'UserCrudSrv', '_us
 
     function save(item) {
         UserCrudSrv.save(item, function (response) {
+            console.log(response);
             processSave(item, response);
         });
     }

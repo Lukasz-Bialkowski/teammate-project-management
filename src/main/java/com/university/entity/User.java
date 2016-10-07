@@ -2,6 +2,7 @@ package com.university.entity;
 
 import com.university.entity.enumeration.EmploymentForm;
 import com.university.entity.enumeration.Position;
+import com.university.entity.enumeration.Role;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,7 +11,7 @@ import java.util.Date;
 @Table(name = "user")
 public class User extends EntityBase {
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
     @Column(name = "surname")
@@ -34,10 +35,17 @@ public class User extends EntityBase {
     @Column(name = "active")
     private boolean active;
 
-//    @Column(name = "role", nullable = false)
-//    @Enumerated(EnumType.STRING)
-//    private Role role;
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.USER;
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     public boolean isActive() {
         return active;

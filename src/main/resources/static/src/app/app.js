@@ -30,10 +30,9 @@ teammateApp.controller( 'AppCtrl', [ '$scope', '$location', function AppCtrl ( $
     });
 
     // TODO Implement userSessionSrv
-    // TODO Extract Management directories and states (task, taskboard)
-    // vm.authenticated = userSessionSrv.isAuthenticated;
-    // vm.login = userSessionSrv.login;
-    // vm.logout = userSessionSrv.logout;
+    // vm.authenticated = AuthFrontendSrv.isAuthenticated;
+    // vm.login = AuthFrontendSrv.login;
+    // vm.logout = AuthFrontendSrv.logout;
 
 }]);
 

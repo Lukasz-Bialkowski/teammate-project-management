@@ -40,7 +40,7 @@
                     <div class="form-group">
                         <label for="name" class="control-label">Imię (wymagane) </label>
                         <input class="form-control" id="name" name="name" ng-model="uCtrl.current.name" type="text"
-                               required placeholder="Imie użytkownika"
+                               placeholder="Imie użytkownika"
                                hrt-btr-validation>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <div class="form-group">
                         <label for="surname" class="control-label">Nazwisko (wymagane)</label>
                         <input class="form-control" id="surname" name="surname" ng-model="uCtrl.current.surname"
-                               type="text" required placeholder="Nazwisko użytkownika"
+                               type="text" placeholder="Nazwisko użytkownika"
                                hrt-btr-validation>
                     </div>
                 </div>
@@ -61,15 +61,13 @@
                             <input type="text" id="dateOfBirthId" class="form-control" datepicker-popup
                                    ng-model="uCtrl.current.dateOfBirth"
                                    is-open="popup2.opened" datepicker-options="dateOptions" placeholder="YYYY-MM-DD"
-                                   name="datepick" required
+                                   name="datepick"
                                    close-text="Close" hrt-btr-validation/>
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-click="open2($event)"><i
                                         class="fa fa-book"></i></button>
                             </span>
                         </p>
-                        <!--<input class="form-control" hrt-datepicker name="dateOfBirth" id="dateOfBirthId"-->
-                        <!--ng-model="uCtrl.current.dateOfBirth" datepicker-popup required hrt-btr-validation>-->
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -77,7 +75,7 @@
                         <label for="position" class="control-label">Stanowisko (wymagane)</label>
                         <select class="form-control" id="position" name="position" ng-model="uCtrl.current.position"
                                 ng-options="position for position in uCtrl.positionsList track by position"
-                                placeholder="Stanowisko" required hrt-btr-validation></select>
+                                placeholder="Stanowisko" hrt-btr-validation></select>
                     </div>
                 </div>
             </div>
@@ -88,7 +86,7 @@
                         <select id="employmentForm" class="form-control" ng-model="uCtrl.current.employmentForm"
                                 name="employmentForm" placeholder="Forma zatrudnienia"
                                 ng-options="employmentForm for employmentForm in uCtrl.employmentFormsList track by employmentForm"
-                                required hrt-btr-validation></select>
+                                hrt-btr-validation></select>
                     </div>
                 </div>
             </div>
@@ -97,16 +95,18 @@
     <div class="row">
         <div class="col-md-12 form-footer text-center">
             <button type="button" class="btn btn-default" ui-sref="projectnav.about">Anuluj</button>
-            <button type="button" class="btn btn-danger" ng-if="uCtrl.current.id" ng-click="remove(uCtrl.current)">
+            <button type="button" class="btn btn-danger" ng-if="uCtrl.current.id"
+                    ng-click="uCtrl.remove(uCtrl.current)">
                 Usun
             </button>
-            <button type="button" class="btn btn-success" ng-if="uCtrl.current.id" ng-click="save(uCtrl.current)"
+            <button type="button" class="btn btn-success" ng-if="uCtrl.current.id" ng-click="uCtrl.save(uCtrl.current)"
                     ng-disabled="userform.$invalid || userform.$pristine">Aktualizuj
             </button>
-            <button type="button" class="btn btn-success" ng-if="!uCtrl.current.id" ng-click="save(uCtrl.current)"
+            <button type="button" class="btn btn-success" ng-if="!uCtrl.current.id" ng-click="uCtrl.save(uCtrl.current)"
                     ng-disabled="userform.$invalid || userform.$pristine">Dodaj
             </button>
-            <button type="button" class="btn btn-info" ng-if="uCtrl.current.id" ng-click="create()">Nowy użytkownik
+            <button type="button" class="btn btn-info" ng-if="uCtrl.current.id" ng-click="uCtrl.create()">Nowy
+                użytkownik
             </button>
         </div>
     </div>

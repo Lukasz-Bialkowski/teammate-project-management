@@ -1,29 +1,23 @@
 var accountModule = angular.module('teammateApp.account');
 
-accountModule.factory('AuthSrv', ['$resource', function ($resource) {
-    var contextPath = 'http://localhost:8080/teammate/';
-    var crudResourceMapping = '/auth';
-
-    return $resource(contextPath + crudResourceMapping + '/:id/:secId/:operation/:page', {}, {
-        credentials: {
-            params: {
-                method: 'GET',
-                params: {
-                    operation: 'credentials'
-                }
-            }
-        }
-    });
-}]);
-
-// THIS SERVICE STORES ACCTUALY LOGGED USER
-accountModule.factory('sessionService', ['$state', function ($state) {
+accountModule.factory('AuthSrv', ['$state', '$http', function AuthSrv($state, $http) {
     var credentials = {};
+
     return {
         login: function (userData) {
-            alert('Zalogowany jako ' + userData.login);
-            localStorage.setItem("userSession", userData);
-            credentials = userData;
+            var httpUrl = "/teammate/login";
+            var params = "username=" + userData.email + "&password=" + userData.passwordHash;
+            var httpHeaders = {'Content-Type': 'application/x-www-form-urlencoded'};
+
+            return $http.post(httpUrl, params, {headers: httpHeaders})
+                .then(function (data) {
+                    alert("Sukces logowania");
+                    localStorage.setItem("userSession", data);
+                    credentials = userData;
+                    $state.go("home");
+                }, function () {
+                    alert("Błąd logowania");
+                });
         },
         logout: function () {
             localStorage.removeItem("userSession");

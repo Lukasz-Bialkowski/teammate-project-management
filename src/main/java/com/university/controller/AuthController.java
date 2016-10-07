@@ -1,18 +1,20 @@
 package com.university.controller;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.security.Principal;
 
 @RestController
 @RequestMapping(value = "/auth")
 public class AuthController {
 
     @RequestMapping(value = "/credentials", method = RequestMethod.GET)
-    public Principal user(Principal user) {
-        return user;
+    public UserDetails userLoggedIn(Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        System.out.println("Logged in user dateils: " + userDetails.toString());
+        return userDetails;
     }
 
 }

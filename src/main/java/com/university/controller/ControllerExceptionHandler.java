@@ -1,5 +1,6 @@
 package com.university.controller;
 
+import com.university.exception.ForbiddenException;
 import com.university.exception.TaskNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,12 @@ public class ControllerExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public void handleTaskNotFoundException(TaskNotFoundException ex, HttpServletRequest request, HttpServletResponse response) {
         LOGGER.error("Requested Task not found: {}", ex.getMessage());
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public void handleForbiddenResourceException(ForbiddenException ex, HttpServletRequest request, HttpServletResponse response) {
+        LOGGER.error("Requested resource of type: {}, is forbidden for user: {}", ex.getResource(), ex.getUser().getEmail());
     }
 
 

@@ -1,7 +1,14 @@
 <div>
-    <h1 class="page-header">Rejestracja użytkownika</h1>
-    <p>Wprowadz dane niezbędne do rejestracji w systemie.</br>
-        Na podany poniżej <strong>adres email</strong> zostanie wysłany mail aktywujacy konto.</p>
+    <div ng-if="!uCtrl.current.id">
+        <h1 class="page-header">Rejestracja użytkownika</h1>
+        <p>Wprowadz dane niezbędne do rejestracji w systemie.</br>
+            Na podany poniżej <strong>adres email</strong> zostanie wysłany mail aktywujacy konto.</p>
+    </div>
+    <div ng-if="uCtrl.current.id">
+        <h1>Użytkownik: <span style="color: #2a6496"><b>{{uCtrl.current.name | capitalize}} {{uCtrl.current.surname | capitalize}}</b></span>
+        </h1>
+        <h3>Email: <span style="color: #2a6496"><b>{{uCtrl.current.email}}</b></span></h3>
+    </div>
     <form name="userform" novalidate ng-init="uCtrl.current.active = false">
         <fieldset>
             <legend>Informacje podstawowe</legend>

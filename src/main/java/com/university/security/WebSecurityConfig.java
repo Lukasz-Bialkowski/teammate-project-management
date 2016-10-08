@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -20,6 +21,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private LoginSuccesHandler loginSuccesHandler;
+
+    @Autowired
+    private LogoutSuccessHandler logoutSuccessHandler;
 
     @Autowired
     private AppEntryPoint appEntryPoint;
@@ -37,6 +41,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .successHandler(loginSuccesHandler)
                 .failureHandler(loginFailureHandler)
+                .and()
+                .logout()
+                .logoutSuccessHandler(logoutSuccessHandler)
                 .and()
                 .authorizeRequests()
                 .antMatchers("/", "/home", "/src/**", "/vendor/**", "/assets/**", "/templates-app.js", "/templates-common.js", "/user/create",

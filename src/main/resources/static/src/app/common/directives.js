@@ -247,7 +247,7 @@ teammateAppCommon.directive('hrtFilterBtn', function () {
                 return el;
             } else if (el.parent()) {
                 return findFormGroup(el.parent());
-            }
+        }
 
             return null;
         }
@@ -272,8 +272,7 @@ teammateAppCommon.directive('hrtFilterBtn', function () {
                 } while (parentEl.length > 0);
             }
         };
-    })
-    .directive('hrtLabelValue', function () {
+    }).directive('hrtLabelValue', function () {
         function link(scope, element, attrs) {
         }
 
@@ -287,7 +286,7 @@ teammateAppCommon.directive('hrtFilterBtn', function () {
             },
             link: link
         };
-    }).directive('hrtLabelValues', function () {
+}).directive('hrtLabelValues', function () {
     function link(scope, element, attrs) {
         scope.getValue = function (item) {
             var props = scope.property.split('.');

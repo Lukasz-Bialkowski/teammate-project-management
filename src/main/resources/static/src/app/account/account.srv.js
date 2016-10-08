@@ -5,7 +5,7 @@ accountModule.factory('AuthSrv', ['$state', '$http', function AuthSrv($state, $h
 
     return {
         login: function (userData) {
-            var httpUrl = "/teammate/login";
+            var httpUrl = "login";
             var params = "username=" + userData.email + "&password=" + userData.passwordHash;
             var httpHeaders = {'Content-Type': 'application/x-www-form-urlencoded'};
 
@@ -20,8 +20,12 @@ accountModule.factory('AuthSrv', ['$state', '$http', function AuthSrv($state, $h
                 });
         },
         logout: function () {
-            localStorage.removeItem("userSession");
-            $state.go("home");
+            $http.post('logout', {}).then(function () {
+                alert("Zostałeś wylogowany");
+                localStorage.removeItem("userSession");
+                credentials = {};
+                $state.go("home");
+            });
         },
         isAuthenticated: function () {
             return localStorage.getItem("userSession") !== null;

@@ -21,7 +21,7 @@ teammateApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', fun
 
 teammateApp.run( function run () {});
 
-teammateApp.controller( 'AppCtrl', [ '$scope', '$location', function AppCtrl ( $scope, $location ) {
+teammateApp.controller('AppCtrl', ['$scope', 'AuthSrv', function AppCtrl($scope, AuthSrv) {
     var vm = this;
     $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
         if ( angular.isDefined( toState.data.pageTitle ) ) {
@@ -29,10 +29,8 @@ teammateApp.controller( 'AppCtrl', [ '$scope', '$location', function AppCtrl ( $
         }
     });
 
-    // TODO Implement userSessionSrv
-    // vm.authenticated = AuthFrontendSrv.isAuthenticated;
-    // vm.login = AuthFrontendSrv.login;
-    // vm.logout = AuthFrontendSrv.logout;
+    vm.isAuthenticated = AuthSrv.isAuthenticated;
+    vm.logout = AuthSrv.logout;
 
 }]);
 

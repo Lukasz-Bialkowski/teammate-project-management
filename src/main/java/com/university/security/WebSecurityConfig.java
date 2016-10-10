@@ -46,8 +46,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessHandler(logoutSuccessHandler)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/src/**", "/vendor/**", "/assets/**", "/templates-app.js", "/templates-common.js", "/user/create",
-                        "/user/save", "/user/employmentFormsList", "/user/positionsList").permitAll()
+                .antMatchers("/", "/src/**", "/vendor/**", "/assets/**", "/fonts/**", "/templates-app.js", "/templates-common.js",
+                        "/user/create", "/user/save", "/user/employmentFormsList", "/user/positionsList").permitAll()
                 .anyRequest().authenticated();
     }
 

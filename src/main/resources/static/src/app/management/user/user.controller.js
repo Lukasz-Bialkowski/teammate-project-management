@@ -104,7 +104,7 @@ managementModule.controller('UserManagementCtrl', ['$scope', 'UserCrudSrv', '_us
             $event.preventDefault();
             $event.stopPropagation(); // This is the magic
         }
-        $scope.popup2.opened = true;
+        $scope.popup2.opened = !$scope.popup2.opened;
     };
     $scope.setDate = function (year, month, day) {
         $scope.dt = new Date(year, month, day);

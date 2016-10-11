@@ -1,6 +1,6 @@
 var managementModule = angular.module('teammateApp.management');
 
-managementModule.controller('UserManagementCtrl', ['$scope', 'UserCrudSrv', '_userEmptyRes', '_positionsList', '_employmentFormsList', function ($scope, UserCrudSrv, _userEmptyRes, _positionsList, _employmentFormsList) {
+managementModule.controller('UserManagementCtrl', ['UserCrudSrv', '_userEmptyRes', '_positionsList', '_employmentFormsList', function (UserCrudSrv, _userEmptyRes, _positionsList, _employmentFormsList) {
 
     var vm = this;
     vm.selected = {};
@@ -88,28 +88,26 @@ managementModule.controller('UserManagementCtrl', ['$scope', 'UserCrudSrv', '_us
     }
 
     // DATEPICKER
-    $scope.today = function () {
-        $scope.dt = new Date();
-    };
-    $scope.today();
-    $scope.dateOptions = {
+    vm.dateOptions = {
         dateDisabled: false,
         formatYear: 'yy',
         maxDate: new Date(2020, 5, 22),
         minDate: new Date(),
         startingDay: 5
     };
-    $scope.open2 = function ($event) {
+    vm.togglePopup = function ($event) {
         if ($event) {
-            $event.preventDefault();
-            $event.stopPropagation(); // This is the magic
+            vm.preventDefault();
+            vm.stopPropagation();
         }
-        $scope.popup2.opened = !$scope.popup2.opened;
+        vm.popup.birthDate = !vm.popup.birthDate;
     };
-    $scope.setDate = function (year, month, day) {
-        $scope.dt = new Date(year, month, day);
+    vm.setDate = function (year, month, day) {
+        vm.dt = new Date(year, month, day);
     };
-    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-    $scope.format = $scope.formats[0];
-    $scope.popup2 = {opened: false};
+    vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    vm.format = vm.formats[0];
+    vm.popup = {
+        birthDate: false
+    };
 }]);

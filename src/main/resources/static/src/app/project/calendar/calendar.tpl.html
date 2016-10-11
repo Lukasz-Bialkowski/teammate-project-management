@@ -24,8 +24,47 @@
                     </div>
                     <div class="row">
                         <div class="form-group">
-                            <label for="startTimeid" class="control-label">Czas</label>
-                            <div uib-timepicker id="startTimeid" ng-model="cCtrl.startTime" minute-step="15"
+                            <label for="startDateId" class="control-label">Data rozpoczęcia</label>
+                            <p class="input-group">
+                                <input type="text" id="startDateId" class="form-control" uib-datepicker-popup
+                                       ng-model="cCtrl.current.eventStartDate" is-open="cCtrl.popup.startDate"
+                                       datepicker-options="cCtrl.dateOptions"
+                                       placeholder="YYYY-MM-DD" name="startDatePick" close-text="Zamknij"
+                                       hrt-btr-validation/>
+                                <span class="input-group-btn">
+                                <button type="button" class="btn btn-default"
+                                        ng-click="cCtrl.togglePopup($event, 'startDate')"><i
+                                        class="fa fa-book"></i></button>
+                            </span>
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label for="startDateTimeId" class="control-label">Godzina rozpoczęcia</label>
+                            <div uib-timepicker id="startDateTimeId" ng-model="cCtrl.current.eventStartDate"
+                                 minute-step="15"
+                                 show-meridian="false"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="startDateId" class="control-label">Data rozpoczęcia</label>
+                            <p class="input-group">
+                                <input type="text" id="endDateId" class="form-control" uib-datepicker-popup
+                                       ng-model="cCtrl.current.eventEndDate" is-open="cCtrl.popup.endDate"
+                                       datepicker-options="cCtrl.dateOptions"
+                                       placeholder="YYYY-MM-DD" name="endDatePick" close-text="Zamknij"
+                                       hrt-btr-validation/>
+                                <span class="input-group-btn">
+                                <button type="button" class="btn btn-default"
+                                        ng-click="cCtrl.togglePopup($event, 'endDate')"><i
+                                        class="fa fa-book"></i></button>
+                            </span>
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label for="endDateTimeId" class="control-label">Godzina zakończenia</label>
+                            <div uib-timepicker id="endDateTimeId" ng-model="cCtrl.current.eventEndDate"
+                                 minute-step="15"
                                  show-meridian="false"></div>
                         </div>
                     </div>
@@ -53,6 +92,12 @@
         </div>
         <!-- CALENDAR VIEW -->
         <div class="col-md-6">
+            <div ui-calendar ng-model="cCtrl.eventSources"></div>
         </div>
+    </div>
+    <div class="row">
+        <!-- Embedded Google Map -->
+        <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                src="http://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed"></iframe>
     </div>
 </div>

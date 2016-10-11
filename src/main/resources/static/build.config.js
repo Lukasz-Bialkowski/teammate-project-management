@@ -63,6 +63,7 @@ module.exports = {
   vendor_files: {
     js: [
       'vendor/jquery/dist/jquery.js',
+      'vendor/moment/moment.js',
       'vendor/angular/angular.js',
       'vendor/angular-animate/angular-animate.js',
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
@@ -70,11 +71,15 @@ module.exports = {
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-ui-utils/modules/route/route.js',
       'vendor/angular-resource/angular-resource.js',
-      'vendor/bootstrap/dist/js/bootstrap.js'
+      'vendor/bootstrap/dist/js/bootstrap.js',
+      'vendor/angular-ui-calendar/src/calendar.js',
+      'vendor/fullcalendar/dist/fullcalendar.min.js',
+      'vendor/fullcalendar/dist/gcal.js'
     ],
     css: [
+      'vendor/fullcalendar/dist/fullcalendar.css'
     ],
     assets: [
     ]
-  },
+  }
 };

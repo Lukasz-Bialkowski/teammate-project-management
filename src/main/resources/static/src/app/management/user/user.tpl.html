@@ -67,11 +67,11 @@
                         <p class="input-group">
                             <input type="text" id="dateOfBirthId" class="form-control" uib-datepicker-popup
                                    ng-model="uCtrl.current.dateOfBirth"
-                                   is-open="popup2.opened" datepicker-options="dateOptions" placeholder="YYYY-MM-DD"
-                                   name="datepick"
-                                   close-text="Close" hrt-btr-validation/>
+                                   is-open="uCtrl.popup.birthDate" datepicker-options="uCtrl.dateOptions"
+                                   placeholder="YYYY-MM-DD"
+                                   name="datepick" close-text="Zamknij" hrt-btr-validation/>
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="open2($event)"><i
+                                <button type="button" class="btn btn-default" ng-click="uCtrl.togglePopup($event)"><i
                                         class="fa fa-book"></i></button>
                             </span>
                         </p>

@@ -11,7 +11,8 @@ var teammateApp = angular.module( 'teammateApp', [
     'teammateApp.management',
     'teammateApp.account',
     'ngAnimate',
-    'ngResource'
+    'ngResource',
+    'ui.calendar'
 ]);
 
 teammateApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function myAppConfig($stateProvider, $urlRouterProvider, $httpProvider) {

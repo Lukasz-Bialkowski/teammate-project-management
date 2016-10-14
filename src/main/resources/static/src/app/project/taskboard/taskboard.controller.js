@@ -6,5 +6,6 @@ taskboardModule.controller('TaskboardCtrl', ['TaskCrudSrv', '_taskList', functio
     CrudfsCtrl.call(vm, vm, TaskCrudSrv);
 
     vm.tasks = _taskList;
+    vm.data = [];
 
 }]);

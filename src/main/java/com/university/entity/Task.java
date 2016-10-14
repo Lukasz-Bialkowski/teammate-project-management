@@ -1,8 +1,8 @@
 package com.university.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.university.entity.enumeration.TaskStatus;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "task")
@@ -14,21 +14,18 @@ public class Task extends EntityBase {
     @Column(name = "story_points")
     private Integer storyPoints;
 
-    public Task() {
-    }
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "contractor_id")
+    private User contractor;
 
-    public Task(String name, int storyPoints) {
-        this.name = name;
-        this.storyPoints = storyPoints;
-    }
+    @Column(name = "estimated_hours")
+    private Double estimatedHours;
 
-    public void setStoryPoints(Integer storyPoints) {
-        this.storyPoints = storyPoints;
-    }
+    @Column(name = "description")
+    private String description;
 
-    public Integer getStoryPoints() {
-        return storyPoints;
-    }
+    @Column(name = "status")
+    private TaskStatus status = TaskStatus.TODO;
 
     public String getName() {
         return name;
@@ -36,5 +33,45 @@ public class Task extends EntityBase {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getStoryPoints() {
+        return storyPoints;
+    }
+
+    public void setStoryPoints(Integer storyPoints) {
+        this.storyPoints = storyPoints;
+    }
+
+    public User getContractor() {
+        return contractor;
+    }
+
+    public void setContractor(User contractor) {
+        this.contractor = contractor;
+    }
+
+    public Double getEstimatedHours() {
+        return estimatedHours;
+    }
+
+    public void setEstimatedHours(Double estimatedHours) {
+        this.estimatedHours = estimatedHours;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public TaskStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TaskStatus status) {
+        this.status = status;
     }
 }

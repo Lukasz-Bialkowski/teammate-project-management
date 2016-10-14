@@ -7,5 +7,6 @@ managementModule.controller('ProjectManagementCtrl', ['ProjectCrudSrv', '_projec
 
     vm.current = _projectEmptyRes;
     vm.users = _userList;
+    vm.data = [];
 
 }]);

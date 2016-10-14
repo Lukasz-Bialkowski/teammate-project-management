@@ -1,0 +1,8 @@
+<div>
+    <div>
+        <h1 class="page-header">{{dCtrl.current.title}}</h1>
+        <p><strong>Data ostatniej modyfikacji: </strong>{{dCtrl.current.dateUpdate | date}}</p>
+    </div>
+
+    <div ng-bind-html="dCtrl.current.htmlContent"></div>
+</div>

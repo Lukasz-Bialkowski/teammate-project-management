@@ -7,5 +7,6 @@ managementModule.controller('TaskManagementCtrl', ['TaskCrudSrv', '_userList', '
 
     vm.current = _taskEmptyRes;
     vm.users = _userList;
+    vm.data = [];
 
 }]);

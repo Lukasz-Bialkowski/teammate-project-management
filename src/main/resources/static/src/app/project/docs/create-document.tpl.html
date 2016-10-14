@@ -1,0 +1,45 @@
+<div>
+    <form name="docsform" novalidate>
+        <fieldset>
+            <legend>Informacje podstawowe</legend>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="titleId" class="control-label">Tytuł dokumentu (wymagane)</label>
+                        <input name="titleId" type="text" class="form-control" placeholder="Wpisz nazwe dokumentu"
+                               id="titleId" ng-model="dCtrl.current.title" required hrt-btr-validation>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="contentId" class="control-label">Treść dokumentu (wymagane)</label>
+                        <text-angular id="contentId" ng-model="dCtrl.current.htmlContent" required
+                                      hrt-btr-validation></text-angular>
+                    </div>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+
+    <div class="row">
+        <div class="col-md-12 form-footer text-center">
+            <button type="button" class="btn btn-default" ui-sref="projectnav.about">Anuluj</button>
+            <button type="button" class="btn btn-danger" ng-if="dCtrl.current.id"
+                    ng-click="dCtrl.remove(dCtrl.current)">Usun
+            </button>
+            <button type="button" class="btn btn-success" ng-if="dCtrl.current.id" ng-click="dCtrl.save(dCtrl.current)"
+                    ng-disabled="docsform.$invalid || docsform.$pristine">Aktualizuj
+            </button>
+            <button type="button" class="btn btn-success" ng-if="!dCtrl.current.id" ng-click="dCtrl.save(dCtrl.current)"
+                    ng-disabled="docsform.$invalid || docsform.$pristine">Dodaj
+            </button>
+            <button type="button" class="btn btn-info" ng-if="dCtrl.current.id" ng-click="dCtrl.create()">Nowy
+                dokument
+            </button>
+        </div>
+    </div>
+
+</div>

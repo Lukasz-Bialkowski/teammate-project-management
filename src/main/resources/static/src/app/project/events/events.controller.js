@@ -7,7 +7,7 @@ projectEventsModule.controller('EventsCtrl', ['moment', 'EventCrudSrv', '_userLi
 
     vm.users = _userList;
     vm.current = _eventEmptyRes;
-
+    vm.data = [];
     vm.eventSources = [
         {
             events: [

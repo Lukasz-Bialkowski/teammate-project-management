@@ -38,6 +38,11 @@ public class User extends EntityBase {
     @Enumerated(EnumType.STRING)
     private Role role = Role.USER;
 
+    @Column(name = "tasks")
+    @OneToMany(mappedBy = "contractor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Task> tasks = new HashSet<>();
+
+    @Column(name = "events")
     @OneToMany(mappedBy = "owner")
     private Set<Event> events = new HashSet<>();
 
@@ -111,6 +116,14 @@ public class User extends EntityBase {
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
     }
 
     @Override

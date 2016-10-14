@@ -19,6 +19,18 @@ public class Event extends EntityBase {
     @JoinColumn(name = "owner_id")
     private User owner;
 
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "location")
+    private GeoLocation location;
+
+    public GeoLocation getLocation() {
+        return location;
+    }
+
+    public void setLocation(GeoLocation location) {
+        this.location = location;
+    }
+
     public String getName() {
         return name;
     }

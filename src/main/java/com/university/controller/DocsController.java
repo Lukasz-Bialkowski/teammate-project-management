@@ -1,20 +1,26 @@
 package com.university.controller;
 
+import com.university.crud.CrudController;
+import com.university.crud.CrudService;
+import com.university.entity.Document;
+import com.university.service.DocumentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Arrays;
-import java.util.List;
 
 @RestController
 @RequestMapping("/docs")
-public class DocsController {
+public class DocsController extends CrudController<Document> {
 
-    @RequestMapping(method = {RequestMethod.GET})
-    @ResponseBody
-    public List<String> list() {
-        return Arrays.asList("Docs1: content1", "Docs2: content2");
+    private DocumentService documentService;
+
+    @Autowired
+    public DocsController(DocumentService documentService) {
+        this.documentService = documentService;
+    }
+
+    @Override
+    protected CrudService<Document> getService() {
+        return documentService;
     }
 }

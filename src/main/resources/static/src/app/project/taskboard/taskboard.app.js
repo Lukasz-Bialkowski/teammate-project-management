@@ -11,6 +11,11 @@ taskboardModule.config(['$stateProvider', function config( $stateProvider ) {
         },
         data: {
             pageTitle: 'Taskboard'
+        },
+        resolve: {
+            _taskList: ['TaskCrudSrv', function (TaskCrudSrv) {
+                return TaskCrudSrv.list().$promise;
+            }]
         }
     });
 }]);

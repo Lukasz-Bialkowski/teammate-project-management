@@ -55,17 +55,17 @@ function CrudfsCtrl($scope, crudSrv, confirmSrv, rmMsg, noInit) {
     $scope.sortProperty = {};
     $scope.filterResult = false;
 
-    if (!noInit) {
-        crudSrv.sortprops(function (response) {
-            $scope.sortprops = response;
-            for (var i = 0; i < $scope.sortprops.length; i++) {
-                if ($scope.sortprops[i].def) {
-                    $scope.sortProperty = $scope.sortprops[i];
-                }
-            }
-        });
-
-    }
+    // if (!noInit) {
+    //     crudSrv.sortprops(function (response) {
+    //         $scope.sortprops = response;
+    //         for (var i = 0; i < $scope.sortprops.length; i++) {
+    //             if ($scope.sortprops[i].def) {
+    //                 $scope.sortProperty = $scope.sortprops[i];
+    //             }
+    //         }
+    //     });
+    //
+    // }
 
     $scope.list = function () {
         var params = {

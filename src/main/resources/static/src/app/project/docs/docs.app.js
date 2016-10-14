@@ -13,9 +13,7 @@ projectDocsModule.config(['$stateProvider', function config( $stateProvider ) {
                 }
             },
             data: {
-                pageTitle: 'Docs',
-                contextPath: 'http://localhost:8080/teammate/',
-                crudResourceMapping: 'docs'
+                pageTitle: 'Docs'
             }
         });
 }]);

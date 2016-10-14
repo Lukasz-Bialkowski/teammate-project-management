@@ -1,10 +1,10 @@
 var taskboardModule = angular.module( 'teammateApp.project.taskboard');
 
-taskboardModule.controller('TaskboardCtrl', ['TaskCrudSrv', function TaskboardCtrl(TaskCrudSrv) {
-    var vm = this;
-    vm.variable = "This is taskboardCtrl variable";
+taskboardModule.controller('TaskboardCtrl', ['TaskCrudSrv', '_taskList', function TaskboardCtrl(TaskCrudSrv, _taskList) {
 
-    TaskCrudSrv.list({}, function (response) {
-        vm.theResponse = response;
-    });
+    var vm = this;
+    CrudfsCtrl.call(vm, vm, TaskCrudSrv);
+
+    vm.tasks = _taskList;
+
 }]);

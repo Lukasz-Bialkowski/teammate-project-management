@@ -39,7 +39,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">TeamMate v<%= version %></a>
+            <a class="navbar-brand" href ui-sref="home">TeamMate</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" collapse="menuCollapsed">
@@ -48,12 +48,6 @@
                     <a href ui-sref="home">
                         <i class="fa fa-home"></i>
                         Home
-                    </a>
-                </li>
-                <li ui-sref-active="active">
-                    <a href ui-sref="contact">
-                        <i class="fa fa-info-circle"></i>
-                        What is it?
                     </a>
                 </li>
                 <li ui-sref-active="active">
@@ -68,16 +62,38 @@
                         Project
                     </a>
                 </li>
-                <li class="nav-item" ui-sref-active="active">
-                    <a class="nav-link" href ui-sref="managementUser">
-                        <i class="fa fa-info-circle"></i>
-                        Create User
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-home"></i>Management <b class="caret"></b>
                     </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="full-width.html">Urlop</a>
+                        </li>
+                        <li>
+                            <a href="sidebar.html">Home office</a>
+                        </li>
+                        <li>
+                            <a href="faq.html">Godziny pracy</a>
+                        </li>
+                        <li class="nav-item" ui-sref-active="active">
+                            <a class="nav-link" href ui-sref="managementUser">
+                                <i class="fa fa-info-circle"></i>
+                                Create User
+                            </a>
+                        </li>
+                        <li class="nav-item" ui-sref-active="active">
+                            <a class="nav-link" href ui-sref="managementProject">
+                                <i class="fa fa-info-circle"></i>
+                                Create Project
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="nav-item" ui-sref-active="active">
-                    <a class="nav-link" href ui-sref="managementProject">
+                <li ui-sref-active="active">
+                    <a href ui-sref="contact">
                         <i class="fa fa-info-circle"></i>
-                        Create Project
+                        Contact
                     </a>
                 </li>
                 <li ui-sref-active="active" ng-hide="appCtrl.isAuthenticated()">
@@ -91,20 +107,6 @@
                         <i class="fa fa-info-circle"></i>
                         Logout
                     </a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="full-width.html">Urlop</a>
-                        </li>
-                        <li>
-                            <a href="sidebar.html">Home office</a>
-                        </li>
-                        <li>
-                            <a href="faq.html">Godziny pracy</a>
-                        </li>
-                    </ul>
                 </li>
             </ul>
         </div>

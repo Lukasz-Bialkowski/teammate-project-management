@@ -1,11 +1,13 @@
-var projectCalendarModule = angular.module( 'teammateApp.project.calendar');
+var projectEventsModule = angular.module('teammateApp.project.events');
 
-projectCalendarModule.controller('CalendarCtrl', [function CalendarCtrl() {
+projectEventsModule.controller('EventsCtrl', ['moment', 'EventCrudSrv', '_userList', '_eventEmptyRes', function EventsCtrl(moment, EventCrudSrv, _userList, _eventEmptyRes) {
+
     var vm = this;
-    vm.current = {
-        eventStartTime: new Date(),
-        eventEndDate: new Date()
-    };
+    CrudfsCtrl.call(vm, vm, EventCrudSrv);
+
+    vm.users = _userList;
+    vm.current = _eventEmptyRes;
+
     vm.eventSources = [
         {
             events: [
@@ -42,6 +44,16 @@ projectCalendarModule.controller('CalendarCtrl', [function CalendarCtrl() {
             color: 'brown'
         }
     ];
+    vm.uiConfig = {
+        calendar: {
+            eventClick: function (event) {
+                EventCrudSrv.get({id: event.id}).$promise.then(function (response) {
+                    vm.current = response;
+                });
+                console.log(event);
+            }
+        }
+    };
 
     // DATEPICKER
     vm.dateOptions = {

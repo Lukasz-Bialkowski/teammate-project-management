@@ -61,6 +61,9 @@ managementModule.config(['$stateProvider', function config($stateProvider) {
             resolve: {
                 _projectEmptyRes: ['ProjectCrudSrv', function (ProjectCrudSrv) {
                     return ProjectCrudSrv.create().$promise;
+                }],
+                _userList: ['UserCrudSrv', function (UserCrudSrv) {
+                    return UserCrudSrv.list().$promise;
                 }]
             }
         });

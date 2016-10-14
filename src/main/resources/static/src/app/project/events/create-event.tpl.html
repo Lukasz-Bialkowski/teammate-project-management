@@ -1,0 +1,94 @@
+<!--/ FORM VIEW-->
+<div>
+    <form name="eventform" novalidate>
+        <fieldset>
+            <legend>Informacje podstawowe</legend>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="eventTitleid" class="control-label">Tytuł wydarzenia</label>
+                    <input class="form-control" id="eventTitleid" name="eventTitle" type="text"
+                           placeholder="Podaj tytuł wydarzenia" required hrt-btr-validation
+                           ng-model="cCtrl.current.name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="ownerid" class="control-label">Założyciel wydarzenia</label>
+                    <ui-select id="ownerid" ng-model="cCtrl.current.owner" required hrt-btr-validation>
+                        <ui-select-match placeholder="Wybierz użytkownika">
+                            <span>{{cCtrl.current.owner.name}} {{cCtrl.current.owner.surname}}</span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="user in (cCtrl.users | filter: $select.search) track by user.name">
+                            <span ng-bind-html="user.name | highlight: $select.search"></span>
+                            <span ng-bind-html="user.surname | highlight: $select.search"></span>&nbsp;
+                            <small ng-bind-html="user.email | highlight: $select.search"></small>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-8">
+                    <label for="startDateId" class="control-label">Data rozpoczęcia</label>
+                    <p class="input-group">
+                        <input type="text" id="startDateId" class="form-control" uib-datepicker-popup
+                               ng-model="cCtrl.current.eventStartDate" is-open="cCtrl.popup.startDate"
+                               datepicker-options="cCtrl.dateOptions"
+                               placeholder="YYYY-MM-DD" name="startDatePick" close-text="Zamknij"
+                               hrt-btr-validation/>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"
+                                    ng-click="cCtrl.togglePopup($event, 'startDate')">
+                                <i class="fa fa-book"></i>
+                            </button>
+                        </span>
+                    </p>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="startDateTimeId" class="control-label">Godzina rozpoczęcia</label>
+                    <div uib-timepicker id="startDateTimeId" ng-model="cCtrl.current.eventStartDate"
+                         minute-step="15"
+                         show-meridian="false"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-8">
+                    <label for="endDateId" class="control-label">Data zakończenia</label>
+                    <p class="input-group">
+                        <input type="text" id="endDateId" class="form-control" uib-datepicker-popup
+                               ng-model="cCtrl.current.eventEndDate" is-open="cCtrl.popup.endDate"
+                               datepicker-options="cCtrl.dateOptions"
+                               placeholder="YYYY-MM-DD" name="endDatePick" close-text="Zamknij"
+                               hrt-btr-validation/>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"
+                                    ng-click="cCtrl.togglePopup($event, 'endDate')">
+                                <i class="fa fa-book"></i>
+                            </button>
+                        </span>
+                    </p>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="endDateTimeId" class="control-label">Godzina zakończenia</label>
+                    <div uib-timepicker id="endDateTimeId" ng-model="cCtrl.current.eventEndDate"
+                         minute-step="15" show-meridian="false"></div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <div class="row">
+        <div class="col-md-12 form-footer text-center">
+            <button type="button" class="btn btn-default" ui-sref="cCtrl.cancel()">Anuluj</button>
+            <button type="button" class="btn btn-danger" ng-if="cCtrl.current.id"
+                    ng-click="cCtrl.remove(cCtrl.current)">Usun
+            </button>
+            <button type="button" class="btn btn-success" ng-if="cCtrl.current.id" ng-click="cCtrl.save(cCtrl.current)"
+                    ng-disabled="eventform.$invalid || eventform.$pristine">Aktualizuj
+            </button>
+            <button type="button" class="btn btn-success" ng-if="!cCtrl.current.id" ng-click="cCtrl.save(cCtrl.current)"
+                    ng-disabled="eventform.$invalid || eventform.$pristine">Dodaj
+            </button>
+            <button type="button" class="btn btn-info" ng-if="cCtrl.current.id" ng-click="cCtrl.create()">Nowy event
+            </button>
+        </div>
+    </div>
+</div>

@@ -12,8 +12,12 @@ var teammateApp = angular.module( 'teammateApp', [
     'teammateApp.account',
     'ngAnimate',
     'ngResource',
-    'ui.calendar'
+    'ui.calendar',
+    'ui.select',
+    'ngSanitize'
 ]);
+
+teammateApp.constant('moment', moment);
 
 teammateApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function myAppConfig($stateProvider, $urlRouterProvider, $httpProvider) {
     $urlRouterProvider.otherwise( '/home' );

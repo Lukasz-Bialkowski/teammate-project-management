@@ -30,10 +30,44 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="ownerId" class="control-label">Właściciel (wymagane)</label>
-                        <select class="form-control" id="ownerId" name="ownerId" ng-model="tmCtrl.current.owner"
-                                ng-options="user.name for user in tmCtrl.users track by user.name" required
-                                hrt-btr-validation></select>
+                        <label for="contractorId" class="control-label">Właściciel (wymagane)</label>
+                        <ui-select id="contractorId" ng-model="tmCtrl.current.contractor" required hrt-btr-validation>
+                            <ui-select-match placeholder="Wybierz wykonawce zadania">
+                                <span>{{tmCtrl.current.contractor.name}} {{tmCtrl.current.contractor.surname}}</span>
+                            </ui-select-match>
+                            <ui-select-choices
+                                    repeat="user in (tmCtrl.users | filter: $select.search) track by user.name">
+                                <span ng-bind-html="user.name | highlight: $select.search"></span>
+                                <span ng-bind-html="user.surname | highlight: $select.search"></span>&nbsp;
+                                <small ng-bind-html="user.email | highlight: $select.search"></small>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="descriptionId" class="control-label">Opis zadania (wymagane)</label>
+                        <textarea id="descriptionId" ng-model="tmCtrl.current.description" class="form-control" rows="3"
+                                  required hrt-btr-validation
+                                  placeholder="Jako [ _użytkownik_ ] chcę [ _funkcjonalność_ ] aby móc [ _rezultat_ ]">
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="estimateId" class="control-label">Estymacja godzin (wymagane)</label>
+                        <input id="estimateId" class="form-control" ng-model="tmCtrl.current.estimatedHours"
+                               placeholder="Liczba story pointów" required hrt-btr-validation/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="statusId" class="control-label">Status</label>
+                        <pre id="statusId" style="padding:6px; margin: 1px;"><b>{{tmCtrl.current.status}}</b></pre>
                     </div>
                 </div>
             </div>
@@ -41,15 +75,20 @@
     </form>
     <div class="row">
         <div class="col-md-12 form-footer text-center">
-            <button type="button" class="btn btn-default">Anuluj</button>
-            <button type="button" class="btn btn-danger" ng-if="current.id" ng-click="remove(current)">Usun</button>
-            <button type="button" class="btn btn-success" ng-if="current.id" ng-click="save(current)"
+            <button type="button" class="btn btn-default" ng-click="tmCtrl.cancel()">Anuluj</button>
+            <button type="button" class="btn btn-danger" ng-if="tmCtrl.current.id"
+                    ng-click="tmCtrl.remove(tmCtrl.current)">Usun
+            </button>
+            <button type="button" class="btn btn-success" ng-if="tmCtrl.current.id"
+                    ng-click="tmCtrl.save(tmCtrl.current)"
                     ng-disabled="taskform.$invalid || taskform.$pristine">Aktualizuj
             </button>
-            <button type="button" class="btn btn-success" ng-if="!current.id" ng-click="save(current)"
+            <button type="button" class="btn btn-success" ng-if="!tmCtrl.current.id"
+                    ng-click="tmCtrl.save(tmCtrl.current)"
                     ng-disabled="taskform.$invalid || taskform.$pristine">Dodaj
             </button>
-            <button type="button" class="btn btn-info" ng-if="current.id" ng-click="create()">Nowy task</button>
+            <button type="button" class="btn btn-info" ng-if="tmCtrl.current.id" ng-click="tmCtrl.create()">Nowy task
+            </button>
         </div>
     </div>
 </div>

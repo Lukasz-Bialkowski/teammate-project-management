@@ -6,6 +6,8 @@ import com.university.entity.enumeration.Role;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -24,7 +26,7 @@ public class User extends EntityBase {
     private String passwordHash;
 
     @Temporal(TemporalType.DATE)
-    private Date dateOfBirth;
+    private Date dateOfBirth = new Date();
 
     @Column(name = "employment_form")
     private EmploymentForm employmentForm;
@@ -32,12 +34,20 @@ public class User extends EntityBase {
     @Column(name = "position")
     private Position position;
 
-    @Column(name = "active")
-    private boolean active;
-
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role = Role.USER;
+
+    @OneToMany(mappedBy = "owner")
+    private Set<Event> events = new HashSet<>();
+
+    public Set<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Set<Event> events) {
+        this.events = events;
+    }
 
     public Role getRole() {
         return role;
@@ -45,14 +55,6 @@ public class User extends EntityBase {
 
     public void setRole(Role role) {
         this.role = role;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
     public EmploymentForm getEmploymentForm() {

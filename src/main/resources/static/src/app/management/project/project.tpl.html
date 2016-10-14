@@ -8,7 +8,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="projectName" class="control-label">Nazwa projektu (wymagane)</label>
-                        <input class="form-control" id="projectName" placeholder="Nazwa projektu"
+                        <input class="form-control" id="projectName" placeholder="Wprowadz nazwe projektu"
                                ng-model="pmCtrl.current.name" ng-minlength="3" required hrt-btr-validation>
                     </div>
                 </div>
@@ -22,18 +22,25 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="sth" class="control-label">Don't know yet (wymagane)</label>
-                        <input id="sth" class="form-control" ng-model="pmCtrl.current.storyPoints"
-                               placeholder="Don't know yet"
-                               required hrt-btr-validation/>
+                        <label for="departmentId" class="control-label">Nazwa działu (wymagane)</label>
+                        <input id="departmentId" class="form-control" ng-model="pmCtrl.current.department"
+                               placeholder="Wprowadź nazwę działu" required hrt-btr-validation/>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="sthh2" class="control-label">Same (wymagane)</label>
-                        <select class="form-control" id="sthh2" name="ownerId" ng-model="pmCtrl.current.owner"
-                                ng-options="user.name for user in pmCtrl.users track by user.name" required
-                                hrt-btr-validation></select>
+                        <label for="managerId" class="control-label">Menadżer (wymagane)</label>
+                        <ui-select id="managerId" ng-model="pmCtrl.current.manager" required hrt-btr-validation>
+                            <ui-select-match placeholder="Wybierz menadżera">
+                                <span>{{pmCtrl.current.manager.name}} {{pmCtrl.current.manager.surname}}</span>
+                            </ui-select-match>
+                            <ui-select-choices
+                                    repeat="user in (pmCtrl.users | filter: $select.search) track by user.name">
+                                <span ng-bind-html="user.name | highlight: $select.search"></span>
+                                <span ng-bind-html="user.surname | highlight: $select.search"></span>&nbsp;
+                                <small ng-bind-html="user.email | highlight: $select.search"></small>
+                            </ui-select-choices>
+                        </ui-select>
                     </div>
                 </div>
             </div>
@@ -41,15 +48,21 @@
     </form>
     <div class="row">
         <div class="col-md-12 form-footer text-center">
-            <button type="button" class="btn btn-default">Anuluj</button>
-            <button type="button" class="btn btn-danger" ng-if="current.id" ng-click="remove(current)">Usun</button>
-            <button type="button" class="btn btn-success" ng-if="current.id" ng-click="save(current)"
+            <button type="button" class="btn btn-default" ng-click="pmCtrl.cancel()">Anuluj</button>
+            <button type="button" class="btn btn-danger" ng-if="pmCtrl.current.id"
+                    ng-click="pmCtrl.remove(pmCtrl.current)">Usun
+            </button>
+            <button type="button" class="btn btn-success" ng-if="pmCtrl.current.id"
+                    ng-click="pmCtrl.save(pmCtrl.current)"
                     ng-disabled="projectform.$invalid || projectform.$pristine">Aktualizuj
             </button>
-            <button type="button" class="btn btn-success" ng-if="!current.id" ng-click="save(current)"
+            <button type="button" class="btn btn-success" ng-if="!pmCtrl.current.id"
+                    ng-click="pmCtrl.save(pmCtrl.current)"
                     ng-disabled="projectform.$invalid || projectform.$pristine">Dodaj
             </button>
-            <button type="button" class="btn btn-info" ng-if="current.id" ng-click="create()">Nowy projekt</button>
+            <button type="button" class="btn btn-info" ng-if="pmCtrl.current.id" ng-click="pmCtrl.create()">Nowy
+                projekt
+            </button>
         </div>
     </div>
 </div>

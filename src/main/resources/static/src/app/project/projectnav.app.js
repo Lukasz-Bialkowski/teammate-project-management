@@ -1,6 +1,6 @@
 var projectNavModule = angular.module('teammateApp.projectnav', [
     'teammateApp.project.about',
-    'teammateApp.project.calendar',
+    'teammateApp.project.events',
     'teammateApp.project.docs',
     'teammateApp.project.taskboard'
 ]);

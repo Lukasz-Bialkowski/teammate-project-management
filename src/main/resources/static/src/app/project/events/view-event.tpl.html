@@ -1,0 +1,38 @@
+<!--/ FORM VIEW-->
+<div class="col-md-6">
+    <form name="eventform" novalidate>
+        <fieldset>
+            <legend>Informacje podstawowe</legend>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="eventTitleid" class="control-label">Tytuł wydarzenia</label>
+                    <div id="eventTitleid" class="well well-sm form-control">
+                        <h3>{{cCtrl.current.name}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="ownerid" class="control-label">Założyciel wydarzenia</label>
+                    <div id="ownerid" class="well well-sm form-control">
+                        <span>{{cCtrl.current.owner.name}} {{cCtrl.current.owner.surname}}</span>
+                        <small>{{cCtrl.current.owner.email}}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="startDateId" class="control-label">Data rozpoczęcia</label>
+                    <div id="startDateId" class="well well-sm form-control">{{cCtrl.current.eventStartDate | date}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="endDateId" class="control-label">Data zakończenia</label>
+                    <div id="endDateId" class="well well-sm form-control">{{cCtrl.current.eventEndDate | date}}</div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

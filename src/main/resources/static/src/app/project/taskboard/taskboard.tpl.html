@@ -1,2 +1,22 @@
-Test : {{tCtrl.theResponse}}
-Variable : {{tCtrl.variable}}
+<div>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Story pointy</th>
+            <th>Estymata</th>
+            <th>Wykonawca</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="task in tCtrl.tasks">
+            <td ng-bind="task.name"></td>
+            <td ng-bind="task.status"></td>
+            <td ng-bind="task.storyPoints"></td>
+            <td ng-bind="task.estimatedHours"></td>
+            <td ng-bind="task.contractor"></td>
+            <td>
+                <button class="btn btn-primary">Usuń</button>
+            </td>
+        </tr>
+    </table>
+</div>

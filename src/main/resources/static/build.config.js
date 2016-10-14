@@ -74,10 +74,13 @@ module.exports = {
       'vendor/bootstrap/dist/js/bootstrap.js',
       'vendor/angular-ui-calendar/src/calendar.js',
       'vendor/fullcalendar/dist/fullcalendar.min.js',
-      'vendor/fullcalendar/dist/gcal.js'
+        'vendor/fullcalendar/dist/gcal.js',
+        'vendor/angular-sanitize/angular-sanitize.min.js',
+        'vendor/angular-ui-select/dist/select.min.js'
     ],
     css: [
-      'vendor/fullcalendar/dist/fullcalendar.css'
+        'vendor/fullcalendar/dist/fullcalendar.css',
+        'vendor/angular-ui-select/dist/select.min.css'
     ],
     assets: [
     ]

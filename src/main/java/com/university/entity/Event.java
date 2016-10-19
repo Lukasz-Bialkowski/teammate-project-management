@@ -15,11 +15,11 @@ public class Event extends EntityBase {
     @Column(name = "event_end_date")
     private Date eventEndDate = new Date();
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "owner_id")
     private User owner;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "location")
     private GeoLocation location;
 

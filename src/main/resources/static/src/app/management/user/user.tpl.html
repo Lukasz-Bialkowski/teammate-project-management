@@ -5,9 +5,9 @@
             Na podany poniżej <strong>adres email</strong> zostanie wysłany mail aktywujacy konto.</p>
     </div>
     <div ng-if="uCtrl.current.id">
-        <h1>Użytkownik: <span style="color: #2a6496"><b>{{uCtrl.current.name | capitalize}} {{uCtrl.current.surname | capitalize}}</b></span>
+        <h1>Użytkownik: <span class="crudheader-color"><b>{{uCtrl.current.name | capitalize}} {{uCtrl.current.surname | capitalize}}</b></span>
         </h1>
-        <h3>Email: <span style="color: #2a6496"><b>{{uCtrl.current.email}}</b></span></h3>
+        <h3>Email: <span class="crudheader-color"><b>{{uCtrl.current.email}}</b></span></h3>
     </div>
     <form name="userform" novalidate ng-init="uCtrl.current.active = false">
         <fieldset>

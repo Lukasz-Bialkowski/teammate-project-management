@@ -15,8 +15,13 @@
         <!-- ============================= /DOCUMENT UI VIEW =======================  -->
 
         <div class="col-md-3">
+            <button type="button" class="btn btn-success" ng-if="dCtrl.current.id" ng-click="dCtrl.cancel()">
+                <i class="fa fa-plus" aria-hidden="true"></i> Utwórz dokument
+            </button>
             <div class="list-group">
-                <a href="index.html" class="list-group-item">Home</a>
+                <a href ng-repeat="doc in dCtrl.documents"
+                   ui-sref="projectnav.docs.viewdocument({documentName: doc.title})"
+                   class="list-group-item" ng-click="dCtrl.select(doc)">{{doc.title | capitalize}}</a>
             </div>
         </div>
 

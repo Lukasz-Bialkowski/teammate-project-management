@@ -14,7 +14,7 @@ public class Task extends EntityBase {
     @Column(name = "story_points")
     private Integer storyPoints;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "contractor_id")
     private User contractor;
 

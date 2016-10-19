@@ -1,7 +1,13 @@
 <div>
-    <h1 class="page-header">Definiowanie Projektu</h1>
-    <p>Wprowadz dane niezbędne do utworzenia projektu</p>
-    <form name="projectform" novalidate ng-init="pmCtrl.current.id='N/A'">
+    <div ng-if="!pmCtrl.current.id">
+        <h1 class="page-header">Definiowanie Projektu</h1>
+        <p>Wprowadz dane niezbędne do utworzenia projektu</p>
+    </div>
+    <div ng-if="pmCtrl.current.id">
+        <h1>Projekt: <span class="crudheader-color"><b>{{pmCtrl.current.name | capitalize}}</b></span></h1>
+        <h3>Identyfikator: <span class="crudheader-color"><b>{{pmCtrl.current.id}}</b></span></h3>
+    </div>
+    <form name="projectform" novalidate>
         <fieldset>
             <legend>Informacje podstawowe</legend>
             <div class="row">
@@ -14,19 +20,13 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="projectID" class="control-label">Identyfikator</label>
-                        <pre id="projectID" style="padding:6px; margin: 1px;"><b>{{pmCtrl.current.id}}</b></pre>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
                         <label for="departmentId" class="control-label">Nazwa działu (wymagane)</label>
                         <input id="departmentId" class="form-control" ng-model="pmCtrl.current.department"
                                placeholder="Wprowadź nazwę działu" required hrt-btr-validation/>
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="managerId" class="control-label">Menadżer (wymagane)</label>

@@ -99,8 +99,8 @@ managementModule.controller('UserManagementCtrl', ['UserCrudSrv', '_userEmptyRes
     };
     vm.togglePopup = function ($event) {
         if ($event) {
-            vm.preventDefault();
-            vm.stopPropagation();
+            $event.preventDefault();
+            $event.stopPropagation();
         }
         vm.popup.birthDate = !vm.popup.birthDate;
     };

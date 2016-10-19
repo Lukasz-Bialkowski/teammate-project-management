@@ -1,5 +1,7 @@
 package com.university.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.university.entity.enumeration.EmploymentForm;
 import com.university.entity.enumeration.Position;
 import com.university.entity.enumeration.Role;
@@ -39,12 +41,16 @@ public class User extends EntityBase {
     private Role role = Role.USER;
 
     @Column(name = "tasks")
-    @OneToMany(mappedBy = "contractor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonProperty
+    @OneToMany(mappedBy = "contractor")
     private Set<Task> tasks = new HashSet<>();
 
     @Column(name = "events")
     @OneToMany(mappedBy = "owner")
     private Set<Event> events = new HashSet<>();
+
+    @OneToMany(mappedBy = "manager")
+    private Set<Project> managedProjects = new HashSet<>();
 
     public Set<Event> getEvents() {
         return events;
@@ -118,12 +124,21 @@ public class User extends EntityBase {
         this.passwordHash = passwordHash;
     }
 
+    @JsonIgnore
     public Set<Task> getTasks() {
         return tasks;
     }
 
     public void setTasks(Set<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public Set<Project> getManagedProjects() {
+        return managedProjects;
+    }
+
+    public void setManagedProjects(Set<Project> managedProjects) {
+        this.managedProjects = managedProjects;
     }
 
     @Override

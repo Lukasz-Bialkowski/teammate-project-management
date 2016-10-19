@@ -1,7 +1,7 @@
 <div>
     <h1 class="page-header">Definiowanie Taska</h1>
     <p>Wprowadz dane niezbędne do utworzenia taska</p>
-    <form name="taskform" novalidate ng-init="tmCtrl.current.id='N/A'">
+    <form name="taskform" novalidate>
         <fieldset>
             <legend>Informacje podstawowe</legend>
             <div class="row">
@@ -15,7 +15,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="taskID" class="control-label">Identyfikator</label>
-                        <pre id="taskID" style="padding:6px; margin: 1px;"><b>{{tmCtrl.current.id}}</b></pre>
+                        <pre ng-if="tmCtrl.current.id" id="taskID" style="padding:6px; margin: 1px;"><b>{{tmCtrl.current.id}}</b></pre>
+                        <pre ng-if="!tmCtrl.current.id" id="taskID" style="padding:6px; margin: 1px;"><b>N/A</b></pre>
                     </div>
                 </div>
             </div>

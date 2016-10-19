@@ -158,7 +158,7 @@ function CrudfsCtrl($scope, crudSrv, confirmSrv, rmMsg, noInit) {
     };
 
     $scope.remove = function (item) {
-        confirmSrv.confirm(function () {
+        // confirmSrv.confirm(function () {
             crudSrv.remove({
                 id: item.id
             }, function (response) {
@@ -166,7 +166,7 @@ function CrudfsCtrl($scope, crudSrv, confirmSrv, rmMsg, noInit) {
                 $scope.processPaging();
             }, function (response) {
             });
-        }, removeMessage, 'Potwierdź usunięcie');
+        // }, removeMessage, 'Potwierdź usunięcie');
     };
 
     $scope.processRemove = function (item) {

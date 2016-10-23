@@ -22,6 +22,9 @@ projectNavModule.config(['$stateProvider', function config( $stateProvider ) {
             resolve: {
                 _currentProject: ['ProjectCrudSrv', '$stateParams', function (ProjectCrudSrv, $stateParams) {
                     return ProjectCrudSrv.get({id: $stateParams.projectId}).$promise;
+                }],
+                _projectId: ['$stateParams', function ($stateParams) {
+                    return $stateParams.projectId;
                 }]
             }
         });

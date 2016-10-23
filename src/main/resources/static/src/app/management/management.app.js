@@ -5,7 +5,7 @@ var managementModule = angular.module('teammateApp.management', [
 managementModule.config(['$stateProvider', function config($stateProvider) {
     $stateProvider
         .state('projectnav.managementTask', {
-            url: '/createtask',
+            url: '/createtask/:taskId',
             views: {
                 "project": {
                     controller: 'TaskManagementCtrl as tmCtrl',

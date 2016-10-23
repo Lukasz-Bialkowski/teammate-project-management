@@ -18,6 +18,7 @@ taskboardModule.controller('TaskboardCtrl', ['TaskCrudSrv', '_taskList', '$scope
     };
 
     angular.forEach(_taskList, function (value, key) {
+        value.loggedHours = countWorklog(value);
         switch (value.status) {
             case 'TODO':
                 $scope.models.lists.TODO.push(value);
@@ -30,6 +31,15 @@ taskboardModule.controller('TaskboardCtrl', ['TaskCrudSrv', '_taskList', '$scope
                 break;
         }
     });
+
+    function countWorklog(task) {
+        var loggedHours = 0;
+        task.worklogs.forEach(function (worklog) {
+            loggedHours += worklog.workingHours;
+        });
+
+        return loggedHours;
+    }
 
     $scope.lists = [
         {

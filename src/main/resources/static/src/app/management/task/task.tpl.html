@@ -73,6 +73,58 @@
                 </div>
             </div>
         </fieldset>
+        <br>
+        <fieldset ng-if="tmCtrl.current.id">
+            <legend>Worklog</legend>
+            <h4>Task progressbar</h4>
+            <uib-progressbar class="progress-striped" max="tmCtrl.current.estimatedHours" value="tmCtrl.loggedHours">
+                <span style="color:white; white-space:nowrap;">{{tmCtrl.loggedHours}} / {{tmCtrl.current.estimatedHours}}</span>
+            </uib-progressbar>
+            <table class="table">
+                <tr>
+                    <th class="col-md-2">Date modified</th>
+                    <th class="col-md-2">Work date</th>
+                    <th class="col-md-1">Working hours</th>
+                    <th class="col-md-5">Desctiption</th>
+                    <th class="col-md-1"></th>
+                </tr>
+                <tr ng-repeat="worklog in tmCtrl.current.worklogs">
+                    <td>{{worklog.dateUpdate | date}}</td>
+                    <td>{{worklog.workDate | date}}</td>
+                    <td>{{worklog.workingHours}}</td>
+                    <td>{{worklog.description}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <p class="input-group">
+                            <input type="text" id="newWorkdateId" class="form-control" uib-datepicker-popup
+                                   ng-model="tmCtrl.newWorklog.workDate"
+                                   is-open="tmCtrl.popup.workDate" datepicker-options="tmCtrl.dateOptions"
+                                   placeholder="YYYY-MM-DD" name="datepick" close-text="Close"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="tmCtrl.togglePopup($event)"><i
+                                        class="fa fa-book"></i></button>
+                            </span>
+                        </p>
+                    </td>
+                    <td>
+                        <input id="newWorkhoursId" class="form-control" type="number"
+                               ng-model="tmCtrl.newWorklog.workingHours"
+                               placeholder="Work hours"/>
+                    </td>
+                    <td>
+                        <input id="newDescriptionId" class="form-control" ng-model="tmCtrl.newWorklog.description"
+                               placeholder="Short description"/>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" ng-click="tmCtrl.addWorklog()">Add</button>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
     </form>
     <div class="row">
         <div class="col-md-12 form-footer text-center">

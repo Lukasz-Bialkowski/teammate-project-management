@@ -15,7 +15,7 @@
             <td ng-bind="task.estimatedHours"></td>
             <td>{{task.contractor.name | capitalize}} {{task.contractor.surname | capitalize}}</td>
             <td>
-                <button class="btn btn-primary">Usuń</button>
+                <button class="btn btn-primary" ui-sref="projectnav.managementTask({taskId: task.id})">Edit</button>
             </td>
         </tr>
     </table>
@@ -42,6 +42,12 @@
                                     {{item.estimatedHours}},
                                     <b>Owner:</b> {{item.contractor.name | capitalize}} {{item.contractor.surname |
                                     capitalize}}
+                                    <h5>Progress:</h5>
+                                    <uib-progressbar ng-if="item.loggedHours" class="progress-striped"
+                                                     max="item.estimatedHours" value="item.loggedHours">
+                                        <span style="color:white; white-space:nowrap;">{{item.loggedHours}} / {{item.estimatedHours}}</span>
+                                    </uib-progressbar>
+                                    <span ng-if="!item.loggedHours"><i>No logged workinghours</i></span>
                                 </li>
                             </ul>
                         </div>

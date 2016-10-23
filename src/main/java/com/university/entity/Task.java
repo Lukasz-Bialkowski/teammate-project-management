@@ -3,6 +3,8 @@ package com.university.entity;
 import com.university.entity.enumeration.TaskStatus;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "task")
@@ -23,6 +25,9 @@ public class Task extends EntityBase {
 
     @Column(name = "description")
     private String description;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<WorkLog> worklogs = new HashSet<>();
 
     @Column(name = "status")
     private TaskStatus status = TaskStatus.TODO;
@@ -73,5 +78,13 @@ public class Task extends EntityBase {
 
     public void setStatus(TaskStatus status) {
         this.status = status;
+    }
+
+    public Set<WorkLog> getWorklogs() {
+        return worklogs;
+    }
+
+    public void setWorklogs(Set<WorkLog> worklogs) {
+        this.worklogs = worklogs;
     }
 }

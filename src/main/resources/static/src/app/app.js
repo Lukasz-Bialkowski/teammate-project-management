@@ -15,7 +15,8 @@ var teammateApp = angular.module( 'teammateApp', [
     'ui.calendar',
     'ui.select',
     'ngSanitize',
-    'textAngular'
+    'textAngular',
+    'dndLists'
 ]);
 
 teammateApp.constant('moment', moment);

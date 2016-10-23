@@ -13,10 +13,41 @@
             <td ng-bind="task.status"></td>
             <td ng-bind="task.storyPoints"></td>
             <td ng-bind="task.estimatedHours"></td>
-            <td ng-bind="task.contractor"></td>
+            <td>{{task.contractor.name | capitalize}} {{task.contractor.surname | capitalize}}</td>
             <td>
                 <button class="btn btn-primary">Usuń</button>
             </td>
         </tr>
     </table>
+
+
+    <div class="simpleDemo row">
+        <div class="col-md-12">
+            <div class="row">
+                <div ng-repeat="(listName, list) in models.lists" class="col-md-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Lista {{listName}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <ul dnd-list="list">
+                                <li ng-repeat="item in list"
+                                    dnd-draggable="item"
+                                    dnd-moved="list.splice($index, 1)"
+                                    dnd-effect-allowed="move"
+                                    dnd-selected="models.selected = item"
+                                    ng-class="{'selected': models.selected === item}">
+                                    <h4>{{item.name | capitalize}}</h4>
+                                    <b>Story points:</b> {{item.storyPoints}}, <b>Estimated:</b>
+                                    {{item.estimatedHours}},
+                                    <b>Owner:</b> {{item.contractor.name | capitalize}} {{item.contractor.surname |
+                                    capitalize}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

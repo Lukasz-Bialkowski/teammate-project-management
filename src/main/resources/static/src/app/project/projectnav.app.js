@@ -9,13 +9,20 @@ projectNavModule.config(['$stateProvider', function config( $stateProvider ) {
     $stateProvider
         .state( 'projectnav', {
             abstract: true,
-            url: '/project',
+            url: '/project/:projectId',
             views: {
                 "main": {
                     controller: 'ProjectNavCtrl as pnCtrl',
                     templateUrl: 'project/projectnav.tpl.html'
                 }
             },
-            data:{ pageTitle: 'Project' }
+            data: {
+                pageTitle: 'Project'
+            },
+            resolve: {
+                _currentProject: ['ProjectCrudSrv', '$stateParams', function (ProjectCrudSrv, $stateParams) {
+                    return ProjectCrudSrv.get({id: $stateParams.projectId}).$promise;
+                }]
+            }
         });
 }]);

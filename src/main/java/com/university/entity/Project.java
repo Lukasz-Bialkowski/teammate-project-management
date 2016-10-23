@@ -21,6 +21,12 @@ public class Project extends EntityBase {
     @JoinColumn(name = "project_manager")
     private User manager;
 
+    @Column(name = "project_description")
+    private String projectDescription;
+
+    @Column(name = "product_description")
+    private String productDescription;
+
     public String getName() {
         return name;
     }
@@ -43,5 +49,21 @@ public class Project extends EntityBase {
 
     public void setManager(User manager) {
         this.manager = manager;
+    }
+
+    public String getProjectDescription() {
+        return projectDescription;
+    }
+
+    public void setProjectDescription(String projectDescription) {
+        this.projectDescription = projectDescription;
+    }
+
+    public String getProductDescription() {
+        return productDescription;
+    }
+
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
     }
 }

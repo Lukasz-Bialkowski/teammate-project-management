@@ -20,6 +20,9 @@ projectEventsModule.config(['$stateProvider', function config($stateProvider) {
                 }],
                 _eventEmptyRes: ['EventCrudSrv', function (EventCrudSrv) {
                     return EventCrudSrv.create().$promise;
+                }],
+                _eventList: ['EventCrudSrv', function (EventCrudSrv) {
+                    return EventCrudSrv.list().$promise;
                 }]
             }
         }).state('projectnav.events.createevent', {

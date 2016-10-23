@@ -1,15 +1,11 @@
 package com.university.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.university.entity.enumeration.EmploymentForm;
 import com.university.entity.enumeration.Position;
 import com.university.entity.enumeration.Role;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -40,25 +36,21 @@ public class User extends EntityBase {
     @Enumerated(EnumType.STRING)
     private Role role = Role.USER;
 
-    @Column(name = "tasks")
-    @JsonProperty
-    @OneToMany(mappedBy = "contractor")
-    private Set<Task> tasks = new HashSet<>();
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "social_ref")
+    private SocialRef social;
 
-    @Column(name = "events")
-    @OneToMany(mappedBy = "owner")
-    private Set<Event> events = new HashSet<>();
+//    @Column(name = "tasks")
+//    @JsonProperty
+//    @OneToMany(mappedBy = "contractor")
+//    private Set<Task> tasks = new HashSet<>();
 
-    @OneToMany(mappedBy = "manager")
-    private Set<Project> managedProjects = new HashSet<>();
+//    @Column(name = "events")
+//    @OneToMany(mappedBy = "owner")
+//    private Set<Event> events = new HashSet<>();
 
-    public Set<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(Set<Event> events) {
-        this.events = events;
-    }
+//    @OneToMany(mappedBy = "manager")
+//    private Set<Project> managedProjects = new HashSet<>();
 
     public Role getRole() {
         return role;
@@ -124,28 +116,19 @@ public class User extends EntityBase {
         this.passwordHash = passwordHash;
     }
 
-    @JsonIgnore
-    public Set<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(Set<Task> tasks) {
-        this.tasks = tasks;
-    }
-
-    public Set<Project> getManagedProjects() {
-        return managedProjects;
-    }
-
-    public void setManagedProjects(Set<Project> managedProjects) {
-        this.managedProjects = managedProjects;
-    }
-
     @Override
     public String toString() {
         return "User{id: " + this.getId() + ",\n" +
                 "email='" + email + '\'' +
                 ", passwordHash='" + passwordHash + '\'' +
                 '}';
+    }
+
+    public SocialRef getSocial() {
+        return social;
+    }
+
+    public void setSocial(SocialRef social) {
+        this.social = social;
     }
 }

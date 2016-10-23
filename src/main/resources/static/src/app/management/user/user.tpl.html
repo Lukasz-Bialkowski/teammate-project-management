@@ -9,7 +9,7 @@
         </h1>
         <h3>Email: <span class="crudheader-color"><b>{{uCtrl.current.email}}</b></span></h3>
     </div>
-    <form name="userform" novalidate ng-init="uCtrl.current.active = false">
+    <form name="userform" novalidate>
         <fieldset>
             <legend>Informacje podstawowe</legend>
             <div class="row">
@@ -94,6 +94,35 @@
                                 name="employmentForm" placeholder="Forma zatrudnienia"
                                 ng-options="employmentForm for employmentForm in uCtrl.employmentFormsList track by employmentForm"
                                 hrt-btr-validation></select>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Social</legend>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="facebookId" class="control-label">Facebook (wymagane)</label>
+                        <input class="form-control" id="facebookId" name="surname"
+                               ng-model="uCtrl.current.social.surname"
+                               type="text" placeholder="Facebook profile reference" hrt-btr-validation>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="twitterId" class="control-label">Twitter (wymagane)</label>
+                        <input class="form-control" id="twitterId" name="surname"
+                               ng-model="uCtrl.current.social.twitter"
+                               type="text" placeholder="Nazwisko użytkownika" hrt-btr-validation>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="linkedInId" class="control-label">LinkedIn (wymagane)</label>
+                        <input class="form-control" id="linkedInId" name="surname"
+                               ng-model="uCtrl.current.social.linkedin"
+                               type="text" placeholder="Nazwisko użytkownika" hrt-btr-validation>
                     </div>
                 </div>
             </div>

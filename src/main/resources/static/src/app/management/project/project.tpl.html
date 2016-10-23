@@ -1,37 +1,37 @@
 <div>
     <div ng-if="!pmCtrl.current.id">
-        <h1 class="page-header">Definiowanie Projektu</h1>
-        <p>Wprowadz dane niezbędne do utworzenia projektu</p>
+        <h1 class="page-header">New Project Definition</h1>
+        <p>Please, describe project with all essential info which is required to create project</p>
     </div>
     <div ng-if="pmCtrl.current.id">
-        <h1>Projekt: <span class="crudheader-color"><b>{{pmCtrl.current.name | capitalize}}</b></span></h1>
-        <h3>Identyfikator: <span class="crudheader-color"><b>{{pmCtrl.current.id}}</b></span></h3>
+        <h1>Project: <span class="crudheader-color"><b>{{pmCtrl.current.name | capitalize}}</b></span></h1>
+        <h3>Identifier: <span class="crudheader-color"><b>{{pmCtrl.current.id}}</b></span></h3>
     </div>
     <form name="projectform" novalidate>
         <fieldset>
-            <legend>Informacje podstawowe</legend>
+            <legend>Primary info</legend>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="projectName" class="control-label">Nazwa projektu (wymagane)</label>
-                        <input class="form-control" id="projectName" placeholder="Wprowadz nazwe projektu"
+                        <label for="projectName" class="control-label">Project name (required)</label>
+                        <input class="form-control" id="projectName" placeholder="Project name eg. TeamMate"
                                ng-model="pmCtrl.current.name" ng-minlength="3" required hrt-btr-validation>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="departmentId" class="control-label">Nazwa działu (wymagane)</label>
+                        <label for="departmentId" class="control-label">Department (required)</label>
                         <input id="departmentId" class="form-control" ng-model="pmCtrl.current.department"
-                               placeholder="Wprowadź nazwę działu" required hrt-btr-validation/>
+                               placeholder="Department name" required hrt-btr-validation/>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="managerId" class="control-label">Menadżer (wymagane)</label>
+                        <label for="managerId" class="control-label">Manager (required)</label>
                         <ui-select id="managerId" ng-model="pmCtrl.current.manager" required hrt-btr-validation>
-                            <ui-select-match placeholder="Wybierz menadżera">
+                            <ui-select-match placeholder="Choose project manager">
                                 <span>{{pmCtrl.current.manager.name}} {{pmCtrl.current.manager.surname}}</span>
                             </ui-select-match>
                             <ui-select-choices
@@ -45,23 +45,47 @@
                 </div>
             </div>
         </fieldset>
+        <fieldset>
+            <legend>Description</legend>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="productdescriptionId" class="control-label">Project description (required)</label>
+                        <textarea id="productdescriptionId" ng-model="pmCtrl.current.productDescription"
+                                  class="form-control" rows="3"
+                                  required hrt-btr-validation placeholder="Descripe product which is developed">
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="projectdescriptionId" class="control-label">Project description (required)</label>
+                        <textarea id="projectdescriptionId" ng-model="pmCtrl.current.projectDescription"
+                                  class="form-control" rows="3"
+                                  required hrt-btr-validation placeholder="Describe this project">
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
     </form>
     <div class="row">
         <div class="col-md-12 form-footer text-center">
-            <button type="button" class="btn btn-default" ng-click="pmCtrl.cancel()">Anuluj</button>
+            <button type="button" class="btn btn-default" ng-click="pmCtrl.cancel()">Cancel</button>
             <button type="button" class="btn btn-danger" ng-if="pmCtrl.current.id"
-                    ng-click="pmCtrl.remove(pmCtrl.current)">Usun
+                    ng-click="pmCtrl.remove(pmCtrl.current)">Delete
             </button>
             <button type="button" class="btn btn-success" ng-if="pmCtrl.current.id"
                     ng-click="pmCtrl.save(pmCtrl.current)"
-                    ng-disabled="projectform.$invalid || projectform.$pristine">Aktualizuj
+                    ng-disabled="projectform.$invalid || projectform.$pristine">Update
             </button>
             <button type="button" class="btn btn-success" ng-if="!pmCtrl.current.id"
                     ng-click="pmCtrl.save(pmCtrl.current)"
-                    ng-disabled="projectform.$invalid || projectform.$pristine">Dodaj
+                    ng-disabled="projectform.$invalid || projectform.$pristine">Add
             </button>
-            <button type="button" class="btn btn-info" ng-if="pmCtrl.current.id" ng-click="pmCtrl.create()">Nowy
-                projekt
+            <button type="button" class="btn btn-info" ng-if="pmCtrl.current.id" ng-click="pmCtrl.create()">New Project
             </button>
         </div>
     </div>

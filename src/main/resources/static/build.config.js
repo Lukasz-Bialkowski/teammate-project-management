@@ -79,7 +79,8 @@ module.exports = {
             'vendor/angular-ui-select/dist/select.min.js',
             'vendor/textAngular/dist/textAngular-rangy.min.js',
             'vendor/textAngular/dist/textAngular-sanitize.min.js',
-            'vendor/textAngular/dist/textAngular.min.js'
+            'vendor/textAngular/dist/textAngular.min.js',
+            'vendor/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js'
         ],
         css: [
             'vendor/fullcalendar/dist/fullcalendar.css',

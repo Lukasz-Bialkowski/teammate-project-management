@@ -10,6 +10,13 @@ projectListModule.config(['$stateProvider', function config( $stateProvider ) {
                     templateUrl: 'projectlist/projectlist.tpl.html'
                 }
             },
-            data:{ pageTitle: 'Projects' }
+            data: {
+                pageTitle: 'Projects'
+            },
+            resolve: {
+                _projectList: ['ProjectCrudSrv', function (ProjectCrudSrv) {
+                    return ProjectCrudSrv.list().$promise;
+                }]
+            }
         });
 }]);

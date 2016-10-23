@@ -1,12 +1,13 @@
 var projectEventsModule = angular.module('teammateApp.project.events');
 
-projectEventsModule.controller('EventsCtrl', ['moment', 'EventCrudSrv', '_userList', '_eventEmptyRes', function EventsCtrl(moment, EventCrudSrv, _userList, _eventEmptyRes) {
+projectEventsModule.controller('EventsCtrl', ['moment', 'EventCrudSrv', '_userList', '_eventEmptyRes', '_eventList', function EventsCtrl(moment, EventCrudSrv, _userList, _eventEmptyRes, _eventList) {
 
     var vm = this;
     CrudfsCtrl.call(vm, vm, EventCrudSrv);
 
     vm.users = _userList;
     vm.current = _eventEmptyRes;
+    vm.eventList = _eventList;
     vm.data = [];
     vm.eventSources = [
         {

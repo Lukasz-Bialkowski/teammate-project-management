@@ -10,6 +10,8 @@ projectAboutModule.config(['$stateProvider', function config( $stateProvider ) {
                     templateUrl: 'project/about/about.tpl.html'
                 }
             },
-            data:{ pageTitle: 'About Project' }
+            data: {
+                pageTitle: 'About Project'
+            }
         });
 }]);

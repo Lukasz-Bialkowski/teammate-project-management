@@ -2,20 +2,20 @@
 <div>
     <form name="eventform" novalidate>
         <fieldset>
-            <legend>Informacje podstawowe</legend>
+            <legend>Basic info</legend>
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label for="eventTitleid" class="control-label">Tytuł wydarzenia</label>
+                    <label for="eventTitleid" class="control-label">Event title</label>
                     <input class="form-control" id="eventTitleid" name="eventTitle" type="text"
-                           placeholder="Podaj tytuł wydarzenia" required hrt-btr-validation
+                           placeholder="Enter event title" required hrt-btr-validation
                            ng-model="cCtrl.current.name">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label for="ownerid" class="control-label">Założyciel wydarzenia</label>
+                    <label for="ownerid" class="control-label">Event creator</label>
                     <ui-select id="ownerid" ng-model="cCtrl.current.owner" required hrt-btr-validation>
-                        <ui-select-match placeholder="Wybierz użytkownika">
+                        <ui-select-match placeholder="Choose creator">
                             <span>{{cCtrl.current.owner.name}} {{cCtrl.current.owner.surname}}</span>
                         </ui-select-match>
                         <ui-select-choices repeat="user in (cCtrl.users | filter: $select.search) track by user.name">
@@ -28,12 +28,12 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-8">
-                    <label for="startDateId" class="control-label">Data rozpoczęcia</label>
+                    <label for="startDateId" class="control-label">Event start date</label>
                     <p class="input-group">
                         <input type="text" id="startDateId" class="form-control" uib-datepicker-popup
                                ng-model="cCtrl.current.eventStartDate" is-open="cCtrl.popup.startDate"
                                datepicker-options="cCtrl.dateOptions"
-                               placeholder="YYYY-MM-DD" name="startDatePick" close-text="Zamknij"
+                               placeholder="YYYY-MM-DD" name="startDatePick" close-text="Close"
                                hrt-btr-validation/>
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default"
@@ -44,7 +44,7 @@
                     </p>
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="startDateTimeId" class="control-label">Godzina rozpoczęcia</label>
+                    <label for="startDateTimeId" class="control-label">Event start time</label>
                     <div uib-timepicker id="startDateTimeId" ng-model="cCtrl.current.eventStartDate"
                          minute-step="15"
                          show-meridian="false"></div>
@@ -52,12 +52,12 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-8">
-                    <label for="endDateId" class="control-label">Data zakończenia</label>
+                    <label for="endDateId" class="control-label">Event end date</label>
                     <p class="input-group">
                         <input type="text" id="endDateId" class="form-control" uib-datepicker-popup
                                ng-model="cCtrl.current.eventEndDate" is-open="cCtrl.popup.endDate"
                                datepicker-options="cCtrl.dateOptions"
-                               placeholder="YYYY-MM-DD" name="endDatePick" close-text="Zamknij"
+                               placeholder="YYYY-MM-DD" name="endDatePick" close-text="Close"
                                hrt-btr-validation/>
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default"
@@ -68,7 +68,7 @@
                     </p>
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="endDateTimeId" class="control-label">Godzina zakończenia</label>
+                    <label for="endDateTimeId" class="control-label">Event end time</label>
                     <div uib-timepicker id="endDateTimeId" ng-model="cCtrl.current.eventEndDate"
                          minute-step="15" show-meridian="false"></div>
                 </div>
@@ -77,19 +77,19 @@
     </form>
     <div class="row">
         <div class="col-md-12 form-footer text-center">
-            <button type="button" class="btn btn-default" ui-sref="cCtrl.cancel()">Anuluj</button>
+            <button type="button" class="btn btn-default" ui-sref="cCtrl.cancel()">Cancel</button>
             <button type="button" class="btn btn-danger" ng-if="cCtrl.current.id"
-                    ng-click="cCtrl.remove(cCtrl.current)">Usun
+                    ng-click="cCtrl.remove(cCtrl.current)">Delete
             </button>
             <button type="button" class="btn btn-success" ng-if="cCtrl.current.id"
                     ng-click="cCtrl.saveEvent(cCtrl.current)"
-                    ng-disabled="eventform.$invalid || eventform.$pristine">Aktualizuj
+                    ng-disabled="eventform.$invalid || eventform.$pristine">Update
             </button>
             <button type="button" class="btn btn-success" ng-if="!cCtrl.current.id"
                     ng-click="cCtrl.saveEvent(cCtrl.current)"
-                    ng-disabled="eventform.$invalid || eventform.$pristine">Dodaj
+                    ng-disabled="eventform.$invalid || eventform.$pristine">Add
             </button>
-            <button type="button" class="btn btn-info" ng-if="cCtrl.current.id" ng-click="cCtrl.create()">Nowy event
+            <button type="button" class="btn btn-info" ng-if="cCtrl.current.id" ng-click="cCtrl.create()">New Event
             </button>
         </div>
     </div>

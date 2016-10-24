@@ -3,9 +3,9 @@
         <tr>
             <th>Name</th>
             <th>Status</th>
-            <th>Story pointy</th>
-            <th>Estymata</th>
-            <th>Wykonawca</th>
+            <th>Story points</th>
+            <th>Estimated hours</th>
+            <th>Assignee</th>
             <th></th>
         </tr>
         <tr ng-repeat="task in tCtrl.tasks">
@@ -27,7 +27,7 @@
                 <div ng-repeat="(listName, list) in models.lists" class="col-md-12">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Lista {{listName}}</h3>
+                            <h3 class="panel-title">{{listName}} list</h3>
                         </div>
                         <div class="panel-body">
                             <ul dnd-list="list">

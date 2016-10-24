@@ -1,12 +1,12 @@
 <div>
     <form name="docsform" novalidate>
         <fieldset>
-            <legend>Informacje podstawowe</legend>
+            <legend>Basic info</legend>
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="titleId" class="control-label">Tytuł dokumentu (wymagane)</label>
-                        <input name="titleId" type="text" class="form-control" placeholder="Wpisz nazwe dokumentu"
+                        <label for="titleId" class="control-label">Document title (required)</label>
+                        <input name="titleId" type="text" class="form-control" placeholder="Enter document title"
                                id="titleId" ng-model="dCtrl.current.title" required hrt-btr-validation>
                     </div>
                 </div>
@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="contentId" class="control-label">Treść dokumentu (wymagane)</label>
+                        <label for="contentId" class="control-label">Document content (required)</label>
                         <text-angular id="contentId" ng-model="dCtrl.current.htmlContent" required
                                       hrt-btr-validation></text-angular>
                     </div>
@@ -26,20 +26,19 @@
 
     <div class="row">
         <div class="col-md-12 form-footer text-center">
-            <button type="button" class="btn btn-default" ui-sref="projectnav.about">Anuluj</button>
+            <button type="button" class="btn btn-default" ui-sref="projectnav.about">Cancel</button>
             <button type="button" class="btn btn-danger" ng-if="dCtrl.current.id"
-                    ng-click="dCtrl.remove(dCtrl.current)">Usun
+                    ng-click="dCtrl.remove(dCtrl.current)">Delete
             </button>
             <button type="button" class="btn btn-success" ng-if="dCtrl.current.id"
                     ng-click="dCtrl.saveDocument(dCtrl.current)"
-                    ng-disabled="docsform.$invalid || docsform.$pristine">Aktualizuj
+                    ng-disabled="docsform.$invalid || docsform.$pristine">Update
             </button>
             <button type="button" class="btn btn-success" ng-if="!dCtrl.current.id"
                     ng-click="dCtrl.saveDocument(dCtrl.current)"
-                    ng-disabled="docsform.$invalid || docsform.$pristine">Dodaj
+                    ng-disabled="docsform.$invalid || docsform.$pristine">Add
             </button>
-            <button type="button" class="btn btn-info" ng-if="dCtrl.current.id" ng-click="dCtrl.create()">Nowy
-                dokument
+            <button type="button" class="btn btn-info" ng-if="dCtrl.current.id" ng-click="dCtrl.create()">New document
             </button>
         </div>
     </div>

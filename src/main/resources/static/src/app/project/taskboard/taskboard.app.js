@@ -13,8 +13,8 @@ taskboardModule.config(['$stateProvider', function config( $stateProvider ) {
             pageTitle: 'Taskboard'
         },
         resolve: {
-            _taskList: ['TaskCrudSrv', function (TaskCrudSrv) {
-                return TaskCrudSrv.list().$promise;
+            _projectTaskList: ['TaskManagementSrv', '_projectId', function (TaskManagementSrv, _projectId) {
+                return TaskManagementSrv.projecttasks({projectId: _projectId}).$promise;
             }]
         }
     });

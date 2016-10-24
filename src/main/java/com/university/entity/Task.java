@@ -87,4 +87,17 @@ public class Task extends EntityBase {
     public void setWorklogs(Set<WorkLog> worklogs) {
         this.worklogs = worklogs;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task other = (Task) o;
+        return this.getId().equals(other.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId() != null ? getId().hashCode() : 0;
+    }
 }

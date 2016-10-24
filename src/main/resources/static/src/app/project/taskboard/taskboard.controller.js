@@ -1,11 +1,11 @@
 var taskboardModule = angular.module( 'teammateApp.project.taskboard');
 
-taskboardModule.controller('TaskboardCtrl', ['TaskCrudSrv', '_taskList', '$scope', function TaskboardCtrl(TaskCrudSrv, _taskList, $scope) {
+taskboardModule.controller('TaskboardCtrl', ['TaskCrudSrv', '_projectTaskList', '$scope', function TaskboardCtrl(TaskCrudSrv, _projectTaskList, $scope) {
 
     var vm = this;
     CrudfsCtrl.call(vm, vm, TaskCrudSrv);
 
-    vm.tasks = _taskList;
+    vm.tasks = _projectTaskList;
     vm.data = [];
 
     $scope.models = {
@@ -17,7 +17,7 @@ taskboardModule.controller('TaskboardCtrl', ['TaskCrudSrv', '_taskList', '$scope
         }
     };
 
-    angular.forEach(_taskList, function (value, key) {
+    angular.forEach(_projectTaskList, function (value, key) {
         value.loggedHours = countWorklog(value);
         switch (value.status) {
             case 'TODO':

@@ -1,6 +1,6 @@
 var managementModule = angular.module('teammateApp.management');
 
-managementModule.controller('TaskManagementCtrl', ['TaskCrudSrv', '_userList', '_taskEmptyRes', '$stateParams', function TaskManagementCtrl(TaskCrudSrv, _userList, _taskEmptyRes, $stateParams) {
+managementModule.controller('TaskManagementCtrl', ['TaskCrudSrv', 'TaskManagementSrv', '_userList', '_taskEmptyRes', '$stateParams', '_project', '$location', function TaskManagementCtrl(TaskCrudSrv, TaskManagementSrv, _userList, _taskEmptyRes, $stateParams, _project, $location) {
 
     var vm = this;
     CrudfsCtrl.call(vm, vm, TaskCrudSrv);
@@ -9,9 +9,8 @@ managementModule.controller('TaskManagementCtrl', ['TaskCrudSrv', '_userList', '
     vm.data = [];
     vm.newWorklog = {};
 
-
     if ($stateParams.taskId) {
-        TaskCrudSrv.get({id: $stateParams.taskId}).$promise.then(function (response) {
+        TaskCrudSrv.get({projectId: _project, id: $stateParams.taskId}).$promise.then(function (response) {
             vm.current = response;
             vm.loggedHours = countLoggedHours(response.worklogs);
         });
@@ -28,9 +27,16 @@ managementModule.controller('TaskManagementCtrl', ['TaskCrudSrv', '_userList', '
         return loggedHours;
     }
 
+    vm.saveTask = function () {
+        TaskManagementSrv.saveprojecttask({projectId: _project}, vm.current, function (response) {
+            vm.current = response;
+            $location.url('/project/' + _project + '/task' + response.id);
+        });
+    };
+
     vm.addWorklog = function () {
         vm.current.worklogs.push(vm.newWorklog);
-        TaskCrudSrv.save(vm.current, function (response) {
+        TaskCrudSrv.save({projectId: _project}, vm.current, function (response) {
             vm.loggedHours = countLoggedHours(response.worklogs);
             window.location.reload();
         });

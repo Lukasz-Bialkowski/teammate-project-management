@@ -19,8 +19,11 @@ managementModule.config(['$stateProvider', function config($stateProvider) {
                 _userList: ['UserCrudSrv', function (UserCrudSrv) {
                     return UserCrudSrv.list().$promise;
                 }],
-                _taskEmptyRes: ['TaskCrudSrv', function (TaskCrudSrv) {
-                    return TaskCrudSrv.create().$promise;
+                _project: ['_projectId', function (_projectId) {
+                    return _projectId;
+                }],
+                _taskEmptyRes: ['TaskCrudSrv', '_projectId', function (TaskCrudSrv, _projectId) {
+                    return TaskCrudSrv.create({projectId: _projectId}, {}).$promise;
                 }]
             }
         })

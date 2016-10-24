@@ -15,11 +15,14 @@ projectDocsModule.config(['$stateProvider', function config( $stateProvider ) {
                 pageTitle: 'Dokumenty'
             },
             resolve: {
-                _docsList: ['DocsCrudSrv', function (DocsCrudSrv) {
-                    return DocsCrudSrv.list().$promise;
+                _projectDocsList: ['DocsManagementSrv', '_projectId', function (DocsManagementSrv, _projectId) {
+                    return DocsManagementSrv.projectdocuments({projectId: _projectId}).$promise;
                 }],
-                _docsEmptyRes: ['DocsCrudSrv', function (DocsCrudSrv) {
-                    return DocsCrudSrv.create().$promise;
+                _docsEmptyRes: ['DocsCrudSrv', '_projectId', function (DocsCrudSrv, _projectId) {
+                    return DocsCrudSrv.create({projectId: _projectId}, {}).$promise;
+                }],
+                _project: ['_projectId', function (_projectId) {
+                    return _projectId;
                 }]
             }
         })

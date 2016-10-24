@@ -1,14 +1,21 @@
 var projectEventsModule = angular.module('teammateApp.project.events');
 
-projectEventsModule.controller('EventsCtrl', ['moment', 'EventCrudSrv', '_userList', '_eventEmptyRes', '_eventList', function EventsCtrl(moment, EventCrudSrv, _userList, _eventEmptyRes, _eventList) {
+projectEventsModule.controller('EventsCtrl', ['moment', 'EventCrudSrv', '_userList', '_eventEmptyRes', '_projectEventList', 'EventManagementSrv', '_project', '$state', function EventsCtrl(moment, EventCrudSrv, _userList, _eventEmptyRes, _projectEventList, EventManagementSrv, _project, $state) {
 
     var vm = this;
     CrudfsCtrl.call(vm, vm, EventCrudSrv);
 
     vm.users = _userList;
     vm.current = _eventEmptyRes;
-    vm.eventList = _eventList;
+    vm.eventList = _projectEventList;
     vm.data = [];
+
+    vm.saveEvent = function () {
+        EventManagementSrv.saveprojectevent({projectId: _project}, vm.current, function (response) {
+            vm.current = response;
+        });
+    };
+
     vm.eventSources = [
         {
             events: [
@@ -48,8 +55,9 @@ projectEventsModule.controller('EventsCtrl', ['moment', 'EventCrudSrv', '_userLi
     vm.uiConfig = {
         calendar: {
             eventClick: function (event) {
-                EventCrudSrv.get({id: event.id}).$promise.then(function (response) {
+                EventCrudSrv.get({projectId: _project, id: event.id}).$promise.then(function (response) {
                     vm.current = response;
+                    $state.go('projectnav.events.viewevent({eventId: event.id})');
                 });
                 console.log(event);
             }

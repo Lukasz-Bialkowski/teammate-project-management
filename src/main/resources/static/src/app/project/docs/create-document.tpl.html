@@ -30,10 +30,12 @@
             <button type="button" class="btn btn-danger" ng-if="dCtrl.current.id"
                     ng-click="dCtrl.remove(dCtrl.current)">Usun
             </button>
-            <button type="button" class="btn btn-success" ng-if="dCtrl.current.id" ng-click="dCtrl.save(dCtrl.current)"
+            <button type="button" class="btn btn-success" ng-if="dCtrl.current.id"
+                    ng-click="dCtrl.saveDocument(dCtrl.current)"
                     ng-disabled="docsform.$invalid || docsform.$pristine">Aktualizuj
             </button>
-            <button type="button" class="btn btn-success" ng-if="!dCtrl.current.id" ng-click="dCtrl.save(dCtrl.current)"
+            <button type="button" class="btn btn-success" ng-if="!dCtrl.current.id"
+                    ng-click="dCtrl.saveDocument(dCtrl.current)"
                     ng-disabled="docsform.$invalid || docsform.$pristine">Dodaj
             </button>
             <button type="button" class="btn btn-info" ng-if="dCtrl.current.id" ng-click="dCtrl.create()">Nowy

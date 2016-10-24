@@ -133,11 +133,11 @@
                     ng-click="tmCtrl.remove(tmCtrl.current)">Usun
             </button>
             <button type="button" class="btn btn-success" ng-if="tmCtrl.current.id"
-                    ng-click="tmCtrl.save(tmCtrl.current)"
+                    ng-click="tmCtrl.saveTask(tmCtrl.current)"
                     ng-disabled="taskform.$invalid || taskform.$pristine">Aktualizuj
             </button>
             <button type="button" class="btn btn-success" ng-if="!tmCtrl.current.id"
-                    ng-click="tmCtrl.save(tmCtrl.current)"
+                    ng-click="tmCtrl.saveTask(tmCtrl.current)"
                     ng-disabled="taskform.$invalid || taskform.$pristine">Dodaj
             </button>
             <button type="button" class="btn btn-info" ng-if="tmCtrl.current.id" ng-click="tmCtrl.create()">Nowy task

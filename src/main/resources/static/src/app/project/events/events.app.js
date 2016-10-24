@@ -18,11 +18,14 @@ projectEventsModule.config(['$stateProvider', function config($stateProvider) {
                 _userList: ['UserCrudSrv', function (UserCrudSrv) {
                     return UserCrudSrv.list().$promise;
                 }],
-                _eventEmptyRes: ['EventCrudSrv', function (EventCrudSrv) {
-                    return EventCrudSrv.create().$promise;
+                _eventEmptyRes: ['EventCrudSrv', '_projectId', function (EventCrudSrv, _projectId) {
+                    return EventCrudSrv.create({projectId: _projectId}, {}).$promise;
                 }],
-                _eventList: ['EventCrudSrv', function (EventCrudSrv) {
-                    return EventCrudSrv.list().$promise;
+                _projectEventList: ['EventManagementSrv', '_projectId', function (EventManagementSrv, _projectId) {
+                    return EventManagementSrv.projectevents({projectId: _projectId}).$promise;
+                }],
+                _project: ['_projectId', function (_projectId) {
+                    return _projectId;
                 }]
             }
         }).state('projectnav.events.createevent', {
@@ -34,9 +37,9 @@ projectEventsModule.config(['$stateProvider', function config($stateProvider) {
         },
         data: {
             pageTitle: 'Project Calendar'
-        }
+            }
     }).state('projectnav.events.viewevent', {
-        url: '/events',
+        url: '/events/:eventId',
         views: {
             "events": {
                 templateUrl: 'project/events/view-event.tpl.html'
@@ -44,6 +47,6 @@ projectEventsModule.config(['$stateProvider', function config($stateProvider) {
         },
         data: {
             pageTitle: 'Project Calendar'
-        }
+            }
     });
 }]);

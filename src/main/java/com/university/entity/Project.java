@@ -1,9 +1,8 @@
 package com.university.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Project extends EntityBase {
@@ -26,6 +25,15 @@ public class Project extends EntityBase {
 
     @Column(name = "product_description")
     private String productDescription;
+
+    @OneToMany
+    private Set<Event> events = new HashSet<>();
+
+    @OneToMany
+    private Set<Document> documents = new HashSet<>();
+
+    @OneToMany
+    private Set<Task> tasks = new HashSet<>();
 
     public String getName() {
         return name;
@@ -65,5 +73,41 @@ public class Project extends EntityBase {
 
     public void setProductDescription(String productDescription) {
         this.productDescription = productDescription;
+    }
+
+    public Set<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Set<Event> events) {
+        this.events = events;
+    }
+
+    public Set<Document> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(Set<Document> documents) {
+        this.documents = documents;
+    }
+
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
+
+    public void addEvent(Event event) {
+        events.add(event);
+    }
+
+    public void addDocument(Document document) {
+        documents.add(document);
     }
 }

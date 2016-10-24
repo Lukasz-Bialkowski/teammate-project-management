@@ -81,10 +81,12 @@
             <button type="button" class="btn btn-danger" ng-if="cCtrl.current.id"
                     ng-click="cCtrl.remove(cCtrl.current)">Usun
             </button>
-            <button type="button" class="btn btn-success" ng-if="cCtrl.current.id" ng-click="cCtrl.save(cCtrl.current)"
+            <button type="button" class="btn btn-success" ng-if="cCtrl.current.id"
+                    ng-click="cCtrl.saveEvent(cCtrl.current)"
                     ng-disabled="eventform.$invalid || eventform.$pristine">Aktualizuj
             </button>
-            <button type="button" class="btn btn-success" ng-if="!cCtrl.current.id" ng-click="cCtrl.save(cCtrl.current)"
+            <button type="button" class="btn btn-success" ng-if="!cCtrl.current.id"
+                    ng-click="cCtrl.saveEvent(cCtrl.current)"
                     ng-disabled="eventform.$invalid || eventform.$pristine">Dodaj
             </button>
             <button type="button" class="btn btn-info" ng-if="cCtrl.current.id" ng-click="cCtrl.create()">Nowy event

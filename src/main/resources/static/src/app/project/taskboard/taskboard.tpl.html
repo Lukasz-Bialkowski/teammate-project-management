@@ -9,7 +9,11 @@
             <th>Wykonawca</th>
             <th></th>
         </tr>
-        <tr ng-repeat="task in tCtrl.tasks | orderBy: 'priority.ordinal'">
+        <tr ng-repeat="task in tCtrl.tasks | orderBy: 'priority.ordinal'"
+            ng-class="{'bg-danger': task.priority.value === 'CRITICAL',
+                       'bg-warning': task.priority.value === 'HIGH',
+                       'bg-info': task.priority.value === 'NORMAL',
+                       'bg-success': task.priority.value === 'LOW'}">
             <td ng-bind="task.priority.value"></td>
             <td ng-bind="task.name"></td>
             <td ng-bind="task.status"></td>

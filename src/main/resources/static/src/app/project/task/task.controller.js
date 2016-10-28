@@ -31,7 +31,7 @@ managementModule.controller('TaskManagementCtrl', ['TaskCrudSrv', 'TaskManagemen
     vm.saveTask = function () {
         TaskManagementSrv.saveprojecttask({projectId: _project}, vm.current, function (response) {
             vm.current = response;
-            $state.go("projectnav.about");
+            $state.go("projectnav.taskboard");
         });
     };
 

@@ -3,7 +3,8 @@ var projectNavModule = angular.module('teammateApp.projectnav', [
     'teammateApp.project.events',
     'teammateApp.project.docs',
     'teammateApp.project.taskboard',
-    'teammateApp.project.task'
+    'teammateApp.project.task',
+    'teammateApp.project.user'
 ]);
 
 projectNavModule.config(['$stateProvider', function config( $stateProvider ) {

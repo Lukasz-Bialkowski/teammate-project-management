@@ -1,6 +1,4 @@
-var managementModule = angular.module('teammateApp.management', [
-    'teammateApp.projectnav'
-]);
+var managementModule = angular.module('teammateApp.management', []);
 
 managementModule.config(['$stateProvider', function config($stateProvider) {
     $stateProvider

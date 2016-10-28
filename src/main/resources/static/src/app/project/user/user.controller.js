@@ -1,9 +1,9 @@
-var managementModule = angular.module('teammateApp.management');
+var projectUserDefinitionModule = angular.module('teammateApp.project.user');
 
-managementModule.controller('UserManagementCtrl', ['UserCrudSrv', '_userEmptyRes', '_positionsList', '_employmentFormsList', function (UserCrudSrv, _userEmptyRes, _positionsList, _employmentFormsList) {
+projectUserDefinitionModule.controller('ProjectUserCtrl', ['ProjectUserCrudSrv', 'ProjectUserSrv', '_userEmptyRes', '_positionsList', '_employmentFormsList', '_project', function (ProjectUserCrudSrv, ProjectUserSrv, _userEmptyRes, _positionsList, _employmentFormsList, _project) {
 
     var vm = this;
-    CrudfsCtrl.call(vm, vm, UserCrudSrv);
+    CrudfsCtrl.call(vm, vm, ProjectUserCrudSrv);
 
     vm.selected = {};
     vm.current = _userEmptyRes;
@@ -14,6 +14,12 @@ managementModule.controller('UserManagementCtrl', ['UserCrudSrv', '_userEmptyRes
 
     vm.validatePasswordMatch = function () {
         vm.passwordsMatch = (vm.validationPassword === vm.current.passwordHash);
+    };
+
+    vm.saveUser = function () {
+        ProjectUserSrv.saveprojectmember({projectId: _project}, vm.current, function (response) {
+            vm.current = response;
+        });
     };
 
     // DATEPICKER

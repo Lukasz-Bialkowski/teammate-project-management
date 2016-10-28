@@ -24,9 +24,7 @@ import java.util.List;
 public class UserController extends CrudController<User> {
 
     private UserService userService;
-
     private DataProvider dataProvider;
-
     private PasswordEncoder passwordEncoder;
 
     @Autowired

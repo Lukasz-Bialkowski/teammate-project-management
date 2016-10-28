@@ -13,9 +13,6 @@ public class Project extends EntityBase {
     @Column(name = "department")
     private String department;
 
-//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "")
-//    private Set<User> employees = new HashSet<>();
-
     @ManyToOne
     @JoinColumn(name = "project_manager")
     private User manager;
@@ -34,6 +31,9 @@ public class Project extends EntityBase {
 
     @OneToMany
     private Set<Task> tasks = new HashSet<>();
+
+    @OneToMany
+    private Set<User> members = new HashSet<>();
 
     public String getName() {
         return name;
@@ -99,6 +99,18 @@ public class Project extends EntityBase {
         this.tasks = tasks;
     }
 
+    public Set<User> getMembers() {
+        return members;
+    }
+
+    public void setMembers(Set<User> members) {
+        this.members = members;
+    }
+
+    /**
+     * Add resources
+     */
+
     public void addTask(Task task) {
         tasks.add(task);
     }
@@ -109,5 +121,9 @@ public class Project extends EntityBase {
 
     public void addDocument(Document document) {
         documents.add(document);
+    }
+
+    public void addMember(User user) {
+        this.members.add(user);
     }
 }

@@ -1,0 +1,151 @@
+<div>
+    <div ng-if="!uCtrl.current.id">
+        <h1 class="page-header">Rejestracja użytkownika</h1>
+        <p>Wprowadz dane niezbędne do rejestracji w systemie.</br>
+            Na podany poniżej <strong>adres email</strong> zostanie wysłany mail aktywujacy konto.</p>
+    </div>
+    <div ng-if="uCtrl.current.id">
+        <h1>Użytkownik: <span class="crudheader-color"><b>{{uCtrl.current.name | capitalize}} {{uCtrl.current.surname | capitalize}}</b></span>
+        </h1>
+        <h3>Email: <span class="crudheader-color"><b>{{uCtrl.current.email}}</b></span></h3>
+    </div>
+    <form name="userform" novalidate>
+        <fieldset>
+            <legend>Informacje podstawowe</legend>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="mailId" class="control-label">Adres email (wymagane)</label>
+                        <input name="email" type="text" class="form-control" placeholder="np. jan_kowalski@yahoo.com"
+                               id="mailId"
+                               ng-model="uCtrl.current.email" required ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+                               hrt-btr-validation>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="passwordId" class="control-label">Hasło (wymagane)</label>
+                        <input class="form-control" name="password" placeholder="Haslo" type="password"
+                               hrt-btr-validation ng-change="uCtrl.validatePasswordMatch()"
+                               id="passwordId" ng-model="uCtrl.current.passwordHash" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="repasswordId" class="control-label">Powtórz hasło</label>
+                        <input class="form-control" name="repassword" placeholder="Powtórz hasło" type="password"
+                               id="repasswordId" ng-change="uCtrl.validatePasswordMatch()"
+                               ng-model="uCtrl.validationPassword" required hrt-btr-validation>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Dane</legend>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name" class="control-label">Imię (wymagane) </label>
+                        <input class="form-control" id="name" name="name" ng-model="uCtrl.current.name" type="text"
+                               placeholder="Imie użytkownika"
+                               hrt-btr-validation>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="surname" class="control-label">Nazwisko (wymagane)</label>
+                        <input class="form-control" id="surname" name="surname" ng-model="uCtrl.current.surname"
+                               type="text" placeholder="Nazwisko użytkownika"
+                               hrt-btr-validation>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="dateOfBirthId" class="control-label">Data urodzenia (wymagane)</label>
+                        <p class="input-group">
+                            <input type="text" id="dateOfBirthId" class="form-control" uib-datepicker-popup
+                                   ng-model="uCtrl.current.dateOfBirth"
+                                   is-open="uCtrl.popup.birthDate" datepicker-options="uCtrl.dateOptions"
+                                   placeholder="YYYY-MM-DD"
+                                   name="datepick" close-text="Zamknij" hrt-btr-validation/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="uCtrl.togglePopup($event)"><i
+                                        class="fa fa-book"></i></button>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="position" class="control-label">Stanowisko (wymagane)</label>
+                        <select class="form-control" id="position" name="position" ng-model="uCtrl.current.position"
+                                ng-options="position for position in uCtrl.positionsList track by position"
+                                placeholder="Stanowisko" hrt-btr-validation></select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="employmentForm" class="control-label">Forma zatrudnienia (wymagane)</label>
+                        <select id="employmentForm" class="form-control" ng-model="uCtrl.current.employmentForm"
+                                name="employmentForm" placeholder="Forma zatrudnienia"
+                                ng-options="employmentForm for employmentForm in uCtrl.employmentFormsList track by employmentForm"
+                                hrt-btr-validation></select>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Social</legend>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="facebookId" class="control-label">Facebook (wymagane)</label>
+                        <input class="form-control" id="facebookId" name="surname"
+                               ng-model="uCtrl.current.social.surname"
+                               type="text" placeholder="Facebook profile reference" hrt-btr-validation>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="twitterId" class="control-label">Twitter (wymagane)</label>
+                        <input class="form-control" id="twitterId" name="surname"
+                               ng-model="uCtrl.current.social.twitter"
+                               type="text" placeholder="Nazwisko użytkownika" hrt-btr-validation>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="linkedInId" class="control-label">LinkedIn (wymagane)</label>
+                        <input class="form-control" id="linkedInId" name="surname"
+                               ng-model="uCtrl.current.social.linkedin"
+                               type="text" placeholder="Nazwisko użytkownika" hrt-btr-validation>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <div class="row">
+        <div class="col-md-12 form-footer text-center">
+            <button type="button" class="btn btn-default" ui-sref="projectnav.about">Anuluj</button>
+            <button type="button" class="btn btn-danger" ng-if="uCtrl.current.id"
+                    ng-click="uCtrl.remove(uCtrl.current)">
+                Usun
+            </button>
+            <button type="button" class="btn btn-success" ng-if="uCtrl.current.id"
+                    ng-click="uCtrl.saveUser(uCtrl.current)"
+                    ng-disabled="userform.$invalid || userform.$pristine || !(uCtrl.passwordsMatch)">Aktualizuj
+            </button>
+            <button type="button" class="btn btn-success" ng-if="!uCtrl.current.id"
+                    ng-click="uCtrl.saveUser(uCtrl.current)"
+                    ng-disabled="userform.$invalid || userform.$pristine || !(uCtrl.passwordsMatch)">Dodaj
+            </button>
+            <button type="button" class="btn btn-info" ng-if="uCtrl.current.id" ng-click="uCtrl.create()">Nowy
+                użytkownik
+            </button>
+        </div>
+    </div>
+</div>

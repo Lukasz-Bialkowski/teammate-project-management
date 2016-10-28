@@ -1,5 +1,6 @@
 package com.university.service.impl;
 
+import com.university.entity.TaskPriority;
 import com.university.entity.enumeration.EmploymentForm;
 import com.university.entity.enumeration.Position;
 import com.university.service.DataProvider;
@@ -19,5 +20,10 @@ public class DefaultDataProvider implements DataProvider {
     @Override
     public List<EmploymentForm> getAllEmploymentForms() {
         return Arrays.asList(EmploymentForm.values());
+    }
+
+    @Override
+    public List<TaskPriority> getPriorityList() {
+        return Arrays.asList(TaskPriority.values());
     }
 }

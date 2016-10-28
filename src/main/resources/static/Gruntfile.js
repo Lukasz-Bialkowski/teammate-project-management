@@ -307,7 +307,8 @@ module.exports = function (grunt) {
                 sub: true,
                 boss: true,
                 eqnull: true,
-                loopfunc: true
+                loopfunc: true,
+                debug: true
             },
             globals: {}
         },

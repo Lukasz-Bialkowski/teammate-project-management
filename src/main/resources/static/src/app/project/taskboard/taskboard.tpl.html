@@ -1,14 +1,16 @@
 <div>
     <table class="table">
         <tr>
-            <th>Name</th>
+            <th>Priorytet</th>
+            <th>Nazwa</th>
             <th>Status</th>
             <th>Story pointy</th>
             <th>Estymata</th>
             <th>Wykonawca</th>
             <th></th>
         </tr>
-        <tr ng-repeat="task in tCtrl.tasks">
+        <tr ng-repeat="task in tCtrl.tasks | orderBy: 'priority.ordinal'">
+            <td ng-bind="task.priority.value"></td>
             <td ng-bind="task.name"></td>
             <td ng-bind="task.status"></td>
             <td ng-bind="task.storyPoints"></td>

@@ -1,11 +1,12 @@
 var managementModule = angular.module('teammateApp.management');
 
-managementModule.controller('TaskManagementCtrl', ['TaskCrudSrv', 'TaskManagementSrv', '_userList', '_taskEmptyRes', '$stateParams', '_project', '$location', function TaskManagementCtrl(TaskCrudSrv, TaskManagementSrv, _userList, _taskEmptyRes, $stateParams, _project, $location) {
+managementModule.controller('TaskManagementCtrl', ['TaskCrudSrv', 'TaskManagementSrv', '_userList', '_taskEmptyRes', '$stateParams', '_project', '$state', '_priorityList', function TaskManagementCtrl(TaskCrudSrv, TaskManagementSrv, _userList, _taskEmptyRes, $stateParams, _project, $state, _priorityList) {
 
     var vm = this;
     CrudfsCtrl.call(vm, vm, TaskCrudSrv);
     vm.loggedHours = 0;
     vm.users = _userList;
+    vm.priorytyList = _priorityList;
     vm.data = [];
     vm.newWorklog = {};
 
@@ -30,7 +31,7 @@ managementModule.controller('TaskManagementCtrl', ['TaskCrudSrv', 'TaskManagemen
     vm.saveTask = function () {
         TaskManagementSrv.saveprojecttask({projectId: _project}, vm.current, function (response) {
             vm.current = response;
-            $location.url('/project/' + _project + '/task' + response.id);
+            $state.go("projectnav.about");
         });
     };
 

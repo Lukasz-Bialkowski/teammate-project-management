@@ -25,7 +25,7 @@
                     <div class="form-group">
                         <label for="storyPoints" class="control-label">Story pointy (wymagane)</label>
                         <input id="storyPoints" class="form-control" ng-model="tmCtrl.current.storyPoints"
-                               placeholder="Liczba story pointów"
+                               placeholder="Liczba story pointów" type="number"
                                required hrt-btr-validation/>
                     </div>
                 </div>
@@ -61,7 +61,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="estimateId" class="control-label">Estymacja godzin (wymagane)</label>
-                        <input id="estimateId" class="form-control" ng-model="tmCtrl.current.estimatedHours"
+                        <input id="estimateId" class="form-control" type="number"
+                               ng-model="tmCtrl.current.estimatedHours"
                                placeholder="Liczba story pointów" required hrt-btr-validation/>
                     </div>
                 </div>
@@ -69,6 +70,22 @@
                     <div class="form-group">
                         <label for="statusId" class="control-label">Status</label>
                         <pre id="statusId" style="padding:6px; margin: 1px;"><b>{{tmCtrl.current.status}}</b></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="priorityId" class="control-label">Priorytet (wymagane)</label>
+                        <ui-select id="priorityId" ng-model="tmCtrl.current.priority" required hrt-btr-validation>
+                            <ui-select-match placeholder="Wybierz priorytet">
+                                <span>{{tmCtrl.current.priority.value}}</span>
+                            </ui-select-match>
+                            <ui-select-choices
+                                    repeat="priority in tmCtrl.priorytyList track by priority.ordinal">
+                                <span ng-bind-html="priority.value | highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
                     </div>
                 </div>
             </div>

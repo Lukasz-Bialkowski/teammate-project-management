@@ -25,6 +25,13 @@ managementModule.factory('TaskManagementSrv', ['$resource', function TaskManagem
                 operation: 'projecttasks'
             },
             isArray: true
+        },
+        prioritylist: {
+            method: 'GET',
+            params: {
+                operation: 'prioritylist'
+            },
+            isArray: true
         }
     });
 }]);

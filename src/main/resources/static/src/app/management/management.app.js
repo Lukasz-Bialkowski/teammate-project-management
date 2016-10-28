@@ -24,6 +24,9 @@ managementModule.config(['$stateProvider', function config($stateProvider) {
                 }],
                 _taskEmptyRes: ['TaskCrudSrv', '_projectId', function (TaskCrudSrv, _projectId) {
                     return TaskCrudSrv.create({projectId: _projectId}, {}).$promise;
+                }],
+                _priorityList: ['TaskManagementSrv', '_projectId', function (TaskManagementSrv, _projectId) {
+                    return TaskManagementSrv.prioritylist({projectId: _projectId}).$promise;
                 }]
             }
         })

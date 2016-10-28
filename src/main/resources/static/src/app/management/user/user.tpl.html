@@ -26,7 +26,7 @@
                     <div class="form-group">
                         <label for="passwordId" class="control-label">Hasło (wymagane)</label>
                         <input class="form-control" name="password" placeholder="Haslo" type="password"
-                               hrt-btr-validation
+                               hrt-btr-validation ng-change="uCtrl.validatePasswordMatch()"
                                id="passwordId" ng-model="uCtrl.current.passwordHash" required>
                     </div>
                 </div>
@@ -34,8 +34,8 @@
                     <div class="form-group">
                         <label for="repasswordId" class="control-label">Powtórz hasło</label>
                         <input class="form-control" name="repassword" placeholder="Powtórz hasło" type="password"
-                               id="repasswordId"
-                               ng-model="uCtrl.current.passwordHash" required hrt-btr-validation>
+                               id="repasswordId" ng-change="uCtrl.validatePasswordMatch()"
+                               ng-model="uCtrl.validationPassword" required hrt-btr-validation>
                     </div>
                 </div>
             </div>
@@ -136,10 +136,10 @@
                 Usun
             </button>
             <button type="button" class="btn btn-success" ng-if="uCtrl.current.id" ng-click="uCtrl.save(uCtrl.current)"
-                    ng-disabled="userform.$invalid || userform.$pristine">Aktualizuj
+                    ng-disabled="userform.$invalid || userform.$pristine || !(uCtrl.passwordsMatch)">Aktualizuj
             </button>
             <button type="button" class="btn btn-success" ng-if="!uCtrl.current.id" ng-click="uCtrl.save(uCtrl.current)"
-                    ng-disabled="userform.$invalid || userform.$pristine">Dodaj
+                    ng-disabled="userform.$invalid || userform.$pristine || !(uCtrl.passwordsMatch)">Dodaj
             </button>
             <button type="button" class="btn btn-info" ng-if="uCtrl.current.id" ng-click="uCtrl.create()">Nowy
                 użytkownik

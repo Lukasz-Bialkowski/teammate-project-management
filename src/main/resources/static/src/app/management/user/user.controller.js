@@ -10,6 +10,11 @@ managementModule.controller('UserManagementCtrl', ['UserCrudSrv', '_userEmptyRes
     vm.data = [];
     vm.positionsList = _positionsList;
     vm.employmentFormsList = _employmentFormsList;
+    vm.passwordsMatch = false;
+
+    vm.validatePasswordMatch = function () {
+        vm.passwordsMatch = (vm.validationPassword === vm.current.passwordHash);
+    };
 
     // vm.save = save;
     // vm.remove = remove;

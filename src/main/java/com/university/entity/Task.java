@@ -16,6 +16,9 @@ public class Task extends EntityBase {
     @Column(name = "story_points")
     private Integer storyPoints;
 
+    @Column(name = "task_priority")
+    private TaskPriority priority = TaskPriority.NORMAL;
+
     @ManyToOne
     @JoinColumn(name = "contractor_id")
     private User contractor;
@@ -86,6 +89,14 @@ public class Task extends EntityBase {
 
     public void setWorklogs(Set<WorkLog> worklogs) {
         this.worklogs = worklogs;
+    }
+
+    public TaskPriority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(TaskPriority priority) {
+        this.priority = priority;
     }
 
     @Override

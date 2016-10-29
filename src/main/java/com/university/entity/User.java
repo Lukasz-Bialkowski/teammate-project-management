@@ -1,11 +1,16 @@
 package com.university.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.university.entity.enumeration.EmploymentForm;
 import com.university.entity.enumeration.Position;
 import com.university.entity.enumeration.Role;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -27,10 +32,10 @@ public class User extends EntityBase {
     private Date dateOfBirth = new Date();
 
     @Column(name = "employment_form")
-    private EmploymentForm employmentForm;
+    private EmploymentForm employmentForm = EmploymentForm.FULL_TIME;
 
     @Column(name = "position")
-    private Position position;
+    private Position position = Position.EMPLOYEE;
 
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
@@ -40,17 +45,17 @@ public class User extends EntityBase {
     @JoinColumn(name = "social_ref")
     private SocialRef social;
 
-//    @Column(name = "tasks")
-//    @JsonProperty
-//    @OneToMany(mappedBy = "contractor")
-//    private Set<Task> tasks = new HashSet<>();
+    @JsonIgnore
+    @ManyToMany(cascade=CascadeType.ALL, mappedBy = "members")
+    private Set<Project> projects = new HashSet<>();
 
-//    @Column(name = "events")
-//    @OneToMany(mappedBy = "owner")
-//    private Set<Event> events = new HashSet<>();
+    public Set<Project> getProjects() {
+        return projects;
+    }
 
-//    @OneToMany(mappedBy = "manager")
-//    private Set<Project> managedProjects = new HashSet<>();
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
+    }
 
     public Role getRole() {
         return role;
@@ -130,5 +135,9 @@ public class User extends EntityBase {
 
     public void setSocial(SocialRef social) {
         this.social = social;
+    }
+
+    public void addProject(Project project) {
+        this.projects.add(project);
     }
 }

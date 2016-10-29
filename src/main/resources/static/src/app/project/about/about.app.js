@@ -12,6 +12,14 @@ projectAboutModule.config(['$stateProvider', function config( $stateProvider ) {
             },
             data: {
                 pageTitle: 'About Project'
+            },
+            resolve: {
+                _currentProject: ['ProjectCrudSrv', '_projectId', function (ProjectCrudSrv, _projectId) {
+                    return ProjectCrudSrv.get({id: _projectId}).$promise;
+                }],
+                _project: ['_projectId', function (_projectId) {
+                    return _projectId;
+                }]
             }
         });
 }]);

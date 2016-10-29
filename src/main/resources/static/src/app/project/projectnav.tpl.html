@@ -1,6 +1,6 @@
  <!--navigation -->
 <nav class="navbar navbar-light bg-faded">
-    <ul class="nav navbar-nav">
+    <ul class="nav nav-pills nav-justified">
         <li class="nav-item" ui-sref-active="active">
             <a class="nav-link" href ui-sref="projectnav.about">About</a>
         </li>
@@ -22,7 +22,13 @@
     </ul>
 </nav>
 <!--/ navigation-->
-
+<div>
+    <div >
+        <h1 class="text-center page-header">{{pnCtrl.currentProject.name | capitalize}}
+            <small>{{pnCtrl.currentProject.department | capitalize}}</small>
+        </h1>
+    </div>
+</div>
 <!-- Page Content -->
 <div class="container" ui-view="project">
 </div>

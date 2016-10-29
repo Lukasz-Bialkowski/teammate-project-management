@@ -30,10 +30,11 @@ public class ProjectUserController {
     public User saveProjectMember(@PathVariable("projectId") Long projectId, @RequestBody User model, HttpServletResponse response) {
         model.setPasswordHash(passwordEncoder.encode(model.getPasswordHash()));
         Project project = projectService.get(projectId);
-        project.addMember(model);
-        User savedTask = userService.save(model);
+        model.addProject(project);
+        User savedUser = userService.save(model);
+        project.addMember(savedUser);
         projectService.save(project);
-        return savedTask;
+        return savedUser;
     }
 
 }

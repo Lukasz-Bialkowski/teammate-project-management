@@ -1,5 +1,9 @@
 package com.university.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,7 +36,8 @@ public class Project extends EntityBase {
     @OneToMany
     private Set<Task> tasks = new HashSet<>();
 
-    @OneToMany
+    @ManyToMany
+    @JoinTable(name="user_project", joinColumns=@JoinColumn(name="project_id"), inverseJoinColumns=@JoinColumn(name="user_id"))
     private Set<User> members = new HashSet<>();
 
     public String getName() {

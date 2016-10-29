@@ -1,20 +1,20 @@
 <div>
-    <h1 class="page-header">Definiowanie Taska</h1>
-    <p>Wprowadz dane niezbędne do utworzenia taska</p>
+    <h1 class="page-header">New Task Definition</h1>
+    <p>Please, describe task with all essential info which is required to create task</p>
     <form name="taskform" novalidate>
         <fieldset>
-            <legend>Informacje podstawowe</legend>
+            <legend>Basic info</legend>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="taskName" class="control-label">Nazwa taska (wymagane)</label>
-                        <input class="form-control" id="taskName" placeholder="Nazwa taska"
+                        <label for="taskName" class="control-label">Task name (required)</label>
+                        <input class="form-control" id="taskName" placeholder="Enter task name"
                                ng-model="tmCtrl.current.name" ng-minlength="3" required hrt-btr-validation>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="taskID" class="control-label">Identyfikator</label>
+                        <label for="taskID" class="control-label">Identifier</label>
                         <pre ng-if="tmCtrl.current.id" id="taskID" style="padding:6px; margin: 1px;"><b>{{tmCtrl.current.id}}</b></pre>
                         <pre ng-if="!tmCtrl.current.id" id="taskID" style="padding:6px; margin: 1px;"><b>N/A</b></pre>
                     </div>
@@ -23,17 +23,17 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="storyPoints" class="control-label">Story pointy (wymagane)</label>
+                        <label for="storyPoints" class="control-label">Story points (required)</label>
                         <input id="storyPoints" class="form-control" ng-model="tmCtrl.current.storyPoints"
-                               placeholder="Liczba story pointów" type="number"
+                               placeholder="Enter estimated story points" type="number"
                                required hrt-btr-validation/>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="contractorId" class="control-label">Właściciel (wymagane)</label>
+                        <label for="contractorId" class="control-label">Task assignee (required)</label>
                         <ui-select id="contractorId" ng-model="tmCtrl.current.contractor" required hrt-btr-validation>
-                            <ui-select-match placeholder="Wybierz wykonawce zadania">
+                            <ui-select-match placeholder="Choose task assignee">
                                 <span>{{tmCtrl.current.contractor.name}} {{tmCtrl.current.contractor.surname}}</span>
                             </ui-select-match>
                             <ui-select-choices
@@ -49,10 +49,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="descriptionId" class="control-label">Opis zadania (wymagane)</label>
+                        <label for="descriptionId" class="control-label">Task description (required)</label>
                         <textarea id="descriptionId" ng-model="tmCtrl.current.description" class="form-control" rows="3"
                                   required hrt-btr-validation
-                                  placeholder="Jako [ _użytkownik_ ] chcę [ _funkcjonalność_ ] aby móc [ _rezultat_ ]">
+                                  placeholder="As a [ _user_ ] I want [ _functionality_ ] to [ _result_ ]">
                         </textarea>
                     </div>
                 </div>
@@ -60,10 +60,9 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="estimateId" class="control-label">Estymacja godzin (wymagane)</label>
-                        <input id="estimateId" class="form-control" type="number"
-                               ng-model="tmCtrl.current.estimatedHours"
-                               placeholder="Liczba story pointów" required hrt-btr-validation/>
+                        <label for="estimateId" class="control-label">Estimated hours (required)</label>
+                        <input id="estimateId" class="form-control" ng-model="tmCtrl.current.estimatedHours" type="number"
+                               placeholder="Enter estimated hours" required hrt-btr-validation/>
                     </div>
                 </div>
                 <div class="col-md-6">

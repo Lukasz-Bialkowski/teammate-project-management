@@ -1,21 +1,21 @@
 <div>
-    <h1 class="page-header">Logowanie</h1>
-    <p>Wprowadz dane twojego konta w serwisie <b>Teammate</b></p>
+    <h1 class="page-header">Login</h1>
+    <p>Enter account details required to login to <b>Teammate</b></p>
     <form name="loginForm" novalidate>
         <fieldset>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="loginId" class="control-label">Email (wymagane)</label>
-                        <input class="form-control" placeholder="Wpisz email konta" id="loginId"
+                        <label for="loginId" class="control-label">Email (required)</label>
+                        <input class="form-control" placeholder="Enter account email" id="loginId"
                                ng-model="lCtrl.current.email"
                                required hrt-btr-validation>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="passwordId" class="control-label">Haslo (wymagane)</label>
-                        <input class="form-control" placeholder="Wpisz haslo konta" type="password" id="passwordId"
+                        <label for="passwordId" class="control-label">Password (required)</label>
+                        <input class="form-control" placeholder="Enter account password" type="password" id="passwordId"
                                ng-model="lCtrl.current.passwordHash" required hrt-btr-validation>
                     </div>
                 </div>
@@ -23,10 +23,10 @@
         </fieldset>
         <br>
         <div class=""><br/><br/>
-            <button class="col-md-3 col-md-offset-3 btn btn-success" ng-click="lCtrl.login()">Zaloguj
+            <button class="col-md-3 col-md-offset-3 btn btn-success" ng-click="lCtrl.login()">Login
             </button>
             &nbsp;
-            <button class="col-md-3 btn btn-danger" ng-click="lCtrl.cancel(!loginForm.$pristine)">Anuluj
+            <button class="col-md-3 btn btn-danger" ng-click="lCtrl.cancel(!loginForm.$pristine)">Cancel
             </button>
         </div>
     </form>

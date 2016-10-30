@@ -19,6 +19,13 @@ managementModule.factory('TaskManagementSrv', ['$resource', function TaskManagem
                 operation: 'saveprojecttask'
             }
         },
+        saveprojecttasklist: {
+            method: 'POST',
+            params: {
+                operation: 'saveprojecttasklist'
+            },
+            isArray: true
+        },
         projecttasks: {
             method: 'GET',
             params: {

@@ -59,4 +59,13 @@ public class TaskController extends CrudController<Task> {
         return new ResponseEntity<>(dataProvider.getPriorityList(), HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/saveprojecttasklist", method = RequestMethod.POST)
+    public Set<Task> saveProjectTaskList(@PathVariable("projectId") Long projectId, @RequestBody List<Task> taskList) {
+        Project project = projectService.get(projectId);
+        for (Task task : taskList) {
+            taskService.save(task);
+        }
+        return project.getTasks();
+    }
+
 }

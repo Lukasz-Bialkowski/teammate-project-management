@@ -15,6 +15,9 @@ taskboardModule.config(['$stateProvider', function config( $stateProvider ) {
         resolve: {
             _projectTaskList: ['TaskManagementSrv', '_projectId', function (TaskManagementSrv, _projectId) {
                 return TaskManagementSrv.projecttasks({projectId: _projectId}).$promise;
+            }],
+            _project: ['_projectId', function (_projectId) {
+                return _projectId;
             }]
         }
     });

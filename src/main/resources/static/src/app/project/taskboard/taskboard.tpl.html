@@ -1,71 +1,77 @@
 <div>
+
     <div>
         <h1 class="page-header">Taskboard
             <small>What needs to be done</small>
         </h1>
     </div>
 
-    <table class="table">
-        <tr>
-            <th>Priorytet</th>
-            <th>Nazwa</th>
-            <th>Status</th>
-            <th>Story points</th>
-            <th>Estimated hours</th>
-            <th>Assignee</th>
-            <th></th>
-        </tr>
-        <tr ng-repeat="task in tCtrl.tasks | orderBy: 'priority.ordinal'"
-            ng-class="{'bg-danger': task.priority.value === 'CRITICAL',
-                       'bg-warning': task.priority.value === 'HIGH',
-                       'bg-info': task.priority.value === 'NORMAL',
-                       'bg-success': task.priority.value === 'LOW'}">
-            <td ng-bind="task.priority.value"></td>
-            <td ng-bind="task.name"></td>
-            <td ng-bind="task.status"></td>
-            <td ng-bind="task.storyPoints"></td>
-            <td ng-bind="task.estimatedHours"></td>
-            <td>{{task.contractor.name | capitalize}} {{task.contractor.surname | capitalize}}</td>
-            <td>
-                <button class="btn btn-primary" ui-sref="projectnav.managementTask({taskId: task.id})">Edit</button>
-            </td>
-        </tr>
-    </table>
-
-
-    <div class="simpleDemo row">
-        <div class="col-md-12">
-            <div class="row">
-                <div ng-repeat="(listName, list) in models.lists" class="col-md-12">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">{{listName}} list</h3>
-                        </div>
-                        <div class="panel-body">
-                            <ul dnd-list="list">
-                                <li ng-repeat="item in list"
-                                    dnd-draggable="item"
-                                    dnd-moved="list.splice($index, 1)"
-                                    dnd-effect-allowed="move"
-                                    dnd-selected="models.selected = item"
-                                    ng-class="{'selected': models.selected === item}">
-                                    <h4>{{item.name | capitalize}}</h4>
-                                    <b>Story points:</b> {{item.storyPoints}}, <b>Estimated:</b>
-                                    {{item.estimatedHours}},
-                                    <b>Owner:</b> {{item.contractor.name | capitalize}} {{item.contractor.surname |
-                                    capitalize}}
-                                    <h5>Progress:</h5>
-                                    <uib-progressbar ng-if="item.loggedHours" class="progress-striped"
-                                                     max="item.estimatedHours" value="item.loggedHours">
-                                        <span style="color:white; white-space:nowrap;">{{item.loggedHours}} / {{item.estimatedHours}}</span>
-                                    </uib-progressbar>
-                                    <span ng-if="!item.loggedHours"><i>No logged workinghours</i></span>
-                                </li>
-                            </ul>
+    <fieldset>
+        <legend>Progress taskboard</legend>
+        <div class="simpleDemo row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div ng-repeat="(listName, list) in models.lists" class="col-md-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">{{listName}} list</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul dnd-list="list">
+                                    <li ng-repeat="item in list"
+                                        dnd-draggable="item"
+                                        dnd-moved="list.splice($index, 1); tCtrl.saveTaskboard()"
+                                        dnd-effect-allowed="move"
+                                        dnd-selected="models.selected = item"
+                                        ng-class="{'selected': models.selected === item}">
+                                        <h4>{{item.name | capitalize}}</h4>
+                                        <b>Story points:</b> {{item.storyPoints}}, <b>Estimated:</b>
+                                        {{item.estimatedHours}},
+                                        <b>Owner:</b> {{item.contractor.name | capitalize}} {{item.contractor.surname |
+                                        capitalize}}
+                                        <h5>Progress:</h5>
+                                        <uib-progressbar ng-if="item.loggedHours" class="progress-striped"
+                                                         max="item.estimatedHours" value="item.loggedHours">
+                                            <span style="color:white; white-space:nowrap;">{{item.loggedHours}} / {{item.estimatedHours}}</span>
+                                        </uib-progressbar>
+                                        <span ng-if="!item.loggedHours"><i>No logged workinghours</i></span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>Task list</legend>
+        <table class="table">
+            <tr>
+                <th>Priorytet</th>
+                <th>Nazwa</th>
+                <th>Status</th>
+                <th>Story points</th>
+                <th>Estimated hours</th>
+                <th>Assignee</th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="task in tCtrl.tasks | orderBy: 'priority.ordinal'"
+                ng-class="{'bg-danger': task.priority.value === 'CRITICAL',
+                           'bg-warning': task.priority.value === 'HIGH',
+                           'bg-info': task.priority.value === 'NORMAL',
+                           'bg-success': task.priority.value === 'LOW'}">
+                <td ng-bind="task.priority.value"></td>
+                <td ng-bind="task.name"></td>
+                <td ng-bind="task.status"></td>
+                <td ng-bind="task.storyPoints"></td>
+                <td ng-bind="task.estimatedHours"></td>
+                <td>{{task.contractor.name | capitalize}} {{task.contractor.surname | capitalize}}</td>
+                <td>
+                    <button class="btn btn-primary" ui-sref="projectnav.managementTask({taskId: task.id})">Edit</button>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
 </div>

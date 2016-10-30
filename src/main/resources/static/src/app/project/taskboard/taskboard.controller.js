@@ -1,6 +1,6 @@
 var taskboardModule = angular.module( 'teammateApp.project.taskboard');
 
-taskboardModule.controller('TaskboardCtrl', ['TaskCrudSrv', '_projectTaskList', '$scope', function TaskboardCtrl(TaskCrudSrv, _projectTaskList, $scope) {
+taskboardModule.controller('TaskboardCtrl', ['TaskCrudSrv', 'TaskManagementSrv', '_project', '_projectTaskList', '$scope', function TaskboardCtrl(TaskCrudSrv, TaskManagementSrv, _project, _projectTaskList, $scope) {
 
     var vm = this;
     CrudfsCtrl.call(vm, vm, TaskCrudSrv);
@@ -41,39 +41,24 @@ taskboardModule.controller('TaskboardCtrl', ['TaskCrudSrv', '_projectTaskList', 
         return loggedHours;
     }
 
-    $scope.lists = [
-        {
-            label: "Men",
-            allowedTypes: ['man'],
-            max: 4,
-            people: [
-                {name: "Bob", type: "man"},
-                {name: "Charlie", type: "man"},
-                {name: "Dave", type: "man"}
-            ]
-        },
-        {
-            label: "Women",
-            allowedTypes: ['woman'],
-            max: 4,
-            people: [
-                {name: "Alice", type: "woman"},
-                {name: "Eve", type: "woman"},
-                {name: "Peggy", type: "woman"}
-            ]
-        },
-        {
-            label: "People",
-            allowedTypes: ['man', 'woman'],
-            max: 6,
-            people: [
-                {name: "Frank", type: "man"},
-                {name: "Mallory", type: "woman"},
-                {name: "Alex", type: "unknown"},
-                {name: "Oscar", type: "man"},
-                {name: "Wendy", type: "woman"}
-            ]
-        }
-    ];
+    vm.saveTaskboard = function () {
+        var temporaryTaskList = [];
+        $scope.models.lists.TODO.forEach(function (item) {
+            item.status = 'TODO';
+            temporaryTaskList.push(item);
+        });
+        $scope.models.lists.INPROGRESS.forEach(function (item) {
+            item.status = 'IN_PROGRESS';
+            temporaryTaskList.push(item);
+        });
+        $scope.models.lists.DONE.forEach(function (item) {
+            item.status = 'DONE';
+            temporaryTaskList.push(item);
+        });
+        vm.tasks = [];
+        TaskManagementSrv.saveprojecttasklist({projectId: _project}, temporaryTaskList, function (response) {
+            vm.tasks = response;
+        });
+    };
 
 }]);

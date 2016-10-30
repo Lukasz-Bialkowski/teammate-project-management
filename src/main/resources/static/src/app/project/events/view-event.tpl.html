@@ -1,36 +1,30 @@
 <!--/ FORM VIEW-->
-<div class="col-md-6">
+<div>
     <form name="eventform" novalidate>
         <fieldset>
             <legend>Basic info</legend>
             <div class="row">
                 <div class="form-group col-md-12">
                     <label for="eventTitleid" class="control-label">Event title</label>
-                    <div id="eventTitleid" class="well well-sm form-control">
-                        <h3>{{cCtrl.current.name}}</h3>
-                    </div>
+                    <pre id="eventTitleid">{{cCtrl.current.name}}</pre>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
                     <label for="ownerid" class="control-label">Event creator</label>
-                    <div id="ownerid" class="well well-sm form-control">
-                        <span>{{cCtrl.current.owner.name}} {{cCtrl.current.owner.surname}}</span>
-                        <small>{{cCtrl.current.owner.email}}</small>
-                    </div>
+                    <pre id="ownerid">{{cCtrl.current.owner.name}} {{cCtrl.current.owner.surname}},&nbsp;{{cCtrl.current.owner.email}}</pre>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
                     <label for="startDateId" class="control-label">Event start date</label>
-                    <div id="startDateId" class="well well-sm form-control">{{cCtrl.current.eventStartDate | date}}
-                    </div>
+                    <pre id="startDateId">{{cCtrl.current.eventStartDate | date}}</pre>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
                     <label for="endDateId" class="control-label">Event end date</label>
-                    <div id="endDateId" class="well well-sm form-control">{{cCtrl.current.eventEndDate | date}}</div>
+                    <pre id="endDateId">{{cCtrl.current.eventEndDate | date}}</pre>
                 </div>
             </div>
         </fieldset>

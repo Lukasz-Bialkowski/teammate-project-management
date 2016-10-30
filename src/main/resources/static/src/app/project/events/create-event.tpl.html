@@ -27,7 +27,24 @@
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-8">
+                <div class="form-group col-md-6">
+                    <label for="placeLongitudeId" class="control-label">Place longitude</label>
+                    <input class="form-control" id="placeLongitudeId" name="placeLongitudeId" type="text"
+                           placeholder="Enter event longitude" required hrt-btr-validation
+                           ng-model="cCtrl.current.location.longitude">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="placeLatitudeId" class="control-label">Place latitude</label>
+                    <input class="form-control" id="placeLatitudeId" name="placeLatitudeId" type="text"
+                           placeholder="Enter event latitude" required hrt-btr-validation
+                           ng-model="cCtrl.current.location.latitude">
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Date</legend>
+            <div class="row">
+                <div class="form-group col-md-6">
                     <label for="startDateId" class="control-label">Event start date</label>
                     <p class="input-group">
                         <input type="text" id="startDateId" class="form-control" uib-datepicker-popup
@@ -43,15 +60,7 @@
                         </span>
                     </p>
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="startDateTimeId" class="control-label">Event start time</label>
-                    <div uib-timepicker id="startDateTimeId" ng-model="cCtrl.current.eventStartDate"
-                         minute-step="15"
-                         show-meridian="false"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-8">
+                <div class="form-group col-md-6">
                     <label for="endDateId" class="control-label">Event end date</label>
                     <p class="input-group">
                         <input type="text" id="endDateId" class="form-control" uib-datepicker-popup
@@ -67,7 +76,14 @@
                         </span>
                     </p>
                 </div>
-                <div class="form-group col-md-4">
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="startDateTimeId" class="control-label">Event start time</label>
+                    <div uib-timepicker id="startDateTimeId" ng-model="cCtrl.current.eventStartDate"
+                         minute-step="15" show-meridian="false"></div>
+                </div>
+                <div class="form-group col-md-6">
                     <label for="endDateTimeId" class="control-label">Event end time</label>
                     <div uib-timepicker id="endDateTimeId" ng-model="cCtrl.current.eventEndDate"
                          minute-step="15" show-meridian="false"></div>

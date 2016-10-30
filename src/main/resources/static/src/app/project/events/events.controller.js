@@ -1,6 +1,6 @@
 var projectEventsModule = angular.module('teammateApp.project.events');
 
-projectEventsModule.controller('EventsCtrl', ['moment', 'EventCrudSrv', '_userList', '_eventEmptyRes', '_projectEventList', 'EventManagementSrv', '_project', '$state', function EventsCtrl(moment, EventCrudSrv, _userList, _eventEmptyRes, _projectEventList, EventManagementSrv, _project, $state) {
+projectEventsModule.controller('EventsCtrl', ['moment', '$sce', 'EventCrudSrv', '_userList', '_eventEmptyRes', '_projectEventList', 'EventManagementSrv', '_project', '$state', function EventsCtrl(moment, $sce, EventCrudSrv, _userList, _eventEmptyRes, _projectEventList, EventManagementSrv, _project, $state) {
 
     var vm = this;
     CrudfsCtrl.call(vm, vm, EventCrudSrv);
@@ -9,57 +9,57 @@ projectEventsModule.controller('EventsCtrl', ['moment', 'EventCrudSrv', '_userLi
     vm.current = _eventEmptyRes;
     vm.eventList = _projectEventList;
     vm.data = [];
+    vm.eventSources = [];
+
+    transformEvents(_projectEventList);
 
     vm.saveEvent = function () {
         EventManagementSrv.saveprojectevent({projectId: _project}, vm.current, function (response) {
             vm.current = response;
+            EventManagementSrv.projectevents({projectId: _project}, function (response) {
+                vm.eventList = response;
+                transformEvents(response);
+            });
         });
     };
 
-    vm.eventSources = [
-        {
-            events: [
+    vm.create = function () {
+        EventCrudSrv.create({projectId: _project}, {}, function (response) {
+            vm.current = response;
+        });
+    };
+
+    vm.generateMap = function () {
+        return "http://maps.google.com/maps?hl=en&ie=UTF8&q=" + vm.current.location.longitude + "," + vm.current.location.latitude + "&z=15&output=embed";
+    };
+
+    vm.trustSrc = function () {
+        return $sce.trustAsResourceUrl(vm.generateMap());
+    };
+
+    function transformEvents(events) {
+        events.forEach(function (event, index) {
+            console.log(event + " file");
+            vm.eventSources.push(
                 {
-                    title: 'Event1',
-                    start: '2016-10-10'
-                },
-                {
-                    title: 'Event2',
-                    start: '2016-10-11'
-                },
-                {
-                    title: 'Custom event',
-                    start: '2016-10-12'
+                    events: [{
+                        id: event.id,
+                        title: event.name,
+                        start: event.eventStartDate,
+                        end: event.eventEndDate
+                    }]
                 }
-            ],
-            color: 'black'
-        },
-        {
-            events: [
-                {
-                    title: 'Event1',
-                    start: '2016-10-10'
-                },
-                {
-                    title: 'Event2',
-                    start: '2016-10-11'
-                },
-                {
-                    title: 'Custom event',
-                    start: '2016-10-12'
-                }
-            ],
-            color: 'brown'
-        }
-    ];
+            );
+        });
+    }
+
     vm.uiConfig = {
         calendar: {
             eventClick: function (event) {
                 EventCrudSrv.get({projectId: _project, id: event.id}).$promise.then(function (response) {
                     vm.current = response;
-                    $state.go('projectnav.events.viewevent({eventId: event.id})');
+                    $state.go('projectnav.events.view');
                 });
-                console.log(event);
             }
         }
     };

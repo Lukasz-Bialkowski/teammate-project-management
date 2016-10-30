@@ -29,7 +29,7 @@ projectEventsModule.config(['$stateProvider', function config($stateProvider) {
                 }]
             }
         }).state('projectnav.events.createevent', {
-        url: '/events',
+        url: '',
         views: {
             "events": {
                 templateUrl: 'project/events/create-event.tpl.html'
@@ -38,8 +38,8 @@ projectEventsModule.config(['$stateProvider', function config($stateProvider) {
         data: {
             pageTitle: 'Project Calendar'
             }
-    }).state('projectnav.events.viewevent', {
-        url: '/events/:eventId',
+    }).state('projectnav.events.view', {
+        url: '/:eventId',
         views: {
             "events": {
                 templateUrl: 'project/events/view-event.tpl.html'

@@ -1,15 +1,17 @@
 <!-- Header Carousel -->
 <div class="row">
     <div class="col-lg-12">
-        <carousel interval="myInterval">
-            <slide ng-repeat="slide in hCtrl.slides" active="slide.active">
-                <img ng-src="{{slide.image}}?{{$index}}">
-                <div class="carousel-caption">
-                    <h4>Slide {{$index}}</h4>
-                    <p>{{slide.text}}</p>
+        <div style="height: 520px">
+            <div uib-carousel active="active" interval="myInterval" no-wrap="false">
+                <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+                    <img ng-src="{{slide.image}}" style="margin:auto;">
+                    <div class="carousel-caption">
+                        <h4>Slide {{slide.id}}</h4>
+                        <p>{{slide.text}}</p>
+                    </div>
                 </div>
-            </slide>
-        </carousel>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -17,7 +19,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Welcome to Modern Business
+            Welcome to Teammate
         </h1>
     </div>
     <div class="col-md-4">

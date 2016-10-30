@@ -11,21 +11,21 @@
                            ng-model="cCtrl.current.name">
                 </div>
             </div>
-            <div class="row">
-                <div class="form-group col-md-12">
-                    <label for="ownerid" class="control-label">Event creator</label>
-                    <ui-select id="ownerid" ng-model="cCtrl.current.owner" required hrt-btr-validation>
-                        <ui-select-match placeholder="Choose creator">
-                            <span>{{cCtrl.current.owner.name}} {{cCtrl.current.owner.surname}}</span>
-                        </ui-select-match>
-                        <ui-select-choices repeat="user in (cCtrl.users | filter: $select.search) track by user.name">
-                            <span ng-bind-html="user.name | highlight: $select.search"></span>
-                            <span ng-bind-html="user.surname | highlight: $select.search"></span>&nbsp;
-                            <small ng-bind-html="user.email | highlight: $select.search"></small>
-                        </ui-select-choices>
-                    </ui-select>
-                </div>
-            </div>
+            <!--<div class="row">-->
+            <!--<div class="form-group col-md-12">-->
+            <!--<label for="ownerid" class="control-label">Event creator</label>-->
+            <!--<ui-select id="ownerid" ng-model="cCtrl.current.owner" required hrt-btr-validation>-->
+            <!--<ui-select-match placeholder="Choose creator">-->
+            <!--<span>{{cCtrl.current.owner.name}} {{cCtrl.current.owner.surname}}</span>-->
+            <!--</ui-select-match>-->
+            <!--<ui-select-choices repeat="user in (cCtrl.users | filter: $select.search) track by user.name">-->
+            <!--<span ng-bind-html="user.name | highlight: $select.search"></span>-->
+            <!--<span ng-bind-html="user.surname | highlight: $select.search"></span>&nbsp;-->
+            <!--<small ng-bind-html="user.email | highlight: $select.search"></small>-->
+            <!--</ui-select-choices>-->
+            <!--</ui-select>-->
+            <!--</div>-->
+            <!--</div>-->
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="placeLongitudeId" class="control-label">Place longitude</label>

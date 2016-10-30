@@ -60,6 +60,11 @@ projectEventsModule.controller('EventsCtrl', ['moment', '$sce', 'EventCrudSrv', 
                     vm.current = response;
                     $state.go('projectnav.events.view');
                 });
+            },
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
             }
         }
     };

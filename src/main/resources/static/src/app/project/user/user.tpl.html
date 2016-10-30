@@ -135,10 +135,12 @@
                     ng-click="uCtrl.remove(uCtrl.current)">
                 Usun
             </button>
-            <button type="button" class="btn btn-success" ng-if="uCtrl.current.id" ng-click="uCtrl.save(uCtrl.current)"
+            <button type="button" class="btn btn-success" ng-if="uCtrl.current.id"
+                    ng-click="uCtrl.saveUser(uCtrl.current)"
                     ng-disabled="userform.$invalid || userform.$pristine || !(uCtrl.passwordsMatch)">Update
             </button>
-            <button type="button" class="btn btn-success" ng-if="!uCtrl.current.id" ng-click="uCtrl.save(uCtrl.current)"
+            <button type="button" class="btn btn-success" ng-if="!uCtrl.current.id"
+                    ng-click="uCtrl.saveUser(uCtrl.current)"
                     ng-disabled="userform.$invalid || userform.$pristine || !(uCtrl.passwordsMatch)">Add
             </button>
             <button type="button" class="btn btn-info" ng-if="uCtrl.current.id" ng-click="uCtrl.create()">New User

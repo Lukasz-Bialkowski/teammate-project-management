@@ -10,7 +10,12 @@ projectUserDefinitionModule.factory('ProjectUserSrv', ['$resource', function Pro
             params: {
                 operation: 'saveprojectmember'
             }
+        },
+        list: {
+            method: 'GET',
+            isArray: true
         }
+
     });
 }]);
 

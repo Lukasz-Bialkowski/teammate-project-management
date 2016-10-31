@@ -7,6 +7,7 @@ import com.university.entity.Project;
 import com.university.service.DocumentService;
 import com.university.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -37,6 +38,7 @@ public class DocumentController extends CrudController<Document> {
         return project.getDocuments();
     }
 
+    @Transactional(readOnly = true)
     @RequestMapping(method = {RequestMethod.POST}, value = {"/saveprojectdocument"})
     @ResponseBody
     public Document saveProjectDocument(@PathVariable("projectId") Long projectId, @RequestBody Document model, HttpServletResponse response) {
@@ -44,6 +46,8 @@ public class DocumentController extends CrudController<Document> {
         project.addDocument(model);
         Document savedTask = documentService.save(model);
         projectService.save(project);
+
+        projectService.sendDocumentUpdateMail(project);
         return savedTask;
     }
 }

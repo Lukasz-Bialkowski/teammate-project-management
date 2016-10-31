@@ -51,6 +51,8 @@ public class TaskController extends CrudController<Task> {
         project.addTask(model);
         Task savedTask = taskService.save(model);
         projectService.save(project);
+
+        taskService.sendTaskPinnedMail(model);
         return savedTask;
     }
 

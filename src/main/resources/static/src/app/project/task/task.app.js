@@ -14,8 +14,8 @@ projectTaskDefinitionModule.config(['$stateProvider', function config($stateProv
                 pageTitle: 'Task Definition'
             },
             resolve: {
-                _userList: ['UserCrudSrv', function (UserCrudSrv) {
-                    return UserCrudSrv.list().$promise;
+                _userList: ['ProjectUserSrv', '_projectId', function (ProjectUserSrv, _projectId) {
+                    return ProjectUserSrv.list({projectId: _projectId}).$promise;
                 }],
                 _project: ['_projectId', function (_projectId) {
                     return _projectId;

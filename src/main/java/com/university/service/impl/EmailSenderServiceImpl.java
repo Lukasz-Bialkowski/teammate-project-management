@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.mail.internet.MimeMessage;
@@ -38,6 +39,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 //        sendM(to, subject, body, true);
 //    }
 
+    @Async
     private void sendM(String to, String subject, String text, Boolean isHtml) {
         try {
             MimeMessage mail = javaMailSender.createMimeMessage();

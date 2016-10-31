@@ -52,6 +52,7 @@ public class UserController extends CrudController<User> {
     @Override
     public User save(@RequestBody User model, HttpServletResponse response) {
         model.setPasswordHash(passwordEncoder.encode(model.getPasswordHash()));
+        userService.sendAccountCreatedMail(model);
         return super.save(model, response);
     }
 }

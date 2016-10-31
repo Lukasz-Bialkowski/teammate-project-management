@@ -53,6 +53,8 @@ public class EventController extends CrudController<Event> {
         project.addEvent(model);
         Event savedEvent = eventService.save(model);
         projectService.save(project);
+
+        projectService.sendEventUpdateMail(project);
         return savedEvent;
     }
 }

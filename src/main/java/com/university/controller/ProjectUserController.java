@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/project/{projectId}/user")
@@ -34,7 +35,15 @@ public class ProjectUserController {
         User savedUser = userService.save(model);
         project.addMember(savedUser);
         projectService.save(project);
+
+        userService.sendAccountCreatedMail(model);
         return savedUser;
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public Set<User> projectMembers(@PathVariable("projectId") Long projectId) {
+        Project project = projectService.get(projectId);
+        return project.getMembers();
     }
 
 }

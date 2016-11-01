@@ -1,6 +1,14 @@
 <div>
-    <h1 class="page-header">New Task Definition</h1>
-    <p>Please, describe task with all essential info which is required to create task</p>
+    <div ng-if="!tmCtrl.current.id">
+        <h1 class="page-header">New Task Definition</h1>
+        <p>Please, describe task with all essential info which is required to create task</p>
+    </div>
+    <div ng-if="tmCtrl.current.id">
+        <h1>Task: <span class="crudheader-color"><b>{{tmCtrl.current.name | capitalize}}</b></span></h1>
+        <h3>Assignee: <span class="crudheader-color"><b>{{tmCtrl.current.contractor.name | capitalize}} {{tmCtrl.current.contractor.surname | capitalize}}</b></span>
+        </h3>
+        <h3>Priority: <span class="crudheader-color"><b>{{tmCtrl.current.priority.value}}</b></span></h3>
+    </div>
     <form name="taskform" novalidate>
         <fieldset>
             <legend>Basic info</legend>

@@ -12,7 +12,7 @@ projectDocsModule.config(['$stateProvider', function config( $stateProvider ) {
                 }
             },
             data: {
-                pageTitle: 'Dokumenty'
+                pageTitle: 'Project Documents'
             },
             resolve: {
                 _projectDocsList: ['DocsManagementSrv', '_projectId', function (DocsManagementSrv, _projectId) {
@@ -34,7 +34,7 @@ projectDocsModule.config(['$stateProvider', function config( $stateProvider ) {
                 }
             },
             data: {
-                pageTitle: 'Dokumenty'
+                pageTitle: 'Project Documents'
             }
         })
         .state('projectnav.docs.viewdocument', {
@@ -45,7 +45,7 @@ projectDocsModule.config(['$stateProvider', function config( $stateProvider ) {
                 }
             },
             data: {
-                pageTitle: 'Dokumenty'
+                pageTitle: 'Project Documents'
             }
         });
 }]);

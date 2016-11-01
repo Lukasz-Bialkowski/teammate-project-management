@@ -11,19 +11,7 @@ accountModule.config(['$stateProvider', function config($stateProvider) {
                 }
             },
             data: {
-                pageTitle: 'Logowanie'
-            }
-        })
-        .state('register', {
-            url: '/register',
-            views: {
-                "main": {
-                    controller: 'RegisterCtrl as uCtrl',
-                    templateUrl: 'management/user/user.tpl.html'
-                }
-            },
-            data: {
-                pageTitle: 'Rejestracja'
+                pageTitle: 'Login'
             }
         });
 }]);

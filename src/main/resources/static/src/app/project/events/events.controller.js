@@ -39,7 +39,6 @@ projectEventsModule.controller('EventsCtrl', ['moment', '$sce', 'EventCrudSrv', 
 
     function transformEvents(events) {
         events.forEach(function (event, index) {
-            console.log(event + " file");
             vm.eventSources.push(
                 {
                     events: [{

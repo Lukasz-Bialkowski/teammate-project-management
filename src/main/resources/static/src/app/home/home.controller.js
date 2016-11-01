@@ -4,18 +4,19 @@ homeModule.controller('HomeCtrl', ['$scope', function HomeCtrl($scope) {
     var vm = this;
     $scope.myInterval = 5000;
     $scope.active = 0;
-    var slides = $scope.slides = [];
     var currIndex = 0;
-
-    $scope.addSlide = function () {
-        slides.push({
-            image: 'http://placehold.it/1140x520&text=Slide One',
-            text: ['Teammate team', 'Powerful design', 'That is so cool'][slides.length % 3],
+    $scope.slides = [
+        {
+            title: 'Work effortless',
+            image: 'assets/project-management.jpg',
+            text: 'Teammate makes project managment effortless',
             id: currIndex++
-        });
-    };
-
-    for (var i = 0; i < 3; i++) {
-        $scope.addSlide();
-    }
+        },
+        {
+            title: 'Communicate easily',
+            image: 'assets/project-communication.jpg',
+            text: 'Teammate improve project communication',
+            id: currIndex++
+        }
+    ];
 }]);

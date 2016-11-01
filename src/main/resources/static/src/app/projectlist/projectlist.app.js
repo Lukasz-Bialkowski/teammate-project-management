@@ -11,7 +11,7 @@ projectListModule.config(['$stateProvider', function config( $stateProvider ) {
                 }
             },
             data: {
-                pageTitle: 'Projects'
+                pageTitle: 'Project list'
             },
             resolve: {
                 _projectList: ['ProjectCrudSrv', function (ProjectCrudSrv) {

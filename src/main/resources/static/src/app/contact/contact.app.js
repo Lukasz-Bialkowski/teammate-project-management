@@ -11,7 +11,7 @@ contactModule.config(['$stateProvider', function config( $stateProvider ) {
             templateUrl: 'contact/contact.tpl.html'
             }
         },
-        data:{ pageTitle: 'What is It?' }
+        data: {pageTitle: 'Contact us'}
     });
 }]);
 

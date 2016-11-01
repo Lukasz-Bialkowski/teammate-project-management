@@ -23,13 +23,10 @@
     <!-- end template tags -->
 
 </head>
-
 <body>
 
-<!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
     <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1" ng-init="menuCollapsed = true"
@@ -41,7 +38,6 @@
             </button>
             <a class="navbar-brand" href ui-sref="home">TeamMate</a>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" collapse="menuCollapsed">
             <ul class="nav navbar-nav navbar-right">
                 <li ui-sref-active="active">
@@ -61,15 +57,6 @@
                         <i class="fa fa-home"></i>Management <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <a href="full-width.html">Urlop</a>
-                        </li>
-                        <li>
-                            <a href="sidebar.html">Home office</a>
-                        </li>
-                        <li>
-                            <a href="faq.html">Godziny pracy</a>
-                        </li>
                         <li class="nav-item" ui-sref-active="active">
                             <a class="nav-link" href ui-sref="managementUser">
                                 <i class="fa fa-info-circle"></i>
@@ -108,37 +95,12 @@
     </div>
 </nav>
 
-<!-- Page Content -->
 <div class="container" ui-view="main">
 </div>
-<!-- /.container -->
 
 <footer class="footer">
     <div class="container">
-        <div class="footer-inner">
-            <ul class="social">
-                <li><a target="_blank" href="http://gplus.to/joshdmiller"><i class="fa fa-google-plus-sign"></i></a>
-                </li>
-                <li><a target="_blank" href="http://twitter.com/joshdmiller"><i class="fa fa-twitter-sign"></i></a></li>
-                <li><a target="_blank" href="http://linkedin.com/in/joshdmiller"><i class="fa fa-linkedin-sign"></i></a>
-                </li>
-                <li><a target="_blank" href="http://github.com/ngbp/ngbp"><i class="fa fa-github-sign"></i></a></li>
-            </ul>
-
-
-            <p>
-                (c) 2013 <a href="http://www.joshdavidmiller.com">Josh David Miller</a>.
-                <a href="http://github.com/ngbp/ngbp/fork_select">Fork this</a>
-                to kickstart your next project.
-                <br/>
-                ngbp is based on
-                <a href="http://www.angularjs.org">AngularJS</a>,
-                <a href="http://getbootstrap.com">Bootstrap</a>,
-                <a href="http://angular-ui.github.com/bootstrap">UI Bootstrap</a>,
-                and
-                <a href="http://fortawesome.github.com/Font-Awesome">Font Awesome</a>.
-            </p>
-        </div>
+        <hr>
     </div>
 </footer>
 </body>

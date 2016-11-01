@@ -11,6 +11,6 @@ homeModule.config(['$stateProvider', function config( $stateProvider ) {
                 templateUrl: 'home/home.tpl.html'
             }
         },
-        data:{ pageTitle: 'Home' }
+        data: {pageTitle: 'Main page'}
     });
 }]);

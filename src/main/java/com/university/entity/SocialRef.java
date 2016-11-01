@@ -1,8 +1,10 @@
 package com.university.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "socialref")
 class SocialRef extends EntityBase {
 
     private String facebook;

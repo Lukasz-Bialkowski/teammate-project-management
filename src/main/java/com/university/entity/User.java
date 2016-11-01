@@ -1,8 +1,6 @@
 package com.university.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.university.entity.enumeration.EmploymentForm;
 import com.university.entity.enumeration.Position;
 import com.university.entity.enumeration.Role;
@@ -13,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User extends EntityBase {
 
     @Column(name = "name")

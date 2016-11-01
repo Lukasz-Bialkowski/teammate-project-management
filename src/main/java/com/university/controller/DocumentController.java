@@ -38,7 +38,7 @@ public class DocumentController extends CrudController<Document> {
         return project.getDocuments();
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     @RequestMapping(method = {RequestMethod.POST}, value = {"/saveprojectdocument"})
     @ResponseBody
     public Document saveProjectDocument(@PathVariable("projectId") Long projectId, @RequestBody Document model, HttpServletResponse response) {

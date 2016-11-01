@@ -2,9 +2,11 @@ package com.university.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
+@Table(name = "worklog")
 class WorkLog extends EntityBase {
 
     @Column(name = "work_date")

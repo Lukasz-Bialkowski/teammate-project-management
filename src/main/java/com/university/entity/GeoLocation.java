@@ -2,8 +2,10 @@ package com.university.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "geolocation")
 public class GeoLocation extends EntityBase {
 
     @Column(name = "geo_latitude")

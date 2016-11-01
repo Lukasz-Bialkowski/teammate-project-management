@@ -65,7 +65,8 @@ projectEventsModule.controller('EventsCtrl', ['moment', '$sce', 'EventCrudSrv', 
                 left: 'prev,next today',
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
-            }
+            },
+            ignoreTimezone: true
         }
     };
 

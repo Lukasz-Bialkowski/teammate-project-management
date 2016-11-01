@@ -33,11 +33,18 @@
                                             {{item.contractor.surname |
                                             capitalize}}
                                             <h5>Progress:</h5>
+                                            <div ng-if="!item.loggedHours" uib-alert class="alert-warning">Worklog list
+                                                empty
+                                                <button ng-if="tCtrl.accessedByOwner(item.contractor.email)"
+                                                        class="btn btn-primary"
+                                                        ui-sref="projectnav.managementTask({taskId: item.id})">
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i> Add worklog
+                                                </button>
+                                            </div>
                                             <uib-progressbar ng-if="item.loggedHours" class="progress-striped"
                                                              max="item.estimatedHours" value="item.loggedHours">
                                                 <span style="color:white; white-space:nowrap;">{{item.loggedHours}} / {{item.estimatedHours}}</span>
                                             </uib-progressbar>
-                                            <span ng-if="!item.loggedHours"><i>No logged workinghours</i></span>
                                         </li>
                                     </ul>
                                 </div>
@@ -72,7 +79,10 @@
                     <td ng-bind="task.estimatedHours"></td>
                     <td>{{task.contractor.name | capitalize}} {{task.contractor.surname | capitalize}}</td>
                     <td>
-                        <button class="btn btn-primary" ui-sref="projectnav.managementTask({taskId: task.id})">Edit
+                        <button ng-if="tCtrl.accessedByOwner(task.contractor.email)" class="btn btn-primary"
+                                ui-sref="projectnav.managementTask({taskId: task.id})"><i class="fa fa-pencil"
+                                                                                          aria-hidden="true"></i> Edit
+                            task
                         </button>
                     </td>
                 </tr>

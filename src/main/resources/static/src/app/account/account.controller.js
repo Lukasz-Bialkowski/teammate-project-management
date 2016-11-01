@@ -21,6 +21,3 @@ accountModule.controller('LoginCtrl', ['AuthSrv', '$state', function (AuthSrv, $
     };
 
 }]);
-
-accountModule.controller('RegisterCtrl', ['$scope', 'AuthSrv', function ($scope, AuthSrv) {
-}]);

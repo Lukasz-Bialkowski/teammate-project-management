@@ -1,6 +1,6 @@
 var taskboardModule = angular.module( 'teammateApp.project.taskboard');
 
-taskboardModule.controller('TaskboardCtrl', ['TaskCrudSrv', 'TaskManagementSrv', '_project', '_projectTaskList', '$scope', function TaskboardCtrl(TaskCrudSrv, TaskManagementSrv, _project, _projectTaskList, $scope) {
+taskboardModule.controller('TaskboardCtrl', ['TaskCrudSrv', 'AuthSrv', 'TaskManagementSrv', '_project', '_projectTaskList', '$scope', function TaskboardCtrl(TaskCrudSrv, AuthSrv, TaskManagementSrv, _project, _projectTaskList, $scope) {
 
     var vm = this;
     CrudfsCtrl.call(vm, vm, TaskCrudSrv);
@@ -15,6 +15,10 @@ taskboardModule.controller('TaskboardCtrl', ['TaskCrudSrv', 'TaskManagementSrv',
             INPROGRESS: [],
             DONE: []
         }
+    };
+
+    vm.accessedByOwner = function (taskOwnerEmail) {
+        return AuthSrv.getUser().email === taskOwnerEmail;
     };
 
     angular.forEach(_projectTaskList, function (value, key) {

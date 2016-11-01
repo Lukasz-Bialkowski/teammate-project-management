@@ -11,17 +11,17 @@ accountModule.factory('AuthSrv', ['$state', '$http', function AuthSrv($state, $h
 
             return $http.post(httpUrl, params, {headers: httpHeaders})
                 .then(function (data) {
-                    alert("Sukces logowania");
+                    alert("Logging Successful");
                     localStorage.setItem("userSession", data);
                     credentials = userData;
                     $state.go("home");
                 }, function () {
-                    alert("Błąd logowania");
+                    alert("Error accured while logging in");
                 });
         },
         logout: function () {
             $http.post('logout', {}).then(function () {
-                alert("Zostałeś wylogowany");
+                alert("You've been correctly logged out");
                 localStorage.removeItem("userSession");
                 credentials = {};
                 $state.go("home");

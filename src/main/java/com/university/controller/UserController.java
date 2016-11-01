@@ -5,6 +5,7 @@ import com.university.crud.CrudService;
 import com.university.entity.User;
 import com.university.entity.enumeration.EmploymentForm;
 import com.university.entity.enumeration.Position;
+import com.university.entity.enumeration.Role;
 import com.university.service.DataProvider;
 import com.university.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,7 @@ public class UserController extends CrudController<User> {
     @Override
     public User save(@RequestBody User model, HttpServletResponse response) {
         model.setPasswordHash(passwordEncoder.encode(model.getPasswordHash()));
+        model.setRole(Role.ADMIN);
         userService.sendAccountCreatedMail(model);
         return super.save(model, response);
     }

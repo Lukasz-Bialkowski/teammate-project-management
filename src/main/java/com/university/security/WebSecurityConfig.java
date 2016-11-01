@@ -46,9 +46,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessHandler(logoutSuccessHandler)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/src/**", "/vendor/**", "/assets/**", "/fonts/**", "/templates-app.js", "/templates-common.js",
-                        "/user/**", "/event/**", "/task/**", "/project/**", "/docs/**").permitAll()
-                .anyRequest().authenticated();
+                .antMatchers("/", "/src/**", "/vendor/**", "/assets/**", "/fonts/**", "/templates-app.js", "/templates-common.js")
+                .permitAll()
+//                .antMatchers("/project/*","/user/*")
+//                    .hasAnyRole(Role.ADMIN.toString())
+                .anyRequest()
+                .authenticated();
     }
 
     @Autowired

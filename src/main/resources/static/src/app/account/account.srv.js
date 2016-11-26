@@ -1,7 +1,7 @@
 var accountModule = angular.module('teammateApp.account');
 
 accountModule.factory('AuthSrv', ['$state', '$http', function AuthSrv($state, $http) {
-    var credentials = {};
+    var principal = {};
 
     return {
         login: function (userData) {
@@ -13,7 +13,9 @@ accountModule.factory('AuthSrv', ['$state', '$http', function AuthSrv($state, $h
                 .then(function (data) {
                     alert("Logging Successful");
                     localStorage.setItem("userSession", data);
-                    credentials = userData;
+                    $http.get("auth/credentials").then(function (response) {
+                        principal = response.data;
+                    });
                     $state.go("home");
                 }, function () {
                     alert("Error accured while logging in");
@@ -23,7 +25,7 @@ accountModule.factory('AuthSrv', ['$state', '$http', function AuthSrv($state, $h
             $http.post('logout', {}).then(function () {
                 alert("You've been correctly logged out");
                 localStorage.removeItem("userSession");
-                credentials = {};
+                principal = {};
                 $state.go("home");
             });
         },
@@ -31,7 +33,7 @@ accountModule.factory('AuthSrv', ['$state', '$http', function AuthSrv($state, $h
             return localStorage.getItem("userSession") !== null;
         },
         getUser: function () {
-            return credentials;
+            return principal;
         }
     };
 }]);

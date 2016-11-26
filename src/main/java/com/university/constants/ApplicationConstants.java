@@ -1,5 +1,7 @@
 package com.university.constants;
 
+import java.util.Optional;
+
 public class ApplicationConstants {
 
     public static final String NEW_ACCOUNT_EMAIL_TITLE = "TeamMate | New account created";
@@ -68,7 +70,7 @@ public class ApplicationConstants {
     }
 
     private static String cappitalize(String word) {
-        return word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase();
+        return Optional.ofNullable(word).isPresent() ? word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase() : "";
     }
 
 }

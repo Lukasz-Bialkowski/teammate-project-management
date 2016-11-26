@@ -4,7 +4,7 @@
         <p>Please, describe user with all essential info which is required to create user</br>
             In order to access to Teammate system, you have to activate your account by clicking on activation
             link.</br>
-            You can find it on your <b>email</b> box passed while your registration.
+            You can find it on your <b>email</b> box passed while your registration.</p>
     </div>
     <div ng-if="uCtrl.current.id">
         <h1>User: <span class="crudheader-color"><b>{{uCtrl.current.name | capitalize}} {{uCtrl.current.surname | capitalize}}</b></span>
@@ -72,7 +72,7 @@
                                    name="datepick" close-text="Close" hrt-btr-validation/>
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-click="uCtrl.togglePopup($event)"><i
-                                        class="fa fa-book"></i></button>
+                                        class="fa fa-calendar"></i></button>
                             </span>
                         </p>
                     </div>
@@ -133,7 +133,7 @@
             <button type="button" class="btn btn-default" ui-sref="projectnav.about">Cancel</button>
             <button type="button" class="btn btn-danger" ng-if="uCtrl.current.id"
                     ng-click="uCtrl.remove(uCtrl.current)">
-                Usun
+                Delete
             </button>
             <button type="button" class="btn btn-success" ng-if="uCtrl.current.id"
                     ng-click="uCtrl.saveUser(uCtrl.current)"

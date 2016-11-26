@@ -1,9 +1,5 @@
 package com.university.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,10 +17,10 @@ public class Project extends EntityBase {
     @JoinColumn(name = "project_manager")
     private User manager;
 
-    @Column(name = "project_description")
+    @Column(name = "project_description", length = 2500)
     private String projectDescription;
 
-    @Column(name = "product_description")
+    @Column(name = "product_description", length = 2500)
     private String productDescription;
 
     @OneToMany

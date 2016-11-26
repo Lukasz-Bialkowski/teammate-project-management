@@ -5,13 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "geolocation")
+@Table(name = "geo_localization")
 public class GeoLocation extends EntityBase {
 
-    @Column(name = "geo_latitude")
+    @Column(name = "geometric_latitude")
     private Double latitude;
 
-    @Column(name = "geo_longitude")
+    @Column(name = "geometric_longitude")
     private Double longitude;
 
     public Double getLatitude() {

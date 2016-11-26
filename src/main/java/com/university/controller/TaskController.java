@@ -4,7 +4,7 @@ import com.university.crud.CrudController;
 import com.university.crud.CrudService;
 import com.university.entity.Project;
 import com.university.entity.Task;
-import com.university.entity.TaskPriority;
+import com.university.entity.enumeration.TaskPriority;
 import com.university.service.DataProvider;
 import com.university.service.ProjectService;
 import com.university.service.TaskService;

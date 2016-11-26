@@ -152,19 +152,19 @@
     </form>
     <div class="row">
         <div class="col-md-12 form-footer text-center">
-            <button type="button" class="btn btn-default" ng-click="tmCtrl.cancel()">Anuluj</button>
+            <button type="button" class="btn btn-default" ng-click="tmCtrl.cancel()">Cancel</button>
             <button type="button" class="btn btn-danger" ng-if="tmCtrl.current.id"
-                    ng-click="tmCtrl.remove(tmCtrl.current)">Usun
+                    ng-click="tmCtrl.remove(tmCtrl.current)">Delete
             </button>
             <button type="button" class="btn btn-success" ng-if="tmCtrl.current.id"
                     ng-click="tmCtrl.saveTask(tmCtrl.current)"
-                    ng-disabled="taskform.$invalid || taskform.$pristine">Aktualizuj
+                    ng-disabled="taskform.$invalid || taskform.$pristine">Update
             </button>
             <button type="button" class="btn btn-success" ng-if="!tmCtrl.current.id"
                     ng-click="tmCtrl.saveTask(tmCtrl.current)"
-                    ng-disabled="taskform.$invalid || taskform.$pristine">Dodaj
+                    ng-disabled="taskform.$invalid || taskform.$pristine">Add
             </button>
-            <button type="button" class="btn btn-info" ng-if="tmCtrl.current.id" ng-click="tmCtrl.create()">Nowy task
+            <button type="button" class="btn btn-info" ng-if="tmCtrl.current.id" ng-click="tmCtrl.create()">New Task
             </button>
         </div>
     </div>

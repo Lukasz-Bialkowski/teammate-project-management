@@ -1,8 +1,8 @@
 package com.university.service.impl;
 
-import com.university.entity.TaskPriority;
 import com.university.entity.enumeration.EmploymentForm;
 import com.university.entity.enumeration.Position;
+import com.university.entity.enumeration.TaskPriority;
 import com.university.service.DataProvider;
 import org.springframework.stereotype.Service;
 

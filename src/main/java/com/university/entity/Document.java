@@ -9,7 +9,7 @@ public class Document extends EntityBase {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "html_content")
+    @Column(name = "html_content", length = 5000)
     private String htmlContent;
 
     public String getHtmlContent() {

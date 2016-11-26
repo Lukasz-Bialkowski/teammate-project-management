@@ -12,6 +12,8 @@
     "angular-animate": "1.5.8",
     "angular-resource": "1.5.8",
     "angular-ui-calendar": "~1.0.2",
-    "textAngular": "~1.5.12"
+    "textAngular": "~1.5.12",
+    "angular-ui-select": "~0.19.6",
+    "angular-sanitize": "~1.5.8"
   }
 }

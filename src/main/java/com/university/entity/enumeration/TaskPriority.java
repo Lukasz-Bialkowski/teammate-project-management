@@ -1,4 +1,4 @@
-package com.university.entity;
+package com.university.entity.enumeration;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.core.JsonParser;

@@ -4,7 +4,7 @@
         <p>Please, describe user with all essential info which is required to create user</br>
             In order to access to Teammate system, you have to activate your account by clicking on activation
             link.</br>
-            You can find it on your <b>email</b> box passed while your registration.
+            You can find it on your <b>email</b> box passed while your registration.</p>
     </div>
     <div ng-if="uCtrl.current.id">
         <h1>User: <span class="crudheader-color"><b>{{uCtrl.current.name | capitalize}} {{uCtrl.current.surname | capitalize}}</b></span>
@@ -133,12 +133,14 @@
             <button type="button" class="btn btn-default" ui-sref="projectnav.about">Cancel</button>
             <button type="button" class="btn btn-danger" ng-if="uCtrl.current.id"
                     ng-click="uCtrl.remove(uCtrl.current)">
-                Usun
+                Delete
             </button>
-            <button type="button" class="btn btn-success" ng-if="uCtrl.current.id" ng-click="uCtrl.save(uCtrl.current)"
+            <button type="button" class="btn btn-success" ng-if="uCtrl.current.id"
+                    ng-click="uCtrl.saveUser(uCtrl.current)"
                     ng-disabled="userform.$invalid || userform.$pristine || !(uCtrl.passwordsMatch)">Update
             </button>
-            <button type="button" class="btn btn-success" ng-if="!uCtrl.current.id" ng-click="uCtrl.save(uCtrl.current)"
+            <button type="button" class="btn btn-success" ng-if="!uCtrl.current.id"
+                    ng-click="uCtrl.saveUser(uCtrl.current)"
                     ng-disabled="userform.$invalid || userform.$pristine || !(uCtrl.passwordsMatch)">Add
             </button>
             <button type="button" class="btn btn-info" ng-if="uCtrl.current.id" ng-click="uCtrl.create()">New User

@@ -1,5 +1,6 @@
 package com.university.entity;
 
+import com.university.entity.enumeration.TaskPriority;
 import com.university.entity.enumeration.TaskStatus;
 
 import javax.persistence.*;

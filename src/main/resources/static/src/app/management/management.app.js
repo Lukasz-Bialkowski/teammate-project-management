@@ -3,7 +3,7 @@ var managementModule = angular.module('teammateApp.management', []);
 managementModule.config(['$stateProvider', function config($stateProvider) {
     $stateProvider
         .state('managementUser', {
-            url: '/createuser',
+            url: '/user/:userId',
             views: {
                 "main": {
                     controller: 'UserManagementCtrl as uCtrl',

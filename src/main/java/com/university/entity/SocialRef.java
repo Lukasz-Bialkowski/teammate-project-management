@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "socialref")
+@Table(name = "socialreference")
 class SocialRef extends EntityBase {
 
     private String facebook;

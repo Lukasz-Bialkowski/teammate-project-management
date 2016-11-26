@@ -48,7 +48,6 @@ managementModule.controller('TaskManagementCtrl', ['TaskCrudSrv', 'TaskManagemen
         dateDisabled: false,
         formatYear: 'yy',
         maxDate: new Date(2020, 5, 22),
-        minDate: new Date(),
         startingDay: 5
     };
     vm.togglePopup = function ($event) {

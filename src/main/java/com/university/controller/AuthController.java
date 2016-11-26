@@ -22,7 +22,12 @@ public class AuthController {
 
     @RequestMapping(value = "/credentials", method = RequestMethod.GET)
     public User userLoggedIn(Authentication authentication) {
-        CurrentUser userDetails = (CurrentUser) authentication.getPrincipal();
+        CurrentUser userDetails;
+        if (authentication.getPrincipal() instanceof CurrentUser) {
+            userDetails = (CurrentUser) authentication.getPrincipal();
+        } else {
+            return null;
+        }
         User loggedUser = userService.get(userDetails.getUser().getId());
         System.out.println("Logged in user details: " + loggedUser.toString());
         System.out.println("User logged role: " + userDetails.getRole());
